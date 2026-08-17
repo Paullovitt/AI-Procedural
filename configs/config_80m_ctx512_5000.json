@@ -1,0 +1,36 @@
+﻿{
+  "architecture": {
+    "d_model": 744,
+    "layers": 12,
+    "heads": 12,
+    "ffn_mult": 4,
+    "context": 512,
+    "procedural_rank": 64,
+    "baseline_parameters": 79936848,
+    "procedural_persistent_parameters": 4415040,
+    "procedural_dense_equivalent_parameters": 79936848
+  },
+  "training": {
+    "steps": 5000,
+    "logical_epochs": 10,
+    "batch_size": 1,
+    "grad_accum": 1,
+    "tokens_per_step": 512,
+    "tokens_seen": 2560000,
+    "baseline_lr": 0.0002,
+    "baseline_min_lr": 0.00002,
+    "procedural_lr": 0.0012,
+    "procedural_min_lr": 0.00012,
+    "warmup_steps": 250,
+    "eval_interval": 500,
+    "eval_batches": 5
+  },
+  "dataset": {
+    "source": "HuggingFaceFW/fineweb-2",
+    "subset": "por_Latn",
+    "tokenizer": "utf8-bytes",
+    "train_bytes": 943718400,
+    "validation_bytes": 52428800,
+    "test_bytes": 52428800
+  }
+}
