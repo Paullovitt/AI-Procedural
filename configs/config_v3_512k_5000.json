@@ -1,0 +1,27 @@
+﻿{
+  "architecture": {
+    "name": "Procedural V3",
+    "d_model": 744,
+    "layers": 12,
+    "heads": 12,
+    "ffn_mult": 4,
+    "procedural_rank": 64,
+    "chunk_tokens": 512,
+    "effective_context_tokens": 524288,
+    "persistent_parameters": 4415040,
+    "dense_equivalent_parameters": 79936848,
+    "attention": "exact local softmax over current + previous 512-token chunk, recurrent linear global memory for older history",
+    "cross_chunk_backward": "truncated; recurrent global state detached between chunks"
+  },
+  "training": {
+    "steps": 5000,
+    "logical_epochs": 10,
+    "tokens_per_step": 512,
+    "tokens_seen": 2560000,
+    "lr": 0.0012,
+    "min_lr": 0.00012,
+    "warmup_steps": 250,
+    "ffn_schedule": "512@1-500,1024@501-1500,1536@1501-2500,full@2501-5000",
+    "beta_schedule": "0.05@1-500,0.15@501-1500,0.30@1501-2500,0.50@2501-5000"
+  }
+}

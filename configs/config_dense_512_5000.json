@@ -1,0 +1,20 @@
+﻿{
+  "architecture": {
+    "name": "Dense 80M",
+    "d_model": 744,
+    "layers": 12,
+    "heads": 12,
+    "ffn_mult": 4,
+    "context_tokens": 512,
+    "parameters": 79936848
+  },
+  "training": {
+    "steps": 5000,
+    "logical_epochs": 10,
+    "tokens_per_step": 512,
+    "tokens_seen": 2560000,
+    "lr": 0.0002,
+    "min_lr": 0.00002,
+    "warmup_steps": 250
+  }
+}
