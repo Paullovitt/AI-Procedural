@@ -1,7 +1,8 @@
 ﻿from datasets import load_dataset
 from pathlib import Path
 import json, time, shutil
-OUT=Path('data')
+ROOT=Path(__file__).resolve().parent
+OUT=ROOT/'data'
 if OUT.exists(): shutil.rmtree(OUT)
 OUT.mkdir()
 # Keep total corpus <= 2GB on disk: 900MiB train + 50MiB val + 50MiB test = 1000MiB.
@@ -31,3 +32,4 @@ counts2,docs2=write_stream(ds['test'], [('test',TARGETS['test'])])
 meta={'dataset':'HuggingFaceFW/fineweb-2','config':'por_Latn','tokenizer':'utf8-bytes','vocab_size':256,'targets_bytes':TARGETS,'actual_bytes':{**counts1,**counts2},'documents':{**docs1,**docs2},'elapsed_sec':time.time()-start}
 (OUT/'meta.json').write_text(json.dumps(meta,indent=2,ensure_ascii=False),encoding='utf-8')
 print(json.dumps(meta,indent=2,ensure_ascii=False))
+

@@ -1,8 +1,6 @@
-data/
-runs/
+﻿data/*.bin
 __pycache__/
 *.pyc
-*.bin
 *.log
 .vscode/
 .idea/
