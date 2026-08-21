@@ -1,0 +1,92 @@
+{
+  "baseline": {
+    "repetition_weight": 0.8,
+    "bad": 0,
+    "slots": 0,
+    "trace": 0,
+    "support": 0.7493074792243767,
+    "unique": 0.3654124732351983,
+    "repeat": 0.10832003100436215,
+    "position_win": 0.9558998808104887,
+    "position_mean": 0.8411260756160536
+  },
+  "rows": [
+    {
+      "repetition_weight": 0.8,
+      "bad": 0,
+      "slots": 0,
+      "trace": 0,
+      "support": 0.7493074792243767,
+      "unique": 0.3654124732351983,
+      "repeat": 0.10832003100436215,
+      "position_win": 0.9558998808104887,
+      "position_mean": 0.8411260756160536
+    },
+    {
+      "repetition_weight": 1.1,
+      "bad": 0,
+      "slots": 0,
+      "trace": 0,
+      "support": 0.7509443465122135,
+      "unique": 0.36188546203796257,
+      "repeat": 0.0993364341373576,
+      "position_win": 0.9487485101311085,
+      "position_mean": 0.8110967810639133
+    },
+    {
+      "repetition_weight": 1.5,
+      "bad": 0,
+      "slots": 0,
+      "trace": 0,
+      "support": 0.7475446990682447,
+      "unique": 0.3595058956579508,
+      "repeat": 0.11604907863148096,
+      "position_win": 0.930870083432658,
+      "position_mean": 0.795860599568385
+    },
+    {
+      "repetition_weight": 2.0,
+      "bad": 0,
+      "slots": 0,
+      "trace": 0,
+      "support": 0.7472928733316545,
+      "unique": 0.3573567283037482,
+      "repeat": 0.10495502084528963,
+      "position_win": 0.901072705601907,
+      "position_mean": 0.7502968255583669
+    },
+    {
+      "repetition_weight": 2.7,
+      "bad": 0,
+      "slots": 0,
+      "trace": 0,
+      "support": 0.7480483505414254,
+      "unique": 0.35509227698189527,
+      "repeat": 0.10949786809306189,
+      "position_win": 0.8986889153754469,
+      "position_mean": 0.7341097368410469
+    },
+    {
+      "repetition_weight": 3.6,
+      "bad": 0,
+      "slots": 0,
+      "trace": 0,
+      "support": 0.7420045328632586,
+      "unique": 0.35496875133770156,
+      "repeat": 0.09970187555394384,
+      "position_win": 0.8474374255065554,
+      "position_mean": 0.6412887872881752
+    }
+  ],
+  "selected": {
+    "repetition_weight": 1.1,
+    "bad": 0,
+    "slots": 0,
+    "trace": 0,
+    "support": 0.7509443465122135,
+    "unique": 0.36188546203796257,
+    "repeat": 0.0993364341373576,
+    "position_win": 0.9487485101311085,
+    "position_mean": 0.8110967810639133
+  }
+}

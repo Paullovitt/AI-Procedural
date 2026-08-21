@@ -1,0 +1,211 @@
+{
+  "baseline": {
+    "kind": "v11",
+    "diversity_weight": 0.0,
+    "bad": 0,
+    "slots": 0,
+    "trace": 0,
+    "support": 0.7367737364194615,
+    "within_doc_unique": 0.2863999909839052,
+    "graph_adjacent": 0.05738993710691824,
+    "repeat": 0.106724119451892,
+    "opening_entropy": 0.9840285243747051
+  },
+  "rows": [
+    {
+      "kind": "v11",
+      "diversity_weight": 0.0,
+      "bad": 0,
+      "slots": 0,
+      "trace": 0,
+      "support": 0.7367737364194615,
+      "within_doc_unique": 0.2863999909839052,
+      "graph_adjacent": 0.05738993710691824,
+      "repeat": 0.106724119451892,
+      "opening_entropy": 0.9840285243747051
+    },
+    {
+      "kind": "v12",
+      "diversity_weight": 0.03,
+      "bad": 0,
+      "slots": 0,
+      "trace": 0,
+      "support": 0.7364204076823377,
+      "within_doc_unique": 0.2961449756891597,
+      "graph_adjacent": 0.8050314465408805,
+      "repeat": 0.10544224560802261,
+      "opening_entropy": 0.9841824512044635
+    },
+    {
+      "kind": "v12",
+      "diversity_weight": 0.06,
+      "bad": 0,
+      "slots": 0,
+      "trace": 0,
+      "support": 0.7345351714386709,
+      "within_doc_unique": 0.30594003566560607,
+      "graph_adjacent": 0.8050314465408805,
+      "repeat": 0.10118860432257362,
+      "opening_entropy": 0.9841425308298419
+    },
+    {
+      "kind": "v12",
+      "diversity_weight": 0.1,
+      "bad": 0,
+      "slots": 0,
+      "trace": 0,
+      "support": 0.733946035112525,
+      "within_doc_unique": 0.3162842621017813,
+      "graph_adjacent": 0.8050314465408805,
+      "repeat": 0.1049629893360736,
+      "opening_entropy": 0.984025501240356
+    },
+    {
+      "kind": "v12",
+      "diversity_weight": 0.16,
+      "bad": 0,
+      "slots": 0,
+      "trace": 0,
+      "support": 0.7320607988688582,
+      "within_doc_unique": 0.3267908755777801,
+      "graph_adjacent": 0.8050314465408805,
+      "repeat": 0.10329984809391828,
+      "opening_entropy": 0.9843391753640435
+    },
+    {
+      "kind": "v12",
+      "diversity_weight": 0.24,
+      "bad": 0,
+      "slots": 0,
+      "trace": 0,
+      "support": 0.735949098621421,
+      "within_doc_unique": 0.33657792083597554,
+      "graph_adjacent": 0.8050314465408805,
+      "repeat": 0.10249758528817911,
+      "opening_entropy": 0.984236750550254
+    },
+    {
+      "kind": "v12",
+      "diversity_weight": 0.36,
+      "bad": 0,
+      "slots": 0,
+      "trace": 0,
+      "support": 0.7355956168257335,
+      "within_doc_unique": 0.3432922321950666,
+      "graph_adjacent": 0.8050314465408805,
+      "repeat": 0.11427617506080985,
+      "opening_entropy": 0.9840753821369875
+    },
+    {
+      "kind": "v12",
+      "diversity_weight": 0.45,
+      "bad": 0,
+      "slots": 0,
+      "trace": 0,
+      "support": 0.7419829361576934,
+      "within_doc_unique": 0.33923674851064606,
+      "graph_adjacent": 0.8109869646182496,
+      "repeat": 0.10701604696400455
+    },
+    {
+      "kind": "v12",
+      "diversity_weight": 0.6,
+      "bad": 0,
+      "slots": 0,
+      "trace": 0,
+      "support": 0.7437481612238894,
+      "within_doc_unique": 0.3436607988280839,
+      "graph_adjacent": 0.8109869646182496,
+      "repeat": 0.1063152256627227
+    },
+    {
+      "kind": "v12",
+      "diversity_weight": 0.8,
+      "bad": 0,
+      "slots": 0,
+      "trace": 0,
+      "support": 0.7463959988231833,
+      "within_doc_unique": 0.34570805965341384,
+      "graph_adjacent": 0.8109869646182496,
+      "repeat": 0.1106106208957928
+    },
+    {
+      "kind": "v12",
+      "diversity_weight": 1.05,
+      "bad": 0,
+      "slots": 0,
+      "trace": 0,
+      "support": 0.7469844071785819,
+      "within_doc_unique": 0.3521778894306353,
+      "graph_adjacent": 0.8109869646182496,
+      "repeat": 0.10568562583628767
+    },
+    {
+      "kind": "v12",
+      "diversity_weight": 1.4,
+      "bad": 0,
+      "slots": 0,
+      "trace": 0,
+      "support": 0.7497658445207618,
+      "within_doc_unique": 0.3482759251285943,
+      "graph_adjacent": 0.8080402010050252,
+      "repeat": 0.10776575316886701
+    },
+    {
+      "kind": "v12",
+      "diversity_weight": 1.9,
+      "bad": 0,
+      "slots": 0,
+      "trace": 0,
+      "support": 0.7497658445207618,
+      "within_doc_unique": 0.349058414515418,
+      "graph_adjacent": 0.8080402010050252,
+      "repeat": 0.10057661275128088
+    },
+    {
+      "kind": "v12",
+      "diversity_weight": 2.6,
+      "bad": 0,
+      "slots": 0,
+      "trace": 0,
+      "support": 0.7496097408679363,
+      "within_doc_unique": 0.3551471369182517,
+      "graph_adjacent": 0.8080402010050252,
+      "repeat": 0.11291834176799784
+    },
+    {
+      "kind": "v12",
+      "diversity_weight": 3.6,
+      "bad": 0,
+      "slots": 0,
+      "trace": 0,
+      "support": 0.7505463627848892,
+      "within_doc_unique": 0.3573312676308525,
+      "graph_adjacent": 0.8080402010050252,
+      "repeat": 0.10467507043743426
+    }
+  ],
+  "best": {
+    "kind": "v12",
+    "diversity_weight": 3.6,
+    "bad": 0,
+    "slots": 0,
+    "trace": 0,
+    "support": 0.7505463627848892,
+    "within_doc_unique": 0.3573312676308525,
+    "graph_adjacent": 0.8080402010050252,
+    "repeat": 0.10467507043743426
+  },
+  "selected": {
+    "kind": "v12",
+    "diversity_weight": 2.6,
+    "bad": 0,
+    "slots": 0,
+    "trace": 0,
+    "support": 0.7496097408679363,
+    "within_doc_unique": 0.3551471369182517,
+    "graph_adjacent": 0.8080402010050252,
+    "repeat": 0.11291834176799784
+  },
+  "rule": "minimum weight within 99% of best heldout uniqueness under semantic/support/repetition gates"
+}

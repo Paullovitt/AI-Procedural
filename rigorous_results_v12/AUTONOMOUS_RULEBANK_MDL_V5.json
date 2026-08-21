@@ -1,0 +1,386 @@
+{
+  "format": "Autonomous-RuleBank-MDL-v4",
+  "n_rel": 12,
+  "n_feat": 16,
+  "initial_order_cap": 3,
+  "hard_resource_cap": 5,
+  "selection": "minimum-description-length; complexity expands only while a zero-residual higher-order model can beat current code length",
+  "models": {
+    "0": {
+      "features": [
+        0,
+        1,
+        6,
+        14
+      ],
+      "table": [
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        1
+      ],
+      "order": 4,
+      "train_error": 0.016595160588622093,
+      "val_error": 0.0,
+      "description_bits": 41.63566589355469,
+      "model_bits": 29.414685235807216,
+      "residual_bits": 12.22098159790039,
+      "val_examples": 4772,
+      "searched_orders": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "next_order_lower_bound": 58.898702492722784
+    },
+    "1": {
+      "features": [
+        0,
+        1,
+        2,
+        9
+      ],
+      "table": [
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1
+      ],
+      "order": 4,
+      "train_error": 0.013860289007425308,
+      "val_error": 0.0,
+      "description_bits": 41.70066452026367,
+      "model_bits": 29.414685235807216,
+      "residual_bits": 12.285980224609375,
+      "val_examples": 4992,
+      "searched_orders": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "next_order_lower_bound": 58.963699747569216
+    },
+    "2": {
+      "features": [
+        0,
+        1,
+        12
+      ],
+      "table": [
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        1
+      ],
+      "order": 3,
+      "train_error": 0.015799708664417267,
+      "val_error": 0.0,
+      "description_bits": 32.02201461791992,
+      "model_bits": 19.714245517666125,
+      "residual_bits": 12.307769775390625,
+      "val_examples": 5068,
+      "searched_orders": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "next_order_lower_bound": 41.72245526769792
+    },
+    "3": {
+      "features": [
+        0,
+        1,
+        12
+      ],
+      "table": [
+        0,
+        1,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1
+      ],
+      "order": 3,
+      "train_error": 0.015013107098639011,
+      "val_error": 0.0,
+      "description_bits": 31.9894962310791,
+      "model_bits": 19.714245517666125,
+      "residual_bits": 12.275251388549805,
+      "val_examples": 4955,
+      "searched_orders": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "next_order_lower_bound": 41.689936779277545
+    },
+    "4": {
+      "features": [
+        0,
+        1
+      ],
+      "table": [
+        0,
+        1,
+        1,
+        1
+      ],
+      "order": 2,
+      "train_error": 0.015932150185108185,
+      "val_error": 0.0,
+      "description_bits": 25.797914505004883,
+      "model_bits": 13.491853096329674,
+      "residual_bits": 12.306061744689941,
+      "val_examples": 5062,
+      "searched_orders": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "next_order_lower_bound": 41.72074692523556
+    },
+    "5": {
+      "features": [
+        0,
+        1,
+        8
+      ],
+      "table": [
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        1
+      ],
+      "order": 3,
+      "train_error": 0.015547364018857479,
+      "val_error": 0.0,
+      "description_bits": 31.977514266967773,
+      "model_bits": 19.714245517666125,
+      "residual_bits": 12.263269424438477,
+      "val_examples": 4914,
+      "searched_orders": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "next_order_lower_bound": 41.677954436179874
+    },
+    "6": {
+      "features": [
+        1
+      ],
+      "table": [
+        0,
+        1
+      ],
+      "order": 1,
+      "train_error": 0.013441726565361023,
+      "val_error": 0.0,
+      "description_bits": 20.898696899414062,
+      "model_bits": 8.584962500721158,
+      "residual_bits": 12.31373405456543,
+      "val_examples": 5089,
+      "searched_orders": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "next_order_lower_bound": 41.72841858607104
+    },
+    "7": {
+      "features": [
+        0,
+        1
+      ],
+      "table": [
+        0,
+        1,
+        1,
+        1
+      ],
+      "order": 2,
+      "train_error": 0.013615249656140804,
+      "val_error": 0.0,
+      "description_bits": 25.785324096679688,
+      "model_bits": 13.491853096329674,
+      "residual_bits": 12.293471336364746,
+      "val_examples": 5018,
+      "searched_orders": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "next_order_lower_bound": 41.70815688464535
+    },
+    "8": {
+      "features": [
+        0,
+        1,
+        12
+      ],
+      "table": [
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        1
+      ],
+      "order": 3,
+      "train_error": 0.01411354262381792,
+      "val_error": 0.0,
+      "description_bits": 32.025142669677734,
+      "model_bits": 19.714245517666125,
+      "residual_bits": 12.310897827148438,
+      "val_examples": 5079,
+      "searched_orders": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "next_order_lower_bound": 41.72558198460493
+    },
+    "9": {
+      "features": [
+        0,
+        1,
+        10
+      ],
+      "table": [
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        1
+      ],
+      "order": 3,
+      "train_error": 0.014832728542387486,
+      "val_error": 0.0,
+      "description_bits": 32.026275634765625,
+      "model_bits": 19.714245517666125,
+      "residual_bits": 12.312030792236328,
+      "val_examples": 5083,
+      "searched_orders": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "next_order_lower_bound": 41.726717294552074
+    },
+    "10": {
+      "features": [
+        0,
+        1,
+        2,
+        10
+      ],
+      "table": [
+        0,
+        1,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1
+      ],
+      "order": 4,
+      "train_error": 0.0149181904271245,
+      "val_error": 0.0,
+      "description_bits": 41.730682373046875,
+      "model_bits": 29.414685235807216,
+      "residual_bits": 12.315998077392578,
+      "val_examples": 5097,
+      "searched_orders": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "next_order_lower_bound": 58.99371826426956
+    },
+    "11": {
+      "features": [
+        1
+      ],
+      "table": [
+        0,
+        1
+      ],
+      "order": 1,
+      "train_error": 0.01571303978562355,
+      "val_error": 0.0,
+      "description_bits": 20.835556030273438,
+      "model_bits": 8.584962500721158,
+      "residual_bits": 12.250593185424805,
+      "val_examples": 4871,
+      "searched_orders": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "next_order_lower_bound": 41.66527974299953
+    }
+  }
+}

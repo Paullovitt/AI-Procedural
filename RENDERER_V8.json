@@ -1,0 +1,139 @@
+{
+  "format": "Renderer-V8-InducedGrammar",
+  "status": "promoted",
+  "config": {
+    "name": "Renderer-V8-InducedGrammar",
+    "max_bundle": 12,
+    "q_low": 0.03,
+    "q_high": 0.995,
+    "target_scale": 1.1,
+    "repetition_weight": 0.8,
+    "target_weight": 1.0,
+    "template_repetition_weight": 0.08,
+    "construction_weight": 0.6,
+    "position_weight": 0.15,
+    "grammar": "Bagaco-Induced-Constructions-v1"
+  },
+  "grammar_file": "LEARNED_CONSTRUCTIONS_V1.json.xz",
+  "frame_counts": {
+    "2": 4130,
+    "3": 4508,
+    "4": 1762,
+    "5": 203
+  },
+  "novel_generalization": {
+    "2": {
+      "novel_types": 38463,
+      "covered_types": 34390,
+      "type_coverage": 0.8941060239710891,
+      "novel_support": 3255661,
+      "covered_support": 2895677,
+      "weighted_coverage": 0.8894282912133665
+    },
+    "3": {
+      "novel_types": 42633,
+      "covered_types": 22857,
+      "type_coverage": 0.5361339807191612,
+      "novel_support": 1967421,
+      "covered_support": 946405,
+      "weighted_coverage": 0.4810383746030972
+    },
+    "4": {
+      "novel_types": 45949,
+      "covered_types": 6150,
+      "type_coverage": 0.13384404448410195,
+      "novel_support": 877565,
+      "covered_support": 96968,
+      "weighted_coverage": 0.11049665836718647
+    },
+    "5": {
+      "novel_types": 42152,
+      "covered_types": 653,
+      "type_coverage": 0.015491554374644145,
+      "novel_support": 481347,
+      "covered_support": 6722,
+      "weighted_coverage": 0.013964977448701248
+    }
+  },
+  "discourse": {
+    "stable_discrete_clusters": false,
+    "candidate_k": 8,
+    "decision": "continuous position model retained; discrete ontology rejected at boundary"
+  },
+  "stress": {
+    "v7": {
+      "name": "V7",
+      "documents": 300,
+      "facts": 89460,
+      "sentences": 31563,
+      "mean": 17.146437284161834,
+      "median": 13,
+      "p90": 34,
+      "p95": 42,
+      "p99": 59,
+      "bad_documents": 0,
+      "slot_errors": 0,
+      "trigram_support": 0.7403922314101955,
+      "opening_entropy": 0.9787119341622329,
+      "template_entropy": 0.9454388305410504,
+      "opening_repeat": 0.1297129459476586,
+      "seconds": 14.760204505999809,
+      "facts_per_second": 6060.89163355669
+    },
+    "v8": {
+      "name": "V8",
+      "documents": 300,
+      "facts": 89460,
+      "sentences": 31563,
+      "mean": 17.248740614010075,
+      "median": 13,
+      "p90": 35,
+      "p95": 42,
+      "p99": 59,
+      "bad_documents": 0,
+      "slot_errors": 0,
+      "trigram_support": 0.7382061274276843,
+      "opening_entropy": 0.9814241385845742,
+      "template_entropy": 0.9361808887223502,
+      "opening_repeat": 0.13167733350231292,
+      "seconds": 7.752950052000415,
+      "facts_per_second": 11538.833527879822,
+      "construction_score": 0.8360259613006774,
+      "construction_coverage": 0.9234582155519291,
+      "position_score": -0.11434767795591173
+    }
+  },
+  "sample_gate": {
+    "v7": {
+      "construction": 0.8236234307959104,
+      "coverage": 0.9138281468345053,
+      "position": -0.12288284538129227,
+      "trigram": 0.7380679648720886,
+      "sentences": 2619
+    },
+    "v8": {
+      "construction": 0.8359815456106633,
+      "coverage": 0.9238830562374365,
+      "position": -0.11603562038815105,
+      "trigram": 0.736540664375716,
+      "sentences": 2619
+    },
+    "corruption": {
+      "corrupted": 123,
+      "detected": 123,
+      "rate": 1.0,
+      "false_positive": 0
+    },
+    "fluency": {
+      "sampled": 600,
+      "alarms": 0
+    }
+  },
+  "reload_smoke": {
+    "facts": 180,
+    "sentences": 68,
+    "seconds": 0.058014043000184756,
+    "semantic_ok": true,
+    "slot_errors": 0
+  }
+}

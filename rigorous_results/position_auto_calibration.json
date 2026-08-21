@@ -1,0 +1,215 @@
+{
+  "baseline": {
+    "position_weight": 0.0,
+    "bad": 0,
+    "slot_errors": 0,
+    "support": 0.7328344246959776,
+    "repeat": 0.10273203592814371,
+    "opening_entropy": 0.9855412710422278,
+    "contrast_mean": 0.0030283996150720148,
+    "contrast_win_rate": 0.4379968203497615,
+    "comparisons": 1258
+  },
+  "rows": [
+    {
+      "position_weight": 0.0,
+      "bad": 0,
+      "slot_errors": 0,
+      "support": 0.7328344246959776,
+      "repeat": 0.10273203592814371,
+      "opening_entropy": 0.9855412710422278,
+      "contrast_mean": 0.0030283996150720148,
+      "contrast_win_rate": 0.4379968203497615,
+      "comparisons": 1258
+    },
+    {
+      "position_weight": 0.05,
+      "bad": 0,
+      "slot_errors": 0,
+      "support": 0.7365762394761459,
+      "repeat": 0.10366766467065869,
+      "opening_entropy": 0.9860547701037939,
+      "contrast_mean": 0.02020872248515497,
+      "contrast_win_rate": 0.4332273449920509,
+      "comparisons": 1258
+    },
+    {
+      "position_weight": 0.1,
+      "bad": 0,
+      "slot_errors": 0,
+      "support": 0.7365762394761459,
+      "repeat": 0.10404191616766467,
+      "opening_entropy": 0.9858877224419369,
+      "contrast_mean": 0.049758174325901725,
+      "contrast_win_rate": 0.46899841017488075,
+      "comparisons": 1258
+    },
+    {
+      "position_weight": 0.15,
+      "bad": 0,
+      "slot_errors": 0,
+      "support": 0.7386342376052385,
+      "repeat": 0.10722305389221556,
+      "opening_entropy": 0.9861671559519681,
+      "contrast_mean": 0.09439859898517529,
+      "contrast_win_rate": 0.4841017488076312,
+      "comparisons": 1258
+    },
+    {
+      "position_weight": 0.25,
+      "bad": 0,
+      "slot_errors": 0,
+      "support": 0.7412535079513564,
+      "repeat": 0.10722305389221556,
+      "opening_entropy": 0.9871744441207925,
+      "contrast_mean": 0.11905088446269463,
+      "contrast_win_rate": 0.505564387917329,
+      "comparisons": 1258
+    },
+    {
+      "position_weight": 0.4,
+      "bad": 0,
+      "slot_errors": 0,
+      "support": 0.7365762394761459,
+      "repeat": 0.1126497005988024,
+      "opening_entropy": 0.9869684317961018,
+      "contrast_mean": 0.17853417436438326,
+      "contrast_win_rate": 0.5325914149443561,
+      "comparisons": 1258
+    },
+    {
+      "position_weight": 0.6,
+      "bad": 0,
+      "slot_errors": 0,
+      "support": 0.7466791393826006,
+      "repeat": 0.1059131736526946,
+      "opening_entropy": 0.98740293210215,
+      "contrast_mean": 0.2384984597960842,
+      "contrast_win_rate": 0.568362480127186,
+      "comparisons": 1258
+    },
+    {
+      "position_weight": 0.9,
+      "bad": 0,
+      "slot_errors": 0,
+      "support": 0.7489242282507016,
+      "repeat": 0.09468562874251497,
+      "opening_entropy": 0.9870308322843238,
+      "contrast_mean": 0.38979252380312135,
+      "contrast_win_rate": 0.6828298887122417,
+      "comparisons": 1258
+    },
+    {
+      "position_weight": 1.3,
+      "bad": 0,
+      "slot_errors": 0,
+      "support": 0.7478016838166511,
+      "repeat": 0.09767964071856287,
+      "opening_entropy": 0.986846581682646,
+      "contrast_mean": 0.5842772949392647,
+      "contrast_win_rate": 0.8020667726550079,
+      "comparisons": 1258
+    },
+    {
+      "position_weight": 1.8,
+      "bad": 0,
+      "slot_errors": 0,
+      "support": 0.7511693171188026,
+      "repeat": 0.10834580838323353,
+      "opening_entropy": 0.9858937601980964,
+      "contrast_mean": 0.7033480955929761,
+      "contrast_win_rate": 0.8569157392686805,
+      "comparisons": 1258
+    },
+    {
+      "position_weight": 2.4,
+      "bad": 0,
+      "slot_errors": 0,
+      "support": 0.7476145930776427,
+      "repeat": 0.09281437125748503,
+      "opening_entropy": 0.9842052685634457,
+      "contrast_mean": 0.753213876024855,
+      "contrast_win_rate": 0.9085850556438791,
+      "comparisons": 1258
+    },
+    {
+      "position_weight": 3.2,
+      "bad": 0,
+      "slot_errors": 0,
+      "support": 0.7489242282507016,
+      "repeat": 0.08364520958083832,
+      "opening_entropy": 0.9814975300267146,
+      "contrast_mean": 0.8143829764881787,
+      "contrast_win_rate": 0.9340222575516693,
+      "comparisons": 1258
+    },
+    {
+      "position_weight": 4.2,
+      "bad": 0,
+      "slot_errors": 0,
+      "support": 0.7491113189897101,
+      "repeat": 0.07877994011976049,
+      "opening_entropy": 0.9785906329055026,
+      "contrast_mean": 0.8581234446910461,
+      "contrast_win_rate": 0.972972972972973,
+      "comparisons": 1258
+    },
+    {
+      "position_weight": 5.5,
+      "bad": 0,
+      "slot_errors": 0,
+      "support": 0.7494855004677269,
+      "repeat": 0.08008982035928144,
+      "opening_entropy": 0.9753654816250467,
+      "contrast_mean": 0.8659568764384885,
+      "contrast_win_rate": 0.9912559618441972,
+      "comparisons": 1258
+    },
+    {
+      "position_weight": 7.0,
+      "bad": 0,
+      "slot_errors": 0,
+      "support": 0.7461178671655753,
+      "repeat": 0.07672155688622755,
+      "opening_entropy": 0.9749002841027588,
+      "contrast_mean": 0.879071952533909,
+      "contrast_win_rate": 0.9992050874403816,
+      "comparisons": 1258
+    },
+    {
+      "position_weight": 9.0,
+      "bad": 0,
+      "slot_errors": 0,
+      "support": 0.7431244153414406,
+      "repeat": 0.07934131736526946,
+      "opening_entropy": 0.973603342427405,
+      "contrast_mean": 0.8950592097487957,
+      "contrast_win_rate": 0.9992050874403816,
+      "comparisons": 1258
+    }
+  ],
+  "selected": {
+    "position_weight": 7.0,
+    "bad": 0,
+    "slot_errors": 0,
+    "support": 0.7461178671655753,
+    "repeat": 0.07672155688622755,
+    "opening_entropy": 0.9749002841027588,
+    "contrast_mean": 0.879071952533909,
+    "contrast_win_rate": 0.9992050874403816,
+    "comparisons": 1258
+  },
+  "selection_method": "minimum position weight inside 95% Wilson lower bound of best contrast, under semantic/support/repetition gates",
+  "best_observed": {
+    "position_weight": 7.0,
+    "bad": 0,
+    "slot_errors": 0,
+    "support": 0.7461178671655753,
+    "repeat": 0.07672155688622755,
+    "opening_entropy": 0.9749002841027588,
+    "contrast_mean": 0.879071952533909,
+    "contrast_win_rate": 0.9992050874403816,
+    "comparisons": 1258
+  },
+  "best_wilson95_lower": 0.995511022567103
+}

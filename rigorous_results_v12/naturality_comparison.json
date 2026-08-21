@@ -1,0 +1,19 @@
+{
+  "facts": 125,
+  "v12": {
+    "sentences": 49,
+    "semantic_exact": true,
+    "slot_errors": 0,
+    "trace_errors": 0,
+    "lexicalized_p2_p5_score": -14.276333940358745,
+    "lexicalized_support": 0.12994749679000103
+  },
+  "v13": {
+    "sentences": 49,
+    "semantic_exact": true,
+    "slot_errors": 0,
+    "trace_errors": 0,
+    "lexicalized_p2_p5_score": -13.98849837711897,
+    "lexicalized_support": 0.14588051485319203
+  }
+}

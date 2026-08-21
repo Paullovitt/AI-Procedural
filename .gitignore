@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+gpu_cache/
+*.log
+tunnel.err
+tunnel.out
+upload_v9.py
+rigorous_results/large_generated_sample.txt
+rigorous_results_v2/large_50000_fact_text.txt
+rigorous_results_v2/evaluation_generated_raw.txt
+rigorous_results_v2/evaluation_generated_readable.txt
+rigorous_results_v12/*.txt

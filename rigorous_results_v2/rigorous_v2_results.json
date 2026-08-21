@@ -1,0 +1,115 @@
+{
+  "format": "AI-Procedural-V10-GPU-Rigorous-v2",
+  "proposal_weight_learned": 0.24,
+  "order_threshold_learned": 0.6576928743724331,
+  "heldout": {
+    "documents": 130,
+    "facts": 1000000,
+    "sentences": 343064,
+    "paragraphs": 39424,
+    "chars": 32862824,
+    "seconds": 244.39056859999982,
+    "facts_per_s": 4091.810930874035,
+    "chars_per_s": 134468.46246258958,
+    "semantic_bad_docs": 0,
+    "slot_errors": 0,
+    "trace_errors": 0,
+    "input_functional_conflicts": 0,
+    "paragraph_focus_bad": 0,
+    "paragraph_focus_total": 39424,
+    "mean_words": 17.89158874145932,
+    "median_words": 14.0,
+    "p90_words": 36,
+    "p95_words": 44,
+    "p99_words": 61,
+    "opening_entropy": 0.9863508171776518,
+    "template_entropy": 0.9347383705455458,
+    "immediate_open_repeat": 0.11223594500135543,
+    "global_abstract_unique_rate": 0.0352820464986125,
+    "mean_within_doc_abstract_unique_rate": 0.2533444821306419,
+    "avg_trigram_support": 0.7379381106732271,
+    "avg_p2_p5_language_score": -3.7244347017617923,
+    "induced_selected": 48319,
+    "induced_rate": 0.1408454399179162,
+    "induced_candidates": 752558,
+    "torch_peak_allocated_mb": 23.24658203125,
+    "torch_peak_reserved_mb": 42.0,
+    "gpu_monitor": {
+      "samples": 434,
+      "max_total_vram_used_mb": 1706.0,
+      "mean_gpu_util_pct": 7.336405529953917,
+      "max_gpu_util_pct": 41.0,
+      "max_temp_c": 45.0,
+      "max_power_w": 44.91
+    }
+  },
+  "adversarial": {
+    "role_swaps": 5457,
+    "role_detected": 5457,
+    "role_detection_rate": 1.0,
+    "value_swaps": 4723,
+    "value_detected": 4723,
+    "value_detection_rate": 1.0,
+    "slot_replacements": 10000,
+    "slot_detected": 10000,
+    "slot_detection_rate": 1.0,
+    "order_swaps": 2431,
+    "order_detected": 2431,
+    "order_detection_rate": 1.0,
+    "order_clean_alarms": 0,
+    "order_clean_fpr": 0.0
+  },
+  "discourse_position_contrast": {
+    "comparisons": 256,
+    "mean_actual_minus_random": -0.02680121518551259,
+    "actual_better_rate": 0.40234375
+  },
+  "determinism": {
+    "same_text": true,
+    "sha256": "ab6961e488083744f6d2e6eec87d419cd55b298905e3677e1fd2e01dcc3e2bf1"
+  },
+  "gpu": {
+    "backend": "pytorch-cuda-tensors",
+    "neural_network": false,
+    "gradients": false,
+    "device": 0,
+    "name": "NVIDIA GeForce GTX 1660 SUPER",
+    "cuda": "12.8",
+    "torch": "2.10.0+cu128",
+    "vram_total_mb": 6143.7,
+    "vram_free_mb": 5116.0,
+    "torch_allocated_mb": 6.8,
+    "torch_reserved_mb": 10.0,
+    "memory_limit_mb": 4608,
+    "tables_on_gpu": [
+      "tokens",
+      "p2",
+      "p3",
+      "p4",
+      "p5"
+    ],
+    "cache": "C:\\Users\\programacao.cnc01\\Downloads\\TESTE\\AI-Procedural-V9\\gpu_cache\\bagaco_quality_xxh64_signed_v3.npz"
+  },
+  "learned_wrappers": [
+    {
+      "phrase": "relativamente\ta",
+      "nearest_seed": "em\trelação\ta",
+      "quality_support": 90,
+      "full_support": 707,
+      "continuations": 3,
+      "continuation_cosine": 0.7200062339489443,
+      "surface_affinity": 0.5185185185185185,
+      "confidence": 0.3084133618351416
+    }
+  ],
+  "sample": {
+    "facts": 50000,
+    "sentences": 16478,
+    "paragraphs": 1024,
+    "chars": 1631719,
+    "semantic_exact": true,
+    "slot_errors": 0,
+    "trace_errors": 0,
+    "path": "C:\\Users\\programacao.cnc01\\Downloads\\TESTE\\AI-Procedural-V9\\rigorous_results_v2\\large_50000_fact_text.txt"
+  }
+}

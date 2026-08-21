@@ -1,0 +1,147 @@
+{
+  "format": "AI-Procedural-V9-Rigorous-GPU-v1",
+  "chosen_proposal_weight": 0.12,
+  "calibration": [
+    {
+      "proposal_weight": 0.0,
+      "objective": 0.8427292320552922,
+      "avg_trigram_support": 0.728841049837806,
+      "opening_entropy": 0.9853559792323658,
+      "induced_rate": 0.13506340312592155,
+      "immediate_open_repeat": 0.1038194956496092,
+      "semantic_bad_docs": 0,
+      "slot_errors": 0
+    },
+    {
+      "proposal_weight": 0.03,
+      "objective": 0.8445032050937915,
+      "avg_trigram_support": 0.7303155411383073,
+      "opening_entropy": 0.985934625991628,
+      "induced_rate": 0.13624299616632263,
+      "immediate_open_repeat": 0.10249225777908863,
+      "semantic_bad_docs": 0,
+      "slot_errors": 0
+    },
+    {
+      "proposal_weight": 0.06,
+      "objective": 0.8436228532230003,
+      "avg_trigram_support": 0.7298731937481568,
+      "opening_entropy": 0.9860451285694433,
+      "induced_rate": 0.13668534355647302,
+      "immediate_open_repeat": 0.10647397139065035,
+      "semantic_bad_docs": 0,
+      "slot_errors": 0
+    },
+    {
+      "proposal_weight": 0.09,
+      "objective": 0.8474397604838494,
+      "avg_trigram_support": 0.7329696254792096,
+      "opening_entropy": 0.9863714952660858,
+      "induced_rate": 0.13712769094662342,
+      "immediate_open_repeat": 0.10101754903406578,
+      "semantic_bad_docs": 0,
+      "slot_errors": 0
+    },
+    {
+      "proposal_weight": 0.12,
+      "objective": 0.8497997205287644,
+      "avg_trigram_support": 0.7354762606900619,
+      "opening_entropy": 0.9863290779348869,
+      "induced_rate": 0.13860218224712476,
+      "immediate_open_repeat": 0.10293467040259549,
+      "semantic_bad_docs": 0,
+      "slot_errors": 0
+    }
+  ],
+  "heldout": {
+    "label": "heldout_large",
+    "documents": 82,
+    "facts": 352000,
+    "sentences": 124858,
+    "paragraphs": 19456,
+    "chars": 11643569,
+    "seconds": 79.62097209999956,
+    "facts_per_s": 4420.945772401615,
+    "chars_per_s": 146237.4634835696,
+    "semantic_bad_docs": 0,
+    "slot_errors": 0,
+    "input_functional_conflicts": 0,
+    "paragraph_focus_bad": 0,
+    "paragraph_focus_total": 19456,
+    "mean_words": 17.399429752198497,
+    "median_words": 13.0,
+    "p90_words": 35,
+    "p95_words": 42,
+    "p99_words": 60,
+    "opening_entropy": 0.9861565761414685,
+    "template_entropy": 0.931751771540688,
+    "immediate_open_repeat": 0.1110390286487742,
+    "abstract_sentence_unique_rate": 0.048727354274455785,
+    "avg_trigram_support": 0.7347066267279629,
+    "avg_gpu_language_score": -3.718491897760988,
+    "induced_selected": 17283,
+    "induced_rate": 0.13842124653606497,
+    "induced_candidates": 271764,
+    "peak_allocated_mb": 9.31591796875,
+    "peak_reserved_mb": 12.0,
+    "vram_total_mb": 6143.6875,
+    "vram_free_after_mb": 5114.0
+  },
+  "adversarial": {
+    "semantic_corruptions": 6000,
+    "semantic_detected": 6000,
+    "semantic_detection_rate": 1.0,
+    "clean_slot_false_positive": 0,
+    "fluency_swap_trials": 1159,
+    "fluency_detected": 0,
+    "fluency_detection_rate": 0.0,
+    "fluency_clean_alarm_docs": 0
+  },
+  "determinism": {
+    "same_text": true,
+    "sha256_1": "61fa9971b5df277788840d378bee8b5a34aee79fb5e90665d4f647f13f1d660e",
+    "sha256_2": "61fa9971b5df277788840d378bee8b5a34aee79fb5e90665d4f647f13f1d660e"
+  },
+  "gpu": {
+    "backend": "pytorch-cuda-tensors",
+    "neural_network": false,
+    "gradients": false,
+    "device": 0,
+    "name": "NVIDIA GeForce GTX 1660 SUPER",
+    "cuda": "12.8",
+    "torch": "2.10.0+cu128",
+    "vram_total_mb": 6143.7,
+    "vram_free_mb": 5118.0,
+    "torch_allocated_mb": 6.0,
+    "torch_reserved_mb": 8.0,
+    "memory_limit_mb": 4608,
+    "tables_on_gpu": [
+      "tokens",
+      "p2",
+      "p3",
+      "p4"
+    ],
+    "cache": "C:\\Users\\programacao.cnc01\\Downloads\\TESTE\\AI-Procedural-V9\\gpu_cache\\bagaco_quality_xxh64_signed_v2.npz"
+  },
+  "promoted_wrappers": [
+    {
+      "phrase": "relativamente\ta",
+      "nearest_seed": "em\trelação\ta",
+      "quality_support": 90,
+      "full_support": 707,
+      "continuations": 3,
+      "continuation_cosine": 0.7200062339489443,
+      "surface_affinity": 0.5185185185185185,
+      "confidence": 0.3084133618351416
+    }
+  ],
+  "sample": {
+    "facts": 12000,
+    "sentences": 4067,
+    "paragraphs": 384,
+    "chars": 392805,
+    "semantic_exact": true,
+    "slot_errors": 0,
+    "path": "C:\\Users\\programacao.cnc01\\Downloads\\TESTE\\AI-Procedural-V9\\rigorous_results\\large_generated_sample.txt"
+  }
+}

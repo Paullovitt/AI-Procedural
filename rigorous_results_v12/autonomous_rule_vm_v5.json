@@ -1,0 +1,149 @@
+{
+  "format": "Autonomous-RuleVM-MDL-Certified-GPU-v5",
+  "world_seed": 862771,
+  "train_examples": 150000,
+  "train_noise": 0.015,
+  "val_examples": 60000,
+  "test_examples": 100000,
+  "learn_seconds": 0.9214229000008345,
+  "test_transition_accuracy": 1.0,
+  "selected_orders": [
+    4,
+    4,
+    3,
+    3,
+    2,
+    3,
+    1,
+    2,
+    3,
+    3,
+    4,
+    1
+  ],
+  "searched_orders": [
+    [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    [
+      0,
+      1,
+      2,
+      3
+    ],
+    [
+      0,
+      1,
+      2,
+      3
+    ],
+    [
+      0,
+      1,
+      2,
+      3
+    ],
+    [
+      0,
+      1,
+      2,
+      3
+    ],
+    [
+      0,
+      1,
+      2,
+      3
+    ],
+    [
+      0,
+      1,
+      2,
+      3
+    ],
+    [
+      0,
+      1,
+      2,
+      3
+    ],
+    [
+      0,
+      1,
+      2,
+      3
+    ],
+    [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    [
+      0,
+      1,
+      2,
+      3
+    ]
+  ],
+  "val_errors": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "closure_worlds": 40,
+  "closure_exact_rate": 1.0,
+  "closure_jaccard": 1.0,
+  "proof_validity": 1.0,
+  "max_proof_depth": 12,
+  "mean_parallel_sweeps": 10.0,
+  "gpu": {
+    "device": "cuda:0",
+    "name": "NVIDIA GeForce GTX 1660 SUPER",
+    "allocated_mb": 0.0,
+    "reserved_mb": 200.0,
+    "free_mb": 4926.0,
+    "total_mb": 6143.6875,
+    "neural": false,
+    "gradients": false,
+    "parallel_certified": true,
+    "certified_relations": 12,
+    "total_relations": 12
+  },
+  "peak_allocated_mb": 80.79736328125,
+  "hidden_gate_orders_audit_only": [
+    2,
+    2,
+    1,
+    1,
+    0,
+    2,
+    0,
+    0,
+    1,
+    1,
+    2,
+    0
+  ]
+}

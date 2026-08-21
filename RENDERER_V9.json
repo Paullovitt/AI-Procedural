@@ -1,0 +1,37 @@
+{
+  "name": "Renderer-V9-InducedRealization",
+  "base": "Renderer-V8-InducedGrammar",
+  "proposal_model": "LEARNED_REALIZATION_PROPOSALS_V1.json",
+  "proposal_weight": 0.06,
+  "promotion_gate": {
+    "semantic_bad_docs": 0,
+    "slot_errors": 0,
+    "adversarial_detection_rate": 1.0,
+    "clean_false_positives": 0,
+    "fluency_alarms_per_1200": 0
+  },
+  "stress": {
+    "documents": 300,
+    "facts": 89460,
+    "sentences": 31534,
+    "paragraphs": 4800,
+    "mean_words": 17.4548,
+    "median_words": 13.0,
+    "p90": 35,
+    "p95": 43,
+    "p99": 60,
+    "trigram_support": 0.7397,
+    "opening_entropy": 0.9836,
+    "immediate_open_repeat": 0.0873,
+    "induced_selected": 4243,
+    "induced_rate": 0.1346,
+    "facts_per_second": 7210.3
+  },
+  "baseline_v8_same_stress": {
+    "trigram_support": 0.7376,
+    "opening_entropy": 0.9815,
+    "immediate_open_repeat": 0.1278,
+    "facts_per_second": 11116.0
+  },
+  "status": "promoted"
+}

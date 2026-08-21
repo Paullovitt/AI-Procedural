@@ -1,0 +1,18 @@
+{
+  "train": {
+    "threshold": 0.6576928743724331,
+    "balanced_accuracy": 1.0,
+    "tpr": 1.0,
+    "fpr": 0.0
+  },
+  "test": {
+    "threshold": 0.6576928743724331,
+    "test_clean_n": 900,
+    "test_corrupt_n": 849,
+    "test_tpr": 1.0,
+    "test_fpr": 0.0,
+    "test_balanced_accuracy": 1.0,
+    "clean_mean": -4.533337762555266,
+    "corrupt_mean": 5.528016204020457
+  }
+}

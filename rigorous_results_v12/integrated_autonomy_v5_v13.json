@@ -1,0 +1,79 @@
+{
+  "format": "Integrated-Autonomy-V5-V13",
+  "learn_seconds": 1.4750007999991794,
+  "transition_accuracy": 1.0,
+  "top5_exact_order": false,
+  "primary_closure_exact": true,
+  "proof_valid": true,
+  "primary_seed": 59,
+  "primary_reach": 159,
+  "proof_target": 79,
+  "proof_depth": 14,
+  "semantic_facts": 24,
+  "v12": {
+    "sentences": 20,
+    "semantic_exact": true,
+    "slot_errors": 0,
+    "trace_errors": 0,
+    "score": -14.787096027656876,
+    "support": 0.07340686274509804
+  },
+  "v13": {
+    "sentences": 20,
+    "semantic_exact": true,
+    "slot_errors": 0,
+    "trace_errors": 0,
+    "order_alarms": 0,
+    "score": -14.990868216885927,
+    "support": 0.07292075163398692
+  },
+  "selected_rule_orders": [
+    4,
+    4,
+    4,
+    1,
+    5,
+    1,
+    1,
+    3,
+    3,
+    5,
+    3,
+    3
+  ],
+  "gpu_reasoner": {
+    "device": "cuda:0",
+    "name": "NVIDIA GeForce GTX 1660 SUPER",
+    "allocated_mb": 13.513671875,
+    "reserved_mb": 300.0,
+    "free_mb": 4826.0,
+    "total_mb": 6143.6875,
+    "neural": false,
+    "gradients": false,
+    "parallel_certified": true,
+    "certified_relations": 12,
+    "total_relations": 12
+  },
+  "gpu_renderer": {
+    "backend": "pytorch-cuda-tensors",
+    "neural_network": false,
+    "gradients": false,
+    "device": 0,
+    "name": "NVIDIA GeForce GTX 1660 SUPER",
+    "cuda": "12.8",
+    "torch": "2.10.0+cu128",
+    "vram_total_mb": 6143.7,
+    "vram_free_mb": 4826.0,
+    "torch_allocated_mb": 13.5,
+    "torch_reserved_mb": 300.0,
+    "memory_limit_mb": 4608,
+    "tables_on_gpu": [
+      "tokens",
+      "p2",
+      "p3",
+      "p4",
+      "p5"
+    ],
+    "cache": "gpu_cache\\bagaco_quality_xxh64_signed_v3.npz"
+  }
+}

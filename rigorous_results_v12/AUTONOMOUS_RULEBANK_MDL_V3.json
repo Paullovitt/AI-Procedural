@@ -1,0 +1,325 @@
+{
+  "format": "Autonomous-RuleBank-MDL-v3",
+  "n_rel": 12,
+  "n_feat": 16,
+  "initial_order_cap": 3,
+  "hard_resource_cap": 5,
+  "selection": "minimum-description-length + boundary-triggered complexity expansion",
+  "models": {
+    "0": {
+      "features": [
+        1
+      ],
+      "table": [
+        0,
+        1
+      ],
+      "order": 1,
+      "train_error": 0.07572689652442932,
+      "val_error": 0.060679614543914795,
+      "description_bits": 1653.0537109375,
+      "model_bits": 8.584962500721158,
+      "residual_bits": 1644.46875,
+      "val_examples": 4944,
+      "searched_orders": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    "1": {
+      "features": [
+        1
+      ],
+      "table": [
+        0,
+        1
+      ],
+      "order": 1,
+      "train_error": 0.07623959332704544,
+      "val_error": 0.060545310378074646,
+      "description_bits": 1664.943603515625,
+      "model_bits": 8.584962500721158,
+      "residual_bits": 1656.358642578125,
+      "val_examples": 4988,
+      "searched_orders": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    "2": {
+      "features": [
+        0,
+        1,
+        12
+      ],
+      "table": [
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        1
+      ],
+      "order": 3,
+      "train_error": 0.015622509643435478,
+      "val_error": 0.0,
+      "description_bits": 32.013450622558594,
+      "model_bits": 19.714245517666125,
+      "residual_bits": 12.299205780029297,
+      "val_examples": 5038,
+      "searched_orders": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    "3": {
+      "features": [
+        0,
+        1,
+        12
+      ],
+      "table": [
+        0,
+        1,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1
+      ],
+      "order": 3,
+      "train_error": 0.015288282185792923,
+      "val_error": 0.0,
+      "description_bits": 32.00570297241211,
+      "model_bits": 19.714245517666125,
+      "residual_bits": 12.291458129882812,
+      "val_examples": 5011,
+      "searched_orders": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    "4": {
+      "features": [
+        0,
+        1
+      ],
+      "table": [
+        0,
+        1,
+        1,
+        1
+      ],
+      "order": 2,
+      "train_error": 0.015398187562823296,
+      "val_error": 0.0,
+      "description_bits": 25.785900115966797,
+      "model_bits": 13.491853096329674,
+      "residual_bits": 12.294047355651855,
+      "val_examples": 5020,
+      "searched_orders": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    "5": {
+      "features": [
+        0,
+        1,
+        8
+      ],
+      "table": [
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        1
+      ],
+      "order": 3,
+      "train_error": 0.01551683060824871,
+      "val_error": 0.0,
+      "description_bits": 32.018882751464844,
+      "model_bits": 19.714245517666125,
+      "residual_bits": 12.304637908935547,
+      "val_examples": 5057,
+      "searched_orders": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    "6": {
+      "features": [
+        1
+      ],
+      "table": [
+        0,
+        1
+      ],
+      "order": 1,
+      "train_error": 0.014298408292233944,
+      "val_error": 0.0,
+      "description_bits": 20.870365142822266,
+      "model_bits": 8.584962500721158,
+      "residual_bits": 12.285402297973633,
+      "val_examples": 4990,
+      "searched_orders": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    "7": {
+      "features": [
+        0,
+        1
+      ],
+      "table": [
+        0,
+        1,
+        1,
+        1
+      ],
+      "order": 2,
+      "train_error": 0.015212740749120712,
+      "val_error": 0.0,
+      "description_bits": 25.749534606933594,
+      "model_bits": 13.491853096329674,
+      "residual_bits": 12.257681846618652,
+      "val_examples": 4895,
+      "searched_orders": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    "8": {
+      "features": [
+        0,
+        1,
+        12
+      ],
+      "table": [
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        1
+      ],
+      "order": 3,
+      "train_error": 0.0147361746057868,
+      "val_error": 0.0,
+      "description_bits": 31.986000061035156,
+      "model_bits": 19.714245517666125,
+      "residual_bits": 12.27175521850586,
+      "val_examples": 4943,
+      "searched_orders": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    "9": {
+      "features": [
+        0,
+        1,
+        10
+      ],
+      "table": [
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        1
+      ],
+      "order": 3,
+      "train_error": 0.013841944746673107,
+      "val_error": 0.0,
+      "description_bits": 32.048519134521484,
+      "model_bits": 19.714245517666125,
+      "residual_bits": 12.334274291992188,
+      "val_examples": 5162,
+      "searched_orders": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    "10": {
+      "features": [
+        1
+      ],
+      "table": [
+        0,
+        1
+      ],
+      "order": 1,
+      "train_error": 0.07645283639431,
+      "val_error": 0.058277878910303116,
+      "description_bits": 1610.5704345703125,
+      "model_bits": 8.584962500721158,
+      "residual_bits": 1601.9854736328125,
+      "val_examples": 4959,
+      "searched_orders": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    "11": {
+      "features": [
+        1
+      ],
+      "table": [
+        0,
+        1
+      ],
+      "order": 1,
+      "train_error": 0.015169660560786724,
+      "val_error": 0.0,
+      "description_bits": 20.871231079101562,
+      "model_bits": 8.584962500721158,
+      "residual_bits": 12.28626823425293,
+      "val_examples": 4993,
+      "searched_orders": [
+        0,
+        1,
+        2,
+        3
+      ]
+    }
+  }
+}

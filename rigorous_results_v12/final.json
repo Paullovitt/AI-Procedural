@@ -1,0 +1,51 @@
+{
+  "format": "Renderer-V12-GPU-Final",
+  "facts": 500000,
+  "sentences": 173600,
+  "paragraphs": 22616,
+  "seconds": 214.031393700001,
+  "facts_per_s": 2336.105892488041,
+  "semantic_bad_docs": 0,
+  "slot_errors": 0,
+  "trace_errors": 0,
+  "mean_within_doc_abstract_unique": 0.33464323282994884,
+  "graph_adjacent_rate": 0.7998906018238072,
+  "avg_p2_p5_support": 0.7478917050691244,
+  "immediate_open_repeat": 0.11448798668195093,
+  "position_contrast_mean": 0.822141405765994,
+  "position_contrast_win_rate": 0.9417571569595261,
+  "adversarial": {
+    "role": [
+      2372,
+      2372
+    ],
+    "value": [
+      2000,
+      2000
+    ],
+    "slot": [
+      4352,
+      4352
+    ],
+    "order": [
+      4202,
+      4202
+    ],
+    "clean_order_alarms": 0
+  },
+  "gpu": {
+    "peak_torch_allocated_mb": 14.1259765625,
+    "peak_torch_reserved_mb": 34.0,
+    "monitor_samples": 313,
+    "max_total_vram_mb": 1782.0,
+    "mean_util_pct": 10.10223642172524,
+    "max_util_pct": 45.0,
+    "max_temp_c": 43.0
+  },
+  "learned": {
+    "proposal_weight": 0.24,
+    "position_weight": 7.0,
+    "diversity_weight": 2.6,
+    "focus_diversity_weight": 1.17
+  }
+}

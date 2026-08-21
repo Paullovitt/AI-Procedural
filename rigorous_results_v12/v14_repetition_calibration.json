@@ -1,0 +1,86 @@
+{
+  "format": "V14-Repetition-AutoCalibration",
+  "baseline": {
+    "repetition_weight": 1.1,
+    "bad": 0,
+    "slots": 0,
+    "trace": 0,
+    "language_score": -3.7815883669668513,
+    "repeat": 0.11489011164193919,
+    "position_margin": 0.8388128751800566,
+    "unique": 0.4107551700970614
+  },
+  "rows": [
+    {
+      "repetition_weight": 1.1,
+      "bad": 0,
+      "slots": 0,
+      "trace": 0,
+      "language_score": -3.7815883669668513,
+      "repeat": 0.11489011164193919,
+      "position_margin": 0.8388128751800566,
+      "unique": 0.4107551700970614
+    },
+    {
+      "repetition_weight": 1.4,
+      "bad": 0,
+      "slots": 0,
+      "trace": 0,
+      "language_score": -3.7911201487166397,
+      "repeat": 0.10774895474074313,
+      "position_margin": 0.834359531195939,
+      "unique": 0.40784285538053644
+    },
+    {
+      "repetition_weight": 1.8,
+      "bad": 0,
+      "slots": 0,
+      "trace": 0,
+      "language_score": -3.7960729410241254,
+      "repeat": 0.10979323617600022,
+      "position_margin": 0.8292981757967259,
+      "unique": 0.4049154021961919
+    },
+    {
+      "repetition_weight": 2.4,
+      "bad": 0,
+      "slots": 0,
+      "trace": 0,
+      "language_score": -3.799349711014292,
+      "repeat": 0.10662838984288651,
+      "position_margin": 0.8271835855421236,
+      "unique": 0.39993185073784
+    },
+    {
+      "repetition_weight": 3.2,
+      "bad": 0,
+      "slots": 0,
+      "trace": 0,
+      "language_score": -3.7996573323192924,
+      "repeat": 0.10864005565158977,
+      "position_margin": 0.8247275539903719,
+      "unique": 0.3993519965539941
+    },
+    {
+      "repetition_weight": 4.5,
+      "bad": 0,
+      "slots": 0,
+      "trace": 0,
+      "language_score": -3.8022122029070453,
+      "repeat": 0.10953619129146393,
+      "position_margin": 0.819113738941997,
+      "unique": 0.39713991829573486
+    }
+  ],
+  "selected": {
+    "repetition_weight": 1.1,
+    "bad": 0,
+    "slots": 0,
+    "trace": 0,
+    "language_score": -3.7815883669668513,
+    "repeat": 0.11489011164193919,
+    "position_margin": 0.8388128751800566,
+    "unique": 0.4107551700970614
+  },
+  "selection": "smallest coefficient that strictly reduces opening repetition with no regression in language score, position margin, uniqueness, or semantics"
+}

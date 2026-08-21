@@ -1,0 +1,10 @@
+{
+  "device": 0,
+  "backend": "pytorch-cuda-tensors",
+  "memory_limit_mb": 4608,
+  "use_hot": false,
+  "proposal_weight": 0.06,
+  "seed": 101,
+  "verify_semantics": true,
+  "notes": "Perfil seguro para GPU de 6GB: backend CUDA via PyTorch usado apenas como runtime tensorial, sem rede neural, gradiente ou backprop."
+}

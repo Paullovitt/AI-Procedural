@@ -1,0 +1,27 @@
+{
+  "format": "Bagaco-Safe-Wrapper-Induction-v1",
+  "seed_wrappers": [
+    "quanto\ta",
+    "no\tcaso\tde",
+    "em\trelação\ta",
+    "para"
+  ],
+  "thresholds": {
+    "min_quality_support": 30,
+    "min_continuations": 3,
+    "min_continuation_cosine": 0.7,
+    "min_surface_affinity": 0.5
+  },
+  "promoted": [
+    {
+      "phrase": "relativamente\ta",
+      "nearest_seed": "em\trelação\ta",
+      "quality_support": 90,
+      "full_support": 707,
+      "continuations": 3,
+      "continuation_cosine": 0.7200062339489443,
+      "surface_affinity": 0.5185185185185185,
+      "confidence": 0.3084133618351416
+    }
+  ]
+}

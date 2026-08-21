@@ -1,0 +1,297 @@
+{
+  "format": "Autonomous-RuleBank-MDL-v2",
+  "n_rel": 12,
+  "n_feat": 16,
+  "search_order_cap_resource_bound": 4,
+  "models": {
+    "0": {
+      "features": [
+        0,
+        1,
+        6,
+        14
+      ],
+      "table": [
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        1
+      ],
+      "order": 4,
+      "train_error": 0.01595529168844223,
+      "val_error": 0.0,
+      "description_bits": 41.423697354363355,
+      "model_bits": 29.15165082997342,
+      "residual_bits": 12.272046524389937,
+      "val_examples": 4944
+    },
+    "1": {
+      "features": [
+        0,
+        1,
+        2,
+        9
+      ],
+      "table": [
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1
+      ],
+      "order": 4,
+      "train_error": 0.01570805348455906,
+      "val_error": 0.0,
+      "description_bits": 41.436474930198045,
+      "model_bits": 29.15165082997342,
+      "residual_bits": 12.284824100224624,
+      "val_examples": 4988
+    },
+    "2": {
+      "features": [
+        0,
+        1,
+        12
+      ],
+      "table": [
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        1
+      ],
+      "order": 3,
+      "train_error": 0.015622509643435478,
+      "val_error": 0.0,
+      "description_bits": 31.75041913021961,
+      "model_bits": 19.45121111183233,
+      "residual_bits": 12.29920801838728,
+      "val_examples": 5038
+    },
+    "3": {
+      "features": [
+        0,
+        1,
+        12
+      ],
+      "table": [
+        0,
+        1,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1
+      ],
+      "order": 3,
+      "train_error": 0.015288282185792923,
+      "val_error": 0.0,
+      "description_bits": 31.74266963061467,
+      "model_bits": 19.45121111183233,
+      "residual_bits": 12.291458518782344,
+      "val_examples": 5011
+    },
+    "4": {
+      "features": [
+        0,
+        1
+      ],
+      "table": [
+        0,
+        1,
+        1,
+        1
+      ],
+      "order": 2,
+      "train_error": 0.015398187562823296,
+      "val_error": 0.0,
+      "description_bits": 25.52286500376738,
+      "model_bits": 13.22881869049588,
+      "residual_bits": 12.2940463132715,
+      "val_examples": 5020
+    },
+    "5": {
+      "features": [
+        0,
+        1,
+        8
+      ],
+      "table": [
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        1
+      ],
+      "order": 3,
+      "train_error": 0.01551683060824871,
+      "val_error": 0.0,
+      "description_bits": 31.755847635639597,
+      "model_bits": 19.45121111183233,
+      "residual_bits": 12.30463652380727,
+      "val_examples": 5057
+    },
+    "6": {
+      "features": [
+        1
+      ],
+      "table": [
+        0,
+        1
+      ],
+      "order": 1,
+      "train_error": 0.014298408292233944,
+      "val_error": 0.0,
+      "description_bits": 20.607330313749614,
+      "model_bits": 8.321928094887364,
+      "residual_bits": 12.285402218862249,
+      "val_examples": 4990
+    },
+    "7": {
+      "features": [
+        0,
+        1
+      ],
+      "table": [
+        0,
+        1,
+        1,
+        1
+      ],
+      "order": 2,
+      "train_error": 0.015212740749120712,
+      "val_error": 0.0,
+      "description_bits": 25.486501171204644,
+      "model_bits": 13.22881869049588,
+      "residual_bits": 12.257682480708766,
+      "val_examples": 4895
+    },
+    "8": {
+      "features": [
+        0,
+        1,
+        12
+      ],
+      "table": [
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        1
+      ],
+      "order": 3,
+      "train_error": 0.0147361746057868,
+      "val_error": 0.0,
+      "description_bits": 31.722965917478803,
+      "model_bits": 19.45121111183233,
+      "residual_bits": 12.271754805646474,
+      "val_examples": 4943
+    },
+    "9": {
+      "features": [
+        0,
+        1,
+        10
+      ],
+      "table": [
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        1
+      ],
+      "order": 3,
+      "train_error": 0.013841944746673107,
+      "val_error": 0.0,
+      "description_bits": 31.78548439713952,
+      "model_bits": 19.45121111183233,
+      "residual_bits": 12.33427328530719,
+      "val_examples": 5162
+    },
+    "10": {
+      "features": [
+        0,
+        1,
+        2,
+        10
+      ],
+      "table": [
+        0,
+        1,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1
+      ],
+      "order": 4,
+      "train_error": 0.01643378846347332,
+      "val_error": 0.0,
+      "description_bits": 41.4280660718661,
+      "model_bits": 29.15165082997342,
+      "residual_bits": 12.276415241892678,
+      "val_examples": 4959
+    },
+    "11": {
+      "features": [
+        1
+      ],
+      "table": [
+        0,
+        1
+      ],
+      "order": 1,
+      "train_error": 0.015169660560786724,
+      "val_error": 0.0,
+      "description_bits": 20.608197057567146,
+      "model_bits": 8.321928094887364,
+      "residual_bits": 12.286268962679781,
+      "val_examples": 4993
+    }
+  }
+}

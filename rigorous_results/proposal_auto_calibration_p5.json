@@ -1,0 +1,158 @@
+{
+  "rows": [
+    {
+      "proposal_weight": 0.0,
+      "objective": 0.8507560087347953,
+      "support": 0.7357894736842105,
+      "opening_entropy": 0.9850532188163849,
+      "induced_rate": 0.13657894736842105,
+      "repeat": 0.09528823374572255,
+      "bad": 0,
+      "slot_errors": 0,
+      "sentences": 3800
+    },
+    {
+      "proposal_weight": 0.03,
+      "objective": 0.8492766866043945,
+      "support": 0.7342105263157894,
+      "opening_entropy": 0.9854886230208091,
+      "induced_rate": 0.1368421052631579,
+      "repeat": 0.09502500658067912,
+      "bad": 0,
+      "slot_errors": 0,
+      "sentences": 3800
+    },
+    {
+      "proposal_weight": 0.06,
+      "objective": 0.8487994982471029,
+      "support": 0.7347368421052631,
+      "opening_entropy": 0.9855494962864348,
+      "induced_rate": 0.13789473684210526,
+      "repeat": 0.10397473019215583,
+      "bad": 0,
+      "slot_errors": 0,
+      "sentences": 3800
+    },
+    {
+      "proposal_weight": 0.09,
+      "objective": 0.848282061498764,
+      "support": 0.7355263157894737,
+      "opening_entropy": 0.9861091308703444,
+      "induced_rate": 0.13921052631578948,
+      "repeat": 0.11608317978415372,
+      "bad": 0,
+      "slot_errors": 0,
+      "sentences": 3800
+    },
+    {
+      "proposal_weight": 0.12,
+      "objective": 0.8526600796773436,
+      "support": 0.7397368421052631,
+      "opening_entropy": 0.9863204087860539,
+      "induced_rate": 0.1394736842105263,
+      "repeat": 0.11503027112398,
+      "bad": 0,
+      "slot_errors": 0,
+      "sentences": 3800
+    },
+    {
+      "proposal_weight": 0.15,
+      "objective": 0.8533551277149046,
+      "support": 0.7405263157894737,
+      "opening_entropy": 0.9861916309450695,
+      "induced_rate": 0.13973684210526316,
+      "repeat": 0.1158199526191103,
+      "bad": 0,
+      "slot_errors": 0,
+      "sentences": 3800
+    },
+    {
+      "proposal_weight": 0.18,
+      "objective": 0.850830548235054,
+      "support": 0.7368421052631579,
+      "opening_entropy": 0.9859843774855845,
+      "induced_rate": 0.14105263157894737,
+      "repeat": 0.10660700184259016,
+      "bad": 0,
+      "slot_errors": 0,
+      "sentences": 3800
+    },
+    {
+      "proposal_weight": 0.21,
+      "objective": 0.8544503178879925,
+      "support": 0.7413157894736843,
+      "opening_entropy": 0.9863705702185223,
+      "induced_rate": 0.1423684210526316,
+      "repeat": 0.11476704395893657,
+      "bad": 0,
+      "slot_errors": 0,
+      "sentences": 3800
+    },
+    {
+      "proposal_weight": 0.24,
+      "objective": 0.8565957921062811,
+      "support": 0.7442105263157894,
+      "opening_entropy": 0.986180870545743,
+      "induced_rate": 0.1418421052631579,
+      "repeat": 0.12055804158989207,
+      "bad": 0,
+      "slot_errors": 0,
+      "sentences": 3800
+    },
+    {
+      "proposal_weight": 0.27,
+      "objective": 0.8543953725373217,
+      "support": 0.741578947368421,
+      "opening_entropy": 0.9864836297082361,
+      "induced_rate": 0.14263157894736841,
+      "repeat": 0.11766254277441432,
+      "bad": 0,
+      "slot_errors": 0,
+      "sentences": 3800
+    },
+    {
+      "proposal_weight": 0.3,
+      "objective": 0.8539171168240886,
+      "support": 0.7413157894736843,
+      "opening_entropy": 0.9866653169901048,
+      "induced_rate": 0.1423684210526316,
+      "repeat": 0.11950513292971834,
+      "bad": 0,
+      "slot_errors": 0,
+      "sentences": 3800
+    },
+    {
+      "proposal_weight": 0.33,
+      "objective": 0.8545229639757155,
+      "support": 0.741578947368421,
+      "opening_entropy": 0.98649412157529,
+      "induced_rate": 0.1436842105263158,
+      "repeat": 0.11713608844432745,
+      "bad": 0,
+      "slot_errors": 0,
+      "sentences": 3800
+    },
+    {
+      "proposal_weight": 0.36,
+      "objective": 0.8539000228948789,
+      "support": 0.7405263157894737,
+      "opening_entropy": 0.98652134363328,
+      "induced_rate": 0.14394736842105263,
+      "repeat": 0.11371413529876283,
+      "bad": 0,
+      "slot_errors": 0,
+      "sentences": 3800
+    }
+  ],
+  "selected": {
+    "proposal_weight": 0.24,
+    "objective": 0.8565957921062811,
+    "support": 0.7442105263157894,
+    "opening_entropy": 0.986180870545743,
+    "induced_rate": 0.1418421052631579,
+    "repeat": 0.12055804158989207,
+    "bad": 0,
+    "slot_errors": 0,
+    "sentences": 3800
+  }
+}

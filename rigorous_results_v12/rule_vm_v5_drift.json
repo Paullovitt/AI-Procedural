@@ -1,0 +1,143 @@
+{
+  "format": "Autonomous-RuleVM-v5-Drift-Revision",
+  "hidden_changed_ids_audit_only": [
+    1,
+    5,
+    9
+  ],
+  "pre_revision_post_accuracy": 0.97123,
+  "post_revision_accuracy": 1.0,
+  "revised_ids": [
+    1,
+    5,
+    9
+  ],
+  "changed_detected": 3,
+  "changed_total": 3,
+  "false_revisions": 0,
+  "closure_exact_rate": 1.0,
+  "proof_validity": 1.0,
+  "decisions": [
+    {
+      "relation": 0,
+      "old_error": 0.0,
+      "new_error": 0.0,
+      "old_bits": 31.800049897944213,
+      "new_bits": 31.800049897944213,
+      "revised": false,
+      "bit_gain": 0.0
+    },
+    {
+      "relation": 1,
+      "old_error": 0.09296606000983768,
+      "new_error": 0.0,
+      "old_bits": 1873.2968193152167,
+      "new_bits": 25.481957060187174,
+      "revised": true,
+      "bit_gain": 1847.8148622550295
+    },
+    {
+      "relation": 2,
+      "old_error": 0.0,
+      "new_error": 0.0,
+      "old_bits": 25.50761658369955,
+      "new_bits": 25.50761658369955,
+      "revised": false,
+      "bit_gain": 0.0
+    },
+    {
+      "relation": 3,
+      "old_error": 0.0,
+      "new_error": 0.0,
+      "old_bits": 25.537953941358474,
+      "new_bits": 25.537953941358474,
+      "revised": false,
+      "bit_gain": 0.0
+    },
+    {
+      "relation": 4,
+      "old_error": 0.0,
+      "new_error": 0.0,
+      "old_bits": 20.590587049915037,
+      "new_bits": 20.590587049915037,
+      "revised": false,
+      "bit_gain": 0.0
+    },
+    {
+      "relation": 5,
+      "old_error": 0.12774792379091354,
+      "new_error": 0.0,
+      "old_bits": 2288.447200963519,
+      "new_bits": 31.714245517666125,
+      "revised": true,
+      "bit_gain": 2256.732955445853
+    },
+    {
+      "relation": 6,
+      "old_error": 0.0,
+      "new_error": 0.0,
+      "old_bits": 41.401949247879756,
+      "new_bits": 41.401949247879756,
+      "revised": false,
+      "bit_gain": 0.0
+    },
+    {
+      "relation": 7,
+      "old_error": 0.0,
+      "new_error": 0.0,
+      "old_bits": 58.71560972678351,
+      "new_bits": 58.71560972678351,
+      "revised": false,
+      "bit_gain": 0.0
+    },
+    {
+      "relation": 8,
+      "old_error": 0.0,
+      "new_error": 0.0,
+      "old_bits": 41.448452350653604,
+      "new_bits": 41.448452350653604,
+      "revised": false,
+      "bit_gain": 0.0
+    },
+    {
+      "relation": 9,
+      "old_error": 0.12103606874848705,
+      "new_error": 0.0,
+      "old_bits": 2257.7529396200525,
+      "new_bits": 58.690693290015545,
+      "revised": true,
+      "bit_gain": 2199.062246330037
+    },
+    {
+      "relation": 10,
+      "old_error": 0.0,
+      "new_error": 0.0,
+      "old_bits": 31.74663568653265,
+      "new_bits": 31.74663568653265,
+      "revised": false,
+      "bit_gain": 0.0
+    },
+    {
+      "relation": 11,
+      "old_error": 0.0,
+      "new_error": 0.0,
+      "old_bits": 31.7678320613053,
+      "new_bits": 31.7678320613053,
+      "revised": false,
+      "bit_gain": 0.0
+    }
+  ],
+  "gpu": {
+    "device": "cuda:0",
+    "name": "NVIDIA GeForce GTX 1660 SUPER",
+    "allocated_mb": 0.0,
+    "reserved_mb": 276.0,
+    "free_mb": 4850.0,
+    "total_mb": 6143.6875,
+    "neural": false,
+    "gradients": false,
+    "parallel_certified": true,
+    "certified_relations": 12,
+    "total_relations": 12
+  }
+}

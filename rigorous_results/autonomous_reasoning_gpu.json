@@ -1,0 +1,311 @@
+{
+  "format": "Opaque-Autonomous-Reasoning-GPU-v1",
+  "train_observations": 260000,
+  "train_noise": 0.015,
+  "val_observations": 90000,
+  "test_observations": 140000,
+  "learn_seconds": 11.473784600000727,
+  "test_transition_accuracy": 1.0,
+  "hidden_rules_exact": 11,
+  "hidden_rules_total": 14,
+  "worlds": 80,
+  "closure_exact_rate": 1,
+  "closure_jaccard": 1.0,
+  "mean_cascade_size_error": 0,
+  "proof_edge_validity": 1,
+  "max_proof_chain": 13,
+  "critical_top10_overlap": 1.0,
+  "critical_rank_spearman": 1.0,
+  "learned_models": {
+    "0": {
+      "features": [
+        3
+      ],
+      "table": [
+        1,
+        0
+      ],
+      "train_error": 0.014597351662814617,
+      "val_error": 0.0
+    },
+    "1": {
+      "features": [
+        0,
+        1,
+        7
+      ],
+      "table": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1
+      ],
+      "train_error": 0.016002576798200607,
+      "val_error": 0.0
+    },
+    "2": {
+      "features": [
+        7
+      ],
+      "table": [
+        0,
+        1
+      ],
+      "train_error": 0.014994356781244278,
+      "val_error": 0.0
+    },
+    "3": {
+      "features": [
+        12
+      ],
+      "table": [
+        1,
+        0
+      ],
+      "train_error": 0.014503734186291695,
+      "val_error": 0.0
+    },
+    "4": {
+      "features": [
+        2
+      ],
+      "table": [
+        1,
+        0
+      ],
+      "train_error": 0.014593097381293774,
+      "val_error": 0.0
+    },
+    "5": {
+      "features": [],
+      "table": [
+        1
+      ],
+      "train_error": 0.015186726115643978,
+      "val_error": 0.0
+    },
+    "6": {
+      "features": [
+        5,
+        9
+      ],
+      "table": [
+        0,
+        1,
+        1,
+        0
+      ],
+      "train_error": 0.01515232678502798,
+      "val_error": 0.0
+    },
+    "7": {
+      "features": [
+        15
+      ],
+      "table": [
+        1,
+        0
+      ],
+      "train_error": 0.014671772718429565,
+      "val_error": 0.0
+    },
+    "8": {
+      "features": [],
+      "table": [
+        0
+      ],
+      "train_error": 0.015163002535700798,
+      "val_error": 0.0
+    },
+    "9": {
+      "features": [
+        4
+      ],
+      "table": [
+        1,
+        0
+      ],
+      "train_error": 0.016129031777381897,
+      "val_error": 0.0
+    },
+    "10": {
+      "features": [],
+      "table": [
+        1
+      ],
+      "train_error": 0.013983757235109806,
+      "val_error": 0.0
+    },
+    "11": {
+      "features": [],
+      "table": [
+        1
+      ],
+      "train_error": 0.014810045249760151,
+      "val_error": 0.0
+    },
+    "12": {
+      "features": [
+        3,
+        4,
+        9
+      ],
+      "table": [
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      "train_error": 0.015810489654541016,
+      "val_error": 0.0
+    },
+    "13": {
+      "features": [
+        14
+      ],
+      "table": [
+        1,
+        0
+      ],
+      "train_error": 0.014938252046704292,
+      "val_error": 0.0
+    }
+  },
+  "gpu": {
+    "device": "cuda:0",
+    "name": "NVIDIA GeForce GTX 1660 SUPER",
+    "allocated_mb": 0.0,
+    "reserved_mb": 24.0,
+    "free_mb": 5102.0,
+    "total_mb": 6143.6875,
+    "gradients": false,
+    "neural": false
+  },
+  "peak_allocated_mb": 12.26513671875,
+  "hidden_rule_orders_audit": [
+    1,
+    3,
+    1,
+    3,
+    1,
+    0,
+    2,
+    2,
+    0,
+    2,
+    0,
+    0,
+    3,
+    1
+  ],
+  "exhaustive_functional_exact": 14,
+  "exhaustive_functional_total": 14,
+  "schema_audit_details": [
+    {
+      "r": 0,
+      "function_equal": true,
+      "hidden_order": 1,
+      "learned_order": 1,
+      "same_schema": true
+    },
+    {
+      "r": 1,
+      "function_equal": true,
+      "hidden_order": 3,
+      "learned_order": 3,
+      "same_schema": true
+    },
+    {
+      "r": 2,
+      "function_equal": true,
+      "hidden_order": 1,
+      "learned_order": 1,
+      "same_schema": true
+    },
+    {
+      "r": 3,
+      "function_equal": true,
+      "hidden_order": 3,
+      "learned_order": 1,
+      "same_schema": false
+    },
+    {
+      "r": 4,
+      "function_equal": true,
+      "hidden_order": 1,
+      "learned_order": 1,
+      "same_schema": true
+    },
+    {
+      "r": 5,
+      "function_equal": true,
+      "hidden_order": 0,
+      "learned_order": 0,
+      "same_schema": true
+    },
+    {
+      "r": 6,
+      "function_equal": true,
+      "hidden_order": 2,
+      "learned_order": 2,
+      "same_schema": true
+    },
+    {
+      "r": 7,
+      "function_equal": true,
+      "hidden_order": 2,
+      "learned_order": 1,
+      "same_schema": false
+    },
+    {
+      "r": 8,
+      "function_equal": true,
+      "hidden_order": 0,
+      "learned_order": 0,
+      "same_schema": true
+    },
+    {
+      "r": 9,
+      "function_equal": true,
+      "hidden_order": 2,
+      "learned_order": 1,
+      "same_schema": false
+    },
+    {
+      "r": 10,
+      "function_equal": true,
+      "hidden_order": 0,
+      "learned_order": 0,
+      "same_schema": true
+    },
+    {
+      "r": 11,
+      "function_equal": true,
+      "hidden_order": 0,
+      "learned_order": 0,
+      "same_schema": true
+    },
+    {
+      "r": 12,
+      "function_equal": true,
+      "hidden_order": 3,
+      "learned_order": 3,
+      "same_schema": true
+    },
+    {
+      "r": 13,
+      "function_equal": true,
+      "hidden_order": 1,
+      "learned_order": 1,
+      "same_schema": true
+    }
+  ]
+}
