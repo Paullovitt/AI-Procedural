@@ -2,9 +2,10 @@ from __future__ import annotations
 
 from pathlib import Path
 from collections import Counter
+from typing import Any
 import bisect
 
-from procedural_runtime_v3 import focus_bundle_candidates
+from procedural_runtime_v3 import focus_bundle_candidates, _join_items
 from procedural_runtime_v4 import RENDERER_V8_CONFIG, InducedConstructionGrammar
 from procedural_runtime_v5 import SafeWrapperInducer, StoredWrapperInducer, InducedRealizationProposer
 from procedural_runtime_gpu import GpuBagacoSurfaceScorer, attach_semantic_traces
@@ -29,20 +30,78 @@ class EmpiricalParagraphScheduler:
         return starts
 
 
+def predicate_relation_candidates(bundle):
+    """Natural predicate realization for relation slots whose lexicon value is a verb phrase.
+
+    The semantic IDs remain present in the internal candidate and therefore keep the
+    existing protected-slot and semantic-trace guarantees. Only the surface organization
+    changes; no domain relation is encoded here.
+    """
+    a=bundle[0][1]
+    tails=[f'{f[2]} {f[3]}' for f in bundle]
+    body=_join_items(tails)
+    rows=[
+        (f'{a} {body}.','pr0'),
+        (f'No contexto considerado, {a} {body}.','pr1'),
+        (f'Em termos de associação, {a} {body}.','pr2'),
+        (f'Quanto a {a}, observa-se que {a} {body}.','pr3'),
+    ]
+    return [(text,{'facts':list(bundle),'template':name,'focus':a,'source':'learned_predicate_v14'}) for text,name in rows]
+
+
 class RendererV14GPU:
     """V12 surface engine with corpus-learned multi-focus paragraph boundaries."""
-    def __init__(self,selector,structure,proposer,paragraph_scheduler):
+    def __init__(self,selector,structure,proposer,paragraph_scheduler,predicate_relations=None,predicate_classes=None):
         self.sel=selector;self.structure=structure;self.proposer=proposer;self.paragraph_scheduler=paragraph_scheduler
+        self.predicate_relations=set(str(x).lower() for x in (predicate_relations or ()))
+        self.predicate_classes={str(k).lower():str(v).lower() for k,v in (predicate_classes or {}).items()}
+
+    def set_prompt_surface(self, lexicon=None, predicate_relations=None, predicate_classes=None):
+        if lexicon is not None and hasattr(self.sel,'lexicon'):
+            self.sel.lexicon={str(k).lower():str(v) for k,v in lexicon.items()}
+            if hasattr(self.sel,'_feature_cache'):
+                self.sel._feature_cache.clear()
+        if predicate_relations is not None:
+            self.predicate_relations=set(str(x).lower() for x in predicate_relations)
+        if predicate_classes is not None:
+            self.predicate_classes={str(k).lower():str(v).lower() for k,v in predicate_classes.items()}
 
     def render(self,facts,focus_order_hint=None):
-        groups,targets=self.structure.bundle(facts,focus_order_hint=focus_order_hint)
+        base_groups,base_targets=self.structure.bundle(facts,focus_order_hint=focus_order_hint)
+        # Prompt predicate facts with different learned meanings should not be fused
+        # into one sentence. Split only by lexical predicate class; ordinary V14 facts
+        # keep the original corpus-driven grouping unchanged.
+        groups=[];targets=[]
+        lex=getattr(self.sel,'lexicon',{})
+        for g,target in zip(base_groups,base_targets):
+            if g and all(f[0]=='rel' and str(f[2]).lower() in self.predicate_relations for f in g):
+                buckets=[];where={}
+                for f in g:
+                    rid=str(f[2]).lower()
+                    label=self.predicate_classes.get(rid,str(lex.get(rid,str(f[2]))).lower())
+                    if label not in where:
+                        where[label]=len(buckets);buckets.append([])
+                    buckets[where[label]].append(f)
+                for bucket in buckets:
+                    groups.append(bucket);targets.append(target)
+            else:
+                groups.append(g);targets.append(target)
         starts=self.paragraph_scheduler.starts(len(groups))
         prepared=[];induced_candidates=0
         for gi,(g,target) in enumerate(zip(groups,targets)):
             focus=g[0][1];paragraph_first=(gi in starts);cands=[]
-            for text,meta in focus_bundle_candidates(g):
-                meta=dict(meta);meta['target_length']=target;meta.setdefault('source','verified_v8');cands.append((text,meta))
-            new=self.proposer.propose(g,target);induced_candidates+=len(new);cands.extend(new)
+            predicate_group=(g and all(f[0]=='rel' and str(f[2]).lower() in self.predicate_relations for f in g))
+            if predicate_group:
+                for text,meta in predicate_relation_candidates(g):
+                    meta=dict(meta);meta['target_length']=target;cands.append((text,meta))
+                # The historical wrapper proposer is based on opaque relation microclauses.
+                # Skipping it here avoids re-introducing "relation X liga" around verb-phrase slots.
+                new=[]
+            else:
+                for text,meta in focus_bundle_candidates(g):
+                    meta=dict(meta);meta['target_length']=target;meta.setdefault('source','verified_v8');cands.append((text,meta))
+                new=self.proposer.propose(g,target)
+            induced_candidates+=len(new);cands.extend(new)
             ded=[];seen=set()
             for row in cands:
                 if row[0] in seen:continue
@@ -74,27 +133,30 @@ class RendererV14GPU:
              'paragraph_sizes':paragraph_sizes,'represented':represented,'picks':picks,'groups':groups,'targets':targets,
              'induced_candidates':induced_candidates,'induced_selected':induced_selected,
              'compute_backend':'cuda-batched-v14','focus_order':focus_order,'abstract_shapes':len(shape_counts),
-             'paragraph_starts':sorted(starts)}
+             'paragraph_starts':sorted(starts),'predicate_relations':len(self.predicate_relations)}
         return attach_semantic_traces(out)
 
 
 def build_renderer_v14_gpu(root,seed=101,use_hot=False,proposal_weight=.24,position_weight=7.0,
                            diversity_weight=2.6,focus_diversity_weight=1.17,repetition_weight=1.1,
-                           template_repetition_weight=None,device=0,memory_limit_mb=4608,lexicon=None):
+                           template_repetition_weight=None,device=0,memory_limit_mb=4608,lexicon=None,
+                           lexicalize_entities=False,predicate_relations=None,max_bundle=None):
     root=Path(root);scorer=GpuBagacoSurfaceScorer(root,use_hot=use_hot,device=device,memory_limit_mb=memory_limit_mb)
     grammar=InducedConstructionGrammar(root)
     inducer=SafeWrapperInducer(root,scorer) if (root/'model'/'quality'/'open.jsonl').exists() and (root/'model'/'full'/'open.jsonl').exists() else StoredWrapperInducer(root,scorer)
     proposer=InducedRealizationProposer(inducer)
-    selector_cls=LexicalizedDiversitySelectorGPU if lexicon else DiversityAwareSelectorGPU
-    selector_kwargs=dict(
+    lexical_mode=lexicon is not None
+    selector_cls=LexicalizedDiversitySelectorGPU if lexical_mode else DiversityAwareSelectorGPU
+    selector_kwargs: dict[str, Any]=dict(
         scorer=scorer,seed=seed,grammar=grammar,repetition_weight=float(repetition_weight),
         target_weight=RENDERER_V8_CONFIG['target_weight'],
         template_repetition_weight=(RENDERER_V8_CONFIG['template_repetition_weight'] if template_repetition_weight is None else float(template_repetition_weight)),
         construction_weight=RENDERER_V8_CONFIG['construction_weight'],position_weight=float(position_weight),
         proposal_weight=float(proposal_weight),diversity_weight=float(diversity_weight),focus_diversity_weight=float(focus_diversity_weight))
-    if lexicon:
-        selector_kwargs['lexicon']=lexicon
+    if lexical_mode:
+        selector_kwargs['lexicon']=lexicon or {}
+        selector_kwargs['lexicalize_entities']=bool(lexicalize_entities)
     selector=selector_cls(**selector_kwargs)
-    planner=GraphDiscoursePlanner(scorer,seed=seed,max_bundle=RENDERER_V8_CONFIG['max_bundle'],q_low=RENDERER_V8_CONFIG['q_low'],q_high=RENDERER_V8_CONFIG['q_high'],target_scale=RENDERER_V8_CONFIG['target_scale'])
+    planner=GraphDiscoursePlanner(scorer,seed=seed,max_bundle=int(max_bundle or RENDERER_V8_CONFIG['max_bundle']),q_low=RENDERER_V8_CONFIG['q_low'],q_high=RENDERER_V8_CONFIG['q_high'],target_scale=RENDERER_V8_CONFIG['target_scale'])
     ps=EmpiricalParagraphScheduler(scorer.struct.get('para_sent',[]),seed=seed+7919)
-    return scorer,grammar,inducer,RendererV14GPU(selector,planner,proposer,ps)
+    return scorer,grammar,inducer,RendererV14GPU(selector,planner,proposer,ps,predicate_relations=predicate_relations)

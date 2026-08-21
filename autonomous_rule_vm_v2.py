@@ -3,6 +3,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from itertools import combinations
 from pathlib import Path
+from typing import Any
 import json, math, random, time
 import numpy as np
 import torch
@@ -92,9 +93,9 @@ class OpaqueTransitionWorld:
             seen.add((a,r,b));edges.append((a,r,b))
         return attrs,edges
 
-    def execute_fixed_point(self,attrs,edges,seeds,max_sweeps=None):
+    def execute_fixed_point(self,attrs,edges,seeds,max_sweeps=None) -> Any:
         state=np.zeros(len(attrs),dtype=np.uint8);state[list(seeds)]=1
-        parent={int(x):None for x in seeds}
+        parent: dict[int, Any]={int(x):None for x in seeds}
         cap=int(max_sweeps or (len(attrs)+1))
         for _ in range(cap):
             changed=0
@@ -156,7 +157,7 @@ class MDLRuleInducerGPU:
         registry={}
         for r in range(self.n_rel):
             X=trX[trR==r];y=trY[trR==r];XV=vaX[vaR==r];yV=vaY[vaR==r]
-            best=None
+            best: Any=None
             for k in range(self.search_order_cap+1):
                 for subset in self.subsets_by_order[k]:
                     table,_=self._fit_table(X,y,subset)
@@ -204,9 +205,9 @@ class RuleBankVMGPU:
             out[mask]=tab[code]
         return out.cpu().numpy().astype(np.uint8)
 
-    def execute_fixed_point(self,attrs,edges,seeds,max_sweeps=None):
+    def execute_fixed_point(self,attrs,edges,seeds,max_sweeps=None) -> Any:
         state=np.zeros(len(attrs),dtype=np.uint8);state[list(seeds)]=1
-        parent={int(x):None for x in seeds};cap=int(max_sweeps or (len(attrs)+1))
+        parent: dict[int, Any]={int(x):None for x in seeds};cap=int(max_sweeps or (len(attrs)+1))
         for _ in range(cap):
             changed=0
             # Edge events are generic transition operators; learned rules decide the new dst state.

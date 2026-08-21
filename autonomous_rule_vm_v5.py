@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+from typing import Any
 import json, time
 import numpy as np
 import torch
@@ -55,14 +56,14 @@ class CertifiedParallelRuleVMGPU(RuleBankVMGPU):
         XT=torch.as_tensor(X,device=self.device,dtype=torch.uint8)
         return self.predict_tensor(relT,XT).detach().cpu().numpy().astype(np.uint8)
 
-    def execute_fixed_point(self,attrs,edges,seeds,max_sweeps=None):
+    def execute_fixed_point(self,attrs,edges,seeds,max_sweeps=None) -> Any:
         if not self.parallel_certified:
             state,parent=super().execute_fixed_point(attrs,edges,seeds,max_sweeps=max_sweeps)
             return state,parent,{'parallel':False,'sweeps':None,'certificates':self.certificates}
         A=torch.as_tensor(attrs,device=self.device,dtype=torch.uint8)
         e=np.asarray(edges,dtype=np.int64);src=torch.as_tensor(e[:,0],device=self.device);rel=torch.as_tensor(e[:,1],device=self.device);dst=torch.as_tensor(e[:,2],device=self.device)
         state=torch.zeros(len(attrs),device=self.device,dtype=torch.long);state[torch.as_tensor(list(seeds),device=self.device,dtype=torch.long)]=1
-        parent={int(x):None for x in seeds};cap=int(max_sweeps or (len(attrs)+1));sweeps=0
+        parent: dict[int, Any]={int(x):None for x in seeds};cap=int(max_sweeps or (len(attrs)+1));sweeps=0
         src_np=e[:,0];rel_np=e[:,1];dst_np=e[:,2]
         for _ in range(cap):
             sweeps+=1

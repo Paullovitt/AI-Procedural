@@ -1,7 +1,9 @@
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 import re
+
+from autonomous_rule_vm_v6 import CorpusAssociationRuleLearnerGPU, IndexedAssociationRuleVM
 
 SLOT_RX = re.compile(r"\b(?:e\d+|a\d+|v\d+|r\d+)\b", re.I)
 WORD_RX = re.compile(r"[A-Za-zÀ-ÖØ-öø-ÿ0-9]+", re.UNICODE)
@@ -16,6 +18,7 @@ _STOPWORDS = {
     'aproximadamente','cerca','aprox','tema','assunto','prompt','v14','gpu','vram'
 }
 
+# Legacy fallback only. The promoted prompt path uses learned association rules instead.
 _GENERIC_ASPECTS = (
     'ideia central','contexto principal','ponto de atenção','perspectiva','desenvolvimento',
     'conexão conceitual','possibilidade','consequência','contraste','continuidade','síntese','direção'
@@ -23,6 +26,19 @@ _GENERIC_ASPECTS = (
 _GENERIC_RELATIONS = ('associação temática','conexão contextual','continuidade conceitual','relação de contexto')
 _GENERIC_VALUES = ('visão inicial','desenvolvimento possível','perspectiva complementar','leitura contextual','síntese do tema')
 _ENTITY_FALLBACKS = ('contexto do tema','desenvolvimento do tema','perspectiva do tema','síntese do tema','horizonte do tema')
+
+_PREDICATE_SURFACE_VARIANTS = {
+    'compartilha contexto com': (
+        'compartilha contexto com', 'também surge junto de', 'aparece ainda no mesmo contexto que', 'mantém proximidade contextual com'
+    ),
+    'surge em contextos semelhantes a': (
+        'surge em contextos semelhantes a', 'aparece em contexto próximo de', 'mantém contexto semelhante a'
+    ),
+    'aparece no mesmo contexto temático que': (
+        'aparece no mesmo contexto temático que', 'também surge no mesmo pedido que', 'aparece ainda no pedido ao lado de'
+    ),
+    'forma um núcleo contextual com': ('forma um núcleo contextual com',),
+}
 
 
 def _clean_space(text: str) -> str:
@@ -64,6 +80,7 @@ def default_lexicon(facts) -> dict[str, str]:
 
 def lexicalize_text(text: str, lexicon: dict[str, str] | None = None) -> str:
     lex = {str(k).lower(): _clean_space(v) for k, v in (lexicon or {}).items()}
+
     def repl(match):
         key = match.group(0).lower()
         if key in lex:
@@ -73,6 +90,7 @@ def lexicalize_text(text: str, lexicon: dict[str, str] | None = None) -> str:
             return key
         tag = alpha_label(int(m.group(2)))
         return {'e':'elemento ','a':'aspecto ','v':'valor ','r':'relação '}[m.group(1)] + tag
+
     return SLOT_RX.sub(repl, text)
 
 
@@ -88,15 +106,32 @@ class PromptPlan:
     facts: list[tuple]
     lexicon: dict[str, str]
     focus_order: list[str]
+    predicate_relations: set[str] = field(default_factory=set)
+    predicate_classes: dict[str, str] = field(default_factory=dict)
+    reasoning_stats: dict = field(default_factory=dict)
 
 
 class PromptAdapterV14:
-    """Non-neural prompt adapter that builds an auditable symbolic plan for V14."""
+    """Non-neural prompt adapter with a learned RuleBank/RuleVM content layer.
+
+    The promoted path extracts concepts from the prompt, learns corpus-supported
+    association rules from Bagaço statistics on CUDA, executes those rules in an
+    indexed VM, and gives the resulting explicit fact graph to V14.
+    """
     TARGET_RX = re.compile(r'\b(\d{2,6})\s*(?:caracteres|caráter(?:es)?|carateres|chars)\b', re.I)
     TOPIC_RX = re.compile(r'\b(?:sobre|acerca\s+de|a\s+respeito\s+de|tema\s*[:=-])\s+(.+)', re.I)
 
     def __init__(self, default_target_chars: int = 2000):
         self.default_target_chars = max(200, int(default_target_chars))
+        self._learner_cache = {}
+
+    def _learner_for(self, scorer):
+        key = id(scorer)
+        learner = self._learner_cache.get(key)
+        if learner is None or getattr(learner, 's', None) is not scorer:
+            learner = CorpusAssociationRuleLearnerGPU(scorer)
+            self._learner_cache = {key: learner}
+        return learner
 
     def target_from_prompt(self, prompt: str, fallback: int | None = None) -> int:
         if fallback is not None:
@@ -132,8 +167,108 @@ class PromptAdapterV14:
             out.append(w)
         return out[:24] or ['conteúdo','contexto','desenvolvimento']
 
+    def concepts(self, prompt: str, topic: str) -> list[str]:
+        """Keep the topic phrase intact, then add non-duplicate prompt concepts."""
+        topic_tokens = {x.lower() for x in WORD_RX.findall(topic)}
+        concepts = [topic]
+        for key in self.keywords(prompt, topic):
+            if key.lower() not in topic_tokens and key.lower() not in {x.lower() for x in concepts}:
+                concepts.append(key)
+        return concepts[:12]
+
+    def build_learned(self, prompt: str, scorer, target_chars: int | None = None,
+                      seed: int = 101, fact_count: int | None = None) -> PromptPlan:
+        prompt = _clean_space(prompt)
+        target = self.target_from_prompt(prompt, target_chars)
+        topic = self.topic_from_prompt(prompt)
+        concepts = self.concepts(prompt, topic)
+        rule_budget = int(fact_count) if fact_count is not None else round(target / 74)
+        rule_budget = max(8, min(180, rule_budget))
+
+        learner = self._learner_for(scorer)
+        # Learn a slightly larger bank than the emitted plan so the VM can select
+        # the strongest reachable rules without re-training at inference time.
+        bank = learner.fit(concepts, rule_budget=min(256, max(rule_budget + 8, int(rule_budget * 1.35))),
+                           expansion_depth=1)
+        vm = IndexedAssociationRuleVM(bank)
+        # Execute the complete compact bank before selecting the emitted plan. This
+        # prevents high-scoring corpus neighbors from consuming the runtime budget
+        # before explicit same-prompt observations are seen.
+        execution = vm.execute(concepts, max_depth=2, max_rules=max(1, len(bank.rules)))
+        fired_all = execution['fired']
+        prompt_rules = [row for row in fired_all if row[0].kind == 'prompt_observation']
+        prompt_ids = {id(row[0]) for row in prompt_rules}
+        others = [row for row in fired_all if id(row[0]) not in prompt_ids]
+        emit_budget = max(rule_budget, len(prompt_rules))
+        fired = (prompt_rules + others)[:emit_budget]
+
+        if not fired:
+            # Sparse/OOV fallback remains auditable and uses only prompt observations.
+            return self.build(prompt, target_chars=target, seed=seed, fact_count=rule_budget)
+
+        entity_ids: dict[str, str] = {}
+        lex: dict[str, str] = {}
+
+        def entity_id(label: str):
+            key = str(label).lower()
+            if key not in entity_ids:
+                eid = f'e{len(entity_ids):03d}'
+                entity_ids[key] = eid
+                lex[eid] = str(label)
+            return entity_ids[key]
+
+        # Preserve prompt concepts first in the entity/focus order.
+        for concept in concepts:
+            entity_id(concept)
+
+        facts = []
+        predicate_relations = set()
+        predicate_classes = {}
+        surface_counts = {}
+        rule_rows = []
+        for rule, path_conf, depth in fired:
+            src = entity_id(rule.source)
+            dst = entity_id(rule.target)
+            rid = f'r{len(facts):03d}'
+            canonical = str(rule.predicate)
+            surface_key = (src, canonical)
+            surface_i = surface_counts.get(surface_key, 0)
+            surface_counts[surface_key] = surface_i + 1
+            variants = _PREDICATE_SURFACE_VARIANTS.get(canonical, (canonical,))
+            lex[rid] = variants[surface_i % len(variants)]
+            predicate_relations.add(rid)
+            predicate_classes[rid] = canonical
+            facts.append(('rel', src, rid, dst))
+            rule_rows.append({
+                'source': rule.source,
+                'target': rule.target,
+                'predicate': rule.predicate,
+                'kind': rule.kind,
+                'confidence': rule.confidence,
+                'path_confidence': path_conf,
+                'support': rule.support,
+                'score': rule.score,
+                'depth': depth,
+                'evidence': list(rule.evidence),
+            })
+
+        focus_labels = list(dict.fromkeys(concepts + execution.get('nodes', [])))
+        focus = [entity_ids[x.lower()] for x in focus_labels if x.lower() in entity_ids]
+        stats = {
+            'engine': 'Learned-Association-RuleVM-v6',
+            'seed_concepts': concepts,
+            'rulebank': bank.status(),
+            'selected_rules': len(facts),
+            'reachable_nodes': len(execution.get('nodes', [])),
+            'vm_seconds': execution.get('vm_seconds', 0.0),
+            'indexed_lookups': execution.get('indexed_lookups', 0),
+            'rules': rule_rows,
+        }
+        return PromptPlan(prompt, topic, target, facts, lex, focus, predicate_relations, predicate_classes, stats)
+
     def build(self, prompt: str, target_chars: int | None = None, seed: int = 101,
               fact_count: int | None = None) -> PromptPlan:
+        """Legacy deterministic fallback retained for sparse/OOV prompts and A/B tests."""
         prompt = _clean_space(prompt)
         target = self.target_from_prompt(prompt, target_chars)
         topic = self.topic_from_prompt(prompt)

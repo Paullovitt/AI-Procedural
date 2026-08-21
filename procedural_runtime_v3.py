@@ -1,6 +1,7 @@
 from __future__ import annotations
 from pathlib import Path
 from collections import Counter, defaultdict
+from typing import Any
 import json, lzma, math, re, random
 
 WORD_RE = re.compile(r"[A-Za-zÀ-ÖØ-öø-ÿ0-9_]+(?:['’][A-Za-zÀ-ÖØ-öø-ÿ0-9_]+)?", re.UNICODE)
@@ -117,10 +118,10 @@ class BagacoSurfaceScorer:
 class LearnedSurfaceSelector:
     """Scores candidate realizations, preserving semantic slots and penalizing local repetition."""
     def __init__(self, scorer: BagacoSurfaceScorer, seed=12345):
-        self.s=scorer; self.rng=random.Random(seed)
+        self.s: Any=scorer; self.rng=random.Random(seed)
 
-    def choose(self,candidates,recent_openings=()):
-        best=None
+    def choose(self,candidates,recent_openings=()) -> Any:
+        best: Any=None
         recent=Counter(recent_openings)
         for text,meta in candidates:
             ws=self.s.tokenize(text); n=len(ws)
@@ -160,7 +161,7 @@ REL_TEMPLATES=[
 
 class SemanticRendererV2:
     """Generic symbolic renderer. Grammar family is generic/programmed; selection/style is corpus-scored."""
-    def __init__(self,selector:LearnedSurfaceSelector): self.sel=selector
+    def __init__(self,selector: Any): self.sel: Any=selector
     @staticmethod
     def group_plan(facts):
         # Generic entity focus: properties by subject, then relations by source.
@@ -268,8 +269,8 @@ class CorpusStructurePlanner:
 
 class SemanticRendererV3:
     """Separation of concerns: corpus structure planner fixes bundle; surface scorer only reranks equivalent wordings."""
-    def __init__(self, selector:LearnedSurfaceSelector, structure:CorpusStructurePlanner):
-        self.sel=selector;self.structure=structure
+    def __init__(self, selector: Any, structure:CorpusStructurePlanner):
+        self.sel: Any=selector;self.structure=structure
     def render(self,facts):
         groups=self.structure.bundle(facts);sentences=[];represented=[];picks=[];recent=[]
         for g in groups:
@@ -311,7 +312,7 @@ class CorpusStructurePlannerV2(CorpusStructurePlanner):
             f=ordered[i]; typ=f[0]; same=[];j=i
             while j<len(ordered) and ordered[j][0]==typ and ordered[j][1]==f[1] and len(same)<self.max_bundle:
                 same.append(ordered[j]);j+=1
-            best=None
+            best: Any=None
             for k in range(1,len(same)+1):
                 probe=(property_bundle_candidates(same[:k])[0][0] if typ=='prop' else relation_bundle_candidates(same[:k])[0][0])
                 L=len(self.s.tokenize(probe)); cand=(abs(L-self.target),-k,k)
@@ -333,8 +334,8 @@ class LearnedSurfaceSelectorV2(LearnedSurfaceSelector):
     def __init__(self, scorer, seed=12345, length_weight=.22, support_weight=.30, repetition_weight=.22):
         super().__init__(scorer,seed)
         self.length_weight=length_weight;self.support_weight=support_weight;self.repetition_weight=repetition_weight
-    def choose(self,candidates,recent_openings=()):
-        best=None; recent=Counter(recent_openings)
+    def choose(self,candidates,recent_openings=()) -> Any:
+        best: Any=None; recent=Counter(recent_openings)
         for text,meta in candidates:
             ws=self.s.tokenize(text);n=len(ws)
             lang=self.s.score_tokens(ws,max_order=4,slot_aware=True)
@@ -479,8 +480,8 @@ class LearnedSurfaceSelectorV3(LearnedSurfaceSelectorV2):
             c=tab.get('\t'.join(p[:n]),0)
             if c: best=max(best, math.log1p(c)/math.log1p(self._open_total))
         return best
-    def choose(self,candidates,recent_openings=()):
-        best=None; recent=Counter(recent_openings)
+    def choose(self,candidates,recent_openings=()) -> Any:
+        best: Any=None; recent=Counter(recent_openings)
         for text,meta in candidates:
             ws=self.s.tokenize(text);n=len(ws)
             lang=self.s.score_tokens(ws,max_order=4,slot_aware=True)
@@ -507,7 +508,7 @@ class EmpiricalStructurePlanner:
             fs=by[focus]; i=0
             while i<len(fs):
                 target=self.schedule.next(); remain=fs[i:i+self.max_bundle]
-                best=None
+                best: Any=None
                 for k in range(1,len(remain)+1):
                     # Structural choice is independent of lexical scorer: median length across equivalent candidates.
                     lens=sorted(len(self.s.tokenize(t)) for t,_ in focus_bundle_candidates(remain[:k]))
@@ -521,8 +522,8 @@ class EmpiricalStructurePlanner:
 
 class SemanticRendererV5:
     """Long-tail corpus-driven renderer with strict focus locality and semantic metadata."""
-    def __init__(self, selector:LearnedSurfaceSelectorV3, structure:EmpiricalStructurePlanner):
-        self.sel=selector; self.structure=structure
+    def __init__(self, selector: Any, structure:EmpiricalStructurePlanner):
+        self.sel: Any=selector; self.structure=structure
     def render(self,facts):
         groups,targets=self.structure.bundle(facts)
         sentences=[]; represented=[]; picks=[]; recent=[]; paragraphs=[]; cur_focus=None; cur=[]
@@ -564,8 +565,8 @@ class LearnedSurfaceSelectorV4(LearnedSurfaceSelectorV3):
     """Honors the corpus-sampled target length while reranking semantically equivalent candidates."""
     def __init__(self,*args,target_weight=.75,**kwargs):
         super().__init__(*args,**kwargs); self.target_weight=float(target_weight)
-    def choose(self,candidates,recent_openings=()):
-        best=None; recent=Counter(recent_openings)
+    def choose(self,candidates,recent_openings=()) -> Any:
+        best: Any=None; recent=Counter(recent_openings)
         for text,meta in candidates:
             ws=self.s.tokenize(text);n=len(ws)
             lang=self.s.score_tokens(ws,max_order=4,slot_aware=True)
@@ -624,7 +625,7 @@ class EmpiricalStructurePlannerV2(EmpiricalStructurePlanner):
             fs=by[focus];i=0
             while i<len(fs):
                 raw=self.schedule.next();target=max(1,int(round(raw*self.target_scale)))
-                remain=fs[i:i+self.max_bundle];best=None;types=[]
+                remain=fs[i:i+self.max_bundle];best: Any=None;types=[]
                 for k,f in enumerate(remain,1):
                     types.append(f[0]);L=self._pattern_len(types)
                     err=abs(L-target)/max(8.0,target)+(0.04 if L<target else 0.0)
@@ -637,8 +638,8 @@ class LearnedSurfaceSelectorV5(LearnedSurfaceSelectorV4):
     """Adds generic recent-structure memory; it penalizes repeated construction IDs, not words/rules."""
     def __init__(self,*args,template_repetition_weight=.22,**kwargs):
         super().__init__(*args,**kwargs);self.template_repetition_weight=float(template_repetition_weight)
-    def choose(self,candidates,recent_openings=(),recent_templates=()):
-        best=None; ro=Counter(recent_openings); rt=Counter(recent_templates)
+    def choose(self,candidates,recent_openings=(),recent_templates=()) -> Any:
+        best: Any=None; ro=Counter(recent_openings); rt=Counter(recent_templates)
         for text,meta in candidates:
             ws=self.s.tokenize(text);n=len(ws)
             lang=self.s.score_tokens(ws,max_order=4,slot_aware=True)

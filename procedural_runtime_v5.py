@@ -1,6 +1,7 @@
 from __future__ import annotations
 from pathlib import Path
 from collections import Counter, defaultdict
+from typing import Any
 import json, math, difflib, unicodedata, re
 
 from procedural_runtime_v4 import *
@@ -122,7 +123,7 @@ class SafeWrapperInducer:
 
 class InducedRealizationProposer:
     """Lets corpus-induced wrappers create new realizations while preserving the factual body verbatim."""
-    def __init__(self, inducer:SafeWrapperInducer):
+    def __init__(self, inducer: Any):
         self.inducer=inducer
 
     def propose(self,bundle,target_length=None):
@@ -156,8 +157,8 @@ class InducedRealizationProposer:
 class LearnedSurfaceSelectorV7(LearnedSurfaceSelectorV6):
     def __init__(self,*args,proposal_weight=.06,**kwargs):
         super().__init__(*args,**kwargs);self.proposal_weight=float(proposal_weight)
-    def choose(self,candidates,recent_openings=(),recent_templates=(),paragraph_first=False):
-        best=None; ro=Counter(recent_openings);rt=Counter(recent_templates)
+    def choose(self,candidates,recent_openings=(),recent_templates=(),paragraph_first=False) -> Any:
+        best: Any=None; ro=Counter(recent_openings);rt=Counter(recent_templates)
         for text,meta in candidates:
             ws,n,lang,lp,opening,support,op,cscore,ccov,chits,pscore,pmeta=self._static_features(text,paragraph_first)
             rep=self.repetition_weight*ro.get(opening,0)

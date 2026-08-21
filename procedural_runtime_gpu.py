@@ -1,8 +1,9 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 from pathlib import Path
 from collections import Counter
 from functools import lru_cache
+from typing import Any
 import math
 
 import numpy as np
@@ -44,7 +45,7 @@ class GpuBagacoSurfaceScorer(BagacoSurfaceScorer):
         super().__init__(root, use_hot=use_hot)
         self.cache_dir = Path(cache_dir) if cache_dir else Path(root) / "gpu_cache"
         self.cache_dir.mkdir(parents=True, exist_ok=True)
-        self._gpu = {}
+        self._gpu: dict[str, tuple[torch.Tensor, torch.Tensor]] = {}
         self._build_or_load_gpu_index()
         self.batch_language_support([["de", "acordo", "com"], ["no", "caso", "de"]])
         torch.cuda.synchronize(self.device)
@@ -69,7 +70,7 @@ class GpuBagacoSurfaceScorer(BagacoSurfaceScorer):
                 arrays = None
         if arrays is None:
             arrays = {}
-            save = {"format_version": np.asarray([3], dtype=np.int32)}
+            save: dict[str, np.ndarray] = {"format_version": np.asarray([3], dtype=np.int32)}
             for name in self.GPU_TABLES:
                 tab = self.tables.get(name, {})
                 h = np.fromiter((_h64_signed(k) for k in tab.keys()), dtype=np.int64, count=len(tab))
@@ -184,7 +185,7 @@ class GpuBagacoSurfaceScorer(BagacoSurfaceScorer):
 class LearnedSurfaceSelectorGPU(LearnedSurfaceSelectorV7):
     """V9 selector that sends all cache-miss candidate language features as one CUDA batch."""
     def _static_features_many(self,texts,paragraph_first):
-        rows=[None]*len(texts);misses=[];miss_words=[];miss_keys=[]
+        rows: list[Any]=[None]*len(texts);misses=[];miss_words=[];miss_keys=[]
         for idx,text in enumerate(texts):
             ws=self.s.tokenize(text)
             key=(tuple("__slot__" if self.s.is_slot(w) else w for w in ws),bool(paragraph_first))
@@ -205,8 +206,8 @@ class LearnedSurfaceSelectorGPU(LearnedSurfaceSelectorV7):
                 self._feature_cache[key]=hit;rows[pos]=hit
         return rows
 
-    def choose(self,candidates,recent_openings=(),recent_templates=(),paragraph_first=False):
-        best=None;ro=Counter(recent_openings);rt=Counter(recent_templates)
+    def choose(self,candidates,recent_openings=(),recent_templates=(),paragraph_first=False) -> Any:
+        best: Any=None;ro=Counter(recent_openings);rt=Counter(recent_templates)
         features=self._static_features_many([x[0] for x in candidates],paragraph_first)
         for (text,meta),feat in zip(candidates,features):
             ws,n,lang,lp,opening,support,op,cscore,ccov,chits,pscore,pmeta=feat

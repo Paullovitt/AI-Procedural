@@ -1,6 +1,7 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 from pathlib import Path
 from collections import Counter, defaultdict
+from typing import Any
 import math, re
 
 from procedural_runtime_v3 import EmpiricalStructurePlannerV2, focus_bundle_candidates, RENDERER_V7_CONFIG
@@ -80,7 +81,7 @@ class GraphDiscoursePlanner(EmpiricalStructurePlannerV2):
             fs=by[focus];i=0
             while i<len(fs):
                 raw=self.schedule.next();target=max(1,int(round(raw*self.target_scale)))
-                remain=fs[i:i+self.max_bundle];best=None;types=[]
+                remain=fs[i:i+self.max_bundle];best: Any=None;types=[]
                 for k,f in enumerate(remain,1):
                     types.append(f[0]);L=self._pattern_len(types)
                     err=abs(L-target)/max(8.0,target)+(0.04 if L<target else 0.0)
@@ -98,9 +99,9 @@ class DiversityAwareSelectorGPU(LearnedSurfaceSelectorGPU):
         self.focus_diversity_weight=float(focus_diversity_weight)
 
     def choose(self,candidates,recent_openings=(),recent_templates=(),paragraph_first=False,
-               shape_counts=None,focus_shape_counts=None):
+               shape_counts=None,focus_shape_counts=None) -> Any:
         shape_counts=shape_counts or Counter();focus_shape_counts=focus_shape_counts or Counter()
-        best=None;ro=Counter(recent_openings);rt=Counter(recent_templates)
+        best: Any=None;ro=Counter(recent_openings);rt=Counter(recent_templates)
         features=self._static_features_many([x[0] for x in candidates],paragraph_first)
         for (text,meta),feat in zip(candidates,features):
             ws,n,lang,lp,opening,support,op,cscore,ccov,chits,pscore,pmeta=feat

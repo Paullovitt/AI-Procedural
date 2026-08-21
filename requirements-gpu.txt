@@ -2,4 +2,4 @@
 numpy>=2.2,<3
 xxhash>=3.6,<4
 torch==2.10.0
-# CuPy nao e necessario para executar V9 GPU. O backend promovido usa PyTorch CUDA apenas como runtime tensorial.
+# CuPy nao e necessario para executar o V14/RuleVM V6. O backend promovido usa PyTorch CUDA apenas como runtime tensorial, sem rede neural ou gradientes.

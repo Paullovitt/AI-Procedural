@@ -1,7 +1,8 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 from dataclasses import dataclass
 from itertools import combinations
 from pathlib import Path
+from typing import Any
 import json, random, math, statistics, time
 import numpy as np
 import torch
@@ -55,7 +56,7 @@ class HiddenPropagationWorld:
             seen.add((a,b,r));edges.append((a,r,b))
         return attrs,edges
     def closure(self,attrs,edges,seeds):
-        failed=set(seeds);parent={x:None for x in seeds};changed=True
+        failed=set(seeds);parent: dict[int, Any]={int(x):None for x in seeds};changed=True
         while changed:
             changed=False
             for a,r,b in edges:
@@ -87,7 +88,7 @@ class GPUTruthTableRuleLearner:
         trR=torch.as_tensor(tr_rel,device=self.device,dtype=torch.long);trX=torch.as_tensor(tr_X,device=self.device,dtype=torch.uint8);trY=torch.as_tensor(tr_y,device=self.device,dtype=torch.long)
         vaR=torch.as_tensor(va_rel,device=self.device,dtype=torch.long);vaX=torch.as_tensor(va_X,device=self.device,dtype=torch.uint8);vaY=torch.as_tensor(va_y,device=self.device,dtype=torch.long)
         for r in range(self.n_rel):
-            X=trX[trR==r];y=trY[trR==r];XV=vaX[vaR==r];yV=vaY[vaR==r];best=None
+            X=trX[trR==r];y=trY[trR==r];XV=vaX[vaR==r];yV=vaY[vaR==r];best: Any=None
             for subset in self.subsets:
                 table,trerr=self._fit_subset(X,y,subset);verr=self._error_subset(XV,yV,subset,table)
                 score=verr+self.penalty*((1<<len(subset))+len(subset))
@@ -107,7 +108,7 @@ class GPUTruthTableRuleLearner:
     def transmit(self,r,src,dst):
         x=np.concatenate([src,dst])[None,:];return int(self.predict_batch(np.asarray([r]),x)[0])
     def closure(self,attrs,edges,seeds):
-        failed=set(seeds);parent={x:None for x in seeds};changed=True
+        failed=set(seeds);parent: dict[int, Any]={int(x):None for x in seeds};changed=True
         while changed:
             changed=False;pending=[];meta=[]
             for a,r,b in edges:

@@ -1,5 +1,6 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 from pathlib import Path
+from typing import Any
 import random, json, statistics, math
 import numpy as np
 from rigorous_gpu_benchmark import stable_world
@@ -46,7 +47,7 @@ def best_threshold(clean,corrupt):
     vals=sorted(set(clean+corrupt))
     if not vals:return 0.0,{}
     candidates=[vals[0]-1e-12]+[(a+b)/2 for a,b in zip(vals,vals[1:])]+[vals[-1]+1e-12]
-    best=None
+    best: Any=None
     for t in candidates:
         tpr=sum(x>t for x in corrupt)/max(1,len(corrupt))
         fpr=sum(x>t for x in clean)/max(1,len(clean))

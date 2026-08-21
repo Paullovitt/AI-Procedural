@@ -1,5 +1,6 @@
 {
   "runtime_version": "V14",
+  "content_reasoner": "Learned-Association-RuleVM-v6",
   "device": 0,
   "backend": "cuda-batched-v14",
   "memory_limit_mb": 4608,
@@ -10,10 +11,11 @@
   "focus_diversity_weight": 1.17,
   "repetition_weight": 1.1,
   "template_repetition_weight": null,
+  "prompt_max_bundle": 4,
   "seed": 101,
   "verify_semantics": true,
   "readable_output": true,
   "prompt_mode": true,
   "default_target_chars": 2000,
-  "notes": "V14 padrão. GPU/VRAM via PyTorch apenas como runtime tensorial; sem rede neural, gradiente ou backprop. IDs semânticos ficam internos e a tela usa lexicalização legível por padrão."
+  "notes": "V14 padrão com RuleVM V6 aprendido a partir das estatísticas do corpus. GPU/VRAM via PyTorch apenas como runtime tensorial; sem rede neural, gradiente ou backprop. O RuleVM executa regras explícitas/indexadas e os IDs semânticos ficam internos."
 }

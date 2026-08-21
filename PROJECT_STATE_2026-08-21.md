@@ -316,3 +316,94 @@ Uma nova versão só deve ser promovida se:
 5. manter regra aprendida persistida como dado/RuleBank;
 6. registrar falhas e versões rejeitadas, não apagar histórico;
 7. manter GPU ativa nas partes estatísticas e de busca relevantes.
+
+## 14. Prompt + Learned RuleVM V6
+
+A camada de prompt foi conectada a um RuleBank aprendido, mantendo o RuleVM simples.
+
+Fluxo promovido:
+
+```text
+prompt -> conceitos observados -> learner de associações Bagaço em CUDA
+       -> LearnedAssociationRuleBank -> IndexedAssociationRuleVM
+       -> grafo explícito -> V14 CUDA -> verificadores -> saída lexicalizada
+```
+
+Arquivos:
+- `autonomous_rule_vm_v6.py`: learner PMI positivo em GPU, RuleBank explícito e VM indexado.
+- `prompt_runtime_v14.py`: extrai conceitos, invoca o learner/VM e mantém provenance/confiança/suporte/evidência.
+- `prompt_session_v14.py`: mantém V14, GPU e caches residentes entre prompts.
+- `benchmark_prompt_rulevm_v6.py`: bateria de generalidade/performance.
+- `test_rulevm_v6_prompt.py`: regressões do V6.
+
+Decisões de qualidade:
+- conceitos compostos de 2 a 5 palavras são tratados como unidade e usam evidência da expressão inteira;
+- se não existir evidência específica suficiente, não há fallback silencioso para a última palavra ambígua;
+- p3-p5 de expressões compostas é consultado sob demanda e cacheado;
+- regras fracas não são promovidas apenas para preencher comprimento;
+- `evidence_limited=true` sinaliza quando o alvo de tamanho não pode ser alcançado com o RuleBank promovido.
+
+Bateria de 6 temas em sessão única:
+- semântica: 6/6 verificadas;
+- slot errors: 0;
+- trace errors: 0;
+- IDs internos expostos: 0;
+- cobertura dos conceitos do prompt: 100%;
+- sentenças exatas únicas: 100%;
+- RuleVM máximo observado: ~0,04 ms;
+- prompts posteriores com expressões novas: aproximadamente 13–18 ms de raciocínio na bateria;
+- prompt repetido/caches aquecidos: camada de raciocínio observada em ~2 ms.
+
+Limitação deliberada: corpora esparsos podem produzir texto abaixo do tamanho solicitado. Exemplo de segurança digital mostrou pouca evidência específica; o sistema prefere declarar `evidence_limited` a reintroduzir associações ambíguas de `digital`.
+
+### Regressão V5 após introdução do V6
+
+Benchmark completo V5 novamente executado:
+- treino 150.000, validação 60.000, teste 100.000;
+- aprendizagem: ~1,075 s;
+- transition accuracy: 1.0;
+- closure exact: 1.0;
+- proof validity: 1.0;
+- 12/12 relações certificadas para fixed point paralelo.
+
+Generalidade V5 novamente executada:
+- 6/6 mundos com transition accuracy, closure e proof validity = 1.0;
+- todos certificados;
+- tempo total de aprendizado: ~5,498 s.
+
+Drift novamente executado:
+- pré-revisão: 0,97123;
+- pós-revisão: 1.0;
+- relações revisadas: [1,5,9], exatamente as alteradas;
+- falsas revisões: 0;
+- closure/provas após revisão: 1.0.
+
+Resultado V6 principal: `rigorous_results_v12/prompt_rulevm_v6_generality.json`.
+
+
+## 15. Auditoria final de código e integridade
+
+Foi adicionada `project_audit.py` como gate reproduzível antes de promoção/commit. Ela verifica:
+- compilação de todos os Python versionáveis;
+- `architecture_guard.py` em toda a árvore de código;
+- parse de todos os JSON e JSON/XZ;
+- `SHA256SUMS.txt`;
+- presença e consistência dos arquivos centrais;
+- README.md == README.txt;
+- configuração V14 + Learned-Association-RuleVM-v6;
+- `RUN_GPU.bat` apontando para a sessão persistente;
+- ausência de temporários conhecidos.
+
+Correções adicionais da auditoria:
+- `--prompt`, `--prompt-file`, `--facts` e `--smoke` agora são mutuamente exclusivos;
+- conceitos compostos de 3 a 5 palavras não podem cair para a última palavra ambígua;
+- observações do próprio prompt têm reserva explícita no RuleBank/seleção, mesmo sob orçamento pequeno;
+- `requirements-gpu.txt` foi atualizado para V14/RuleVM V6;
+- anotações de tipos foram ampliadas nos runtimes históricos sem alterar suas regras ou resultados.
+
+Regressão final após essas mudanças:
+- testes automáticos: 9/9;
+- Prompt-RuleVM-V6: 6/6 sem erros semânticos/slot/trace, cobertura de conceitos 100%;
+- V5 principal: accuracy/closure/proof = 1.0, aprendizagem ~1,075 s;
+- V5 generalidade: 6/6 mundos = 1.0, total ~5,498 s;
+- drift: revisões [1,5,9], falsas revisões 0, pós-revisão 1.0.

@@ -1,6 +1,7 @@
 from __future__ import annotations
 from pathlib import Path
 from collections import Counter
+from typing import Any
 import json, lzma, math
 
 from procedural_runtime_v3 import *
@@ -71,7 +72,7 @@ class InducedConstructionGrammar:
             if is_slot(w): break
             p.append(w)
         if not p: return 0.0, None
-        best=None
+        best: Any=None
         for n in range(1,min(4,len(p))+1):
             ph='\t'.join(p[:n]); r=self.phrase_stats.get(ph)
             if not r: continue
@@ -121,8 +122,8 @@ class LearnedSurfaceSelectorV6(LearnedSurfaceSelectorV5):
         self._feature_cache[key]=hit
         return hit
 
-    def choose(self,candidates,recent_openings=(),recent_templates=(),paragraph_first=False):
-        best=None; ro=Counter(recent_openings); rt=Counter(recent_templates)
+    def choose(self,candidates,recent_openings=(),recent_templates=(),paragraph_first=False) -> Any:
+        best: Any=None; ro=Counter(recent_openings); rt=Counter(recent_templates)
         for text,meta in candidates:
             ws,n,lang,lp,opening,support,op,cscore,ccov,chits,pscore,pmeta=self._static_features(text,paragraph_first)
             rep=self.repetition_weight*ro.get(opening,0)

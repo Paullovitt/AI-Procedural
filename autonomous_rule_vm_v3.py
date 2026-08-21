@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+from typing import Any
 import json, math, time
 import numpy as np
 import torch
@@ -72,7 +73,7 @@ class BatchedMDLRuleInducerGPU(MDLRuleInducerGPU):
         registry={};trace={}
         for r in range(self.n_rel):
             X=trX[trR==r];y=trY[trR==r];XV=vaX[vaR==r];yV=vaY[vaR==r]
-            best=None;searched=[]
+            best: Any=None;searched=[]
             current=min(self.initial_order_cap,self.hard_resource_cap)
             for k in range(current+1):
                 best=self._search_order(X,y,XV,yV,k,best);searched.append(k)
