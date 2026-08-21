@@ -1,10 +1,19 @@
 {
+  "runtime_version": "V14",
   "device": 0,
-  "backend": "pytorch-cuda-tensors",
+  "backend": "cuda-batched-v14",
   "memory_limit_mb": 4608,
   "use_hot": false,
-  "proposal_weight": 0.06,
+  "proposal_weight": 0.24,
+  "position_weight": 7.0,
+  "diversity_weight": 2.6,
+  "focus_diversity_weight": 1.17,
+  "repetition_weight": 1.1,
+  "template_repetition_weight": null,
   "seed": 101,
   "verify_semantics": true,
-  "notes": "Perfil seguro para GPU de 6GB: backend CUDA via PyTorch usado apenas como runtime tensorial, sem rede neural, gradiente ou backprop."
+  "readable_output": true,
+  "prompt_mode": true,
+  "default_target_chars": 2000,
+  "notes": "V14 padrão. GPU/VRAM via PyTorch apenas como runtime tensorial; sem rede neural, gradiente ou backprop. IDs semânticos ficam internos e a tela usa lexicalização legível por padrão."
 }

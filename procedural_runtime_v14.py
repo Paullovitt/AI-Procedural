@@ -2,13 +2,14 @@ from __future__ import annotations
 
 from pathlib import Path
 from collections import Counter
-import bisect, math
+import bisect
 
 from procedural_runtime_v3 import focus_bundle_candidates
 from procedural_runtime_v4 import RENDERER_V8_CONFIG, InducedConstructionGrammar
 from procedural_runtime_v5 import SafeWrapperInducer, StoredWrapperInducer, InducedRealizationProposer
 from procedural_runtime_gpu import GpuBagacoSurfaceScorer, attach_semantic_traces
-from procedural_runtime_v12 import GraphDiscoursePlanner, DiversityAwareSelectorGPU, abstract_surface_shape
+from procedural_runtime_v12 import GraphDiscoursePlanner, DiversityAwareSelectorGPU
+from procedural_runtime_v13 import LexicalizedDiversitySelectorGPU
 
 
 class EmpiricalParagraphScheduler:
@@ -79,17 +80,21 @@ class RendererV14GPU:
 
 def build_renderer_v14_gpu(root,seed=101,use_hot=False,proposal_weight=.24,position_weight=7.0,
                            diversity_weight=2.6,focus_diversity_weight=1.17,repetition_weight=1.1,
-                           template_repetition_weight=None,device=0,memory_limit_mb=4608):
+                           template_repetition_weight=None,device=0,memory_limit_mb=4608,lexicon=None):
     root=Path(root);scorer=GpuBagacoSurfaceScorer(root,use_hot=use_hot,device=device,memory_limit_mb=memory_limit_mb)
     grammar=InducedConstructionGrammar(root)
     inducer=SafeWrapperInducer(root,scorer) if (root/'model'/'quality'/'open.jsonl').exists() and (root/'model'/'full'/'open.jsonl').exists() else StoredWrapperInducer(root,scorer)
     proposer=InducedRealizationProposer(inducer)
-    selector=DiversityAwareSelectorGPU(
-        scorer,seed=seed,grammar=grammar,repetition_weight=float(repetition_weight),
+    selector_cls=LexicalizedDiversitySelectorGPU if lexicon else DiversityAwareSelectorGPU
+    selector_kwargs=dict(
+        scorer=scorer,seed=seed,grammar=grammar,repetition_weight=float(repetition_weight),
         target_weight=RENDERER_V8_CONFIG['target_weight'],
         template_repetition_weight=(RENDERER_V8_CONFIG['template_repetition_weight'] if template_repetition_weight is None else float(template_repetition_weight)),
         construction_weight=RENDERER_V8_CONFIG['construction_weight'],position_weight=float(position_weight),
         proposal_weight=float(proposal_weight),diversity_weight=float(diversity_weight),focus_diversity_weight=float(focus_diversity_weight))
+    if lexicon:
+        selector_kwargs['lexicon']=lexicon
+    selector=selector_cls(**selector_kwargs)
     planner=GraphDiscoursePlanner(scorer,seed=seed,max_bundle=RENDERER_V8_CONFIG['max_bundle'],q_low=RENDERER_V8_CONFIG['q_low'],q_high=RENDERER_V8_CONFIG['q_high'],target_scale=RENDERER_V8_CONFIG['target_scale'])
     ps=EmpiricalParagraphScheduler(scorer.struct.get('para_sent',[]),seed=seed+7919)
     return scorer,grammar,inducer,RendererV14GPU(selector,planner,proposer,ps)
