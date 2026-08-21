@@ -1,6 +1,6 @@
 # Regras permanentes de arquitetura — AI-Procedural
 
-Estas regras são obrigatórias para toda versão futura do projeto.
+Estas regras são obrigatórias para toda evolução futura do projeto.
 
 ## 1. Proibido usar redes neurais
 
@@ -88,7 +88,7 @@ Prioridades:
 
 ## 6. Código limpo, otimizado e performático
 
-Toda nova versão deve buscar:
+Toda nova implementação deve buscar:
 
 - código simples e legível;
 - eliminar duplicação;
@@ -122,6 +122,14 @@ Gates mínimos:
 
 ## 8. Auditoria
 
-`architecture_guard.py` deve ser executado antes de promover uma versão. Ele procura sinais de introdução acidental de APIs neurais/backprop. O guard não substitui revisão arquitetural, mas serve como barreira automática.
+`architecture_guard.py` deve ser executado antes de promover uma mudança. `project_audit.py` deve ser executado antes de commit/push de uma promoção. O guard não substitui revisão arquitetural, mas serve como barreira automática.
 
 Estas regras têm prioridade sobre conveniência de implementação e sobre ganhos rápidos de benchmark.
+
+## 9. Runtime promovido e documentação
+
+- Toda implementação nova promovida deve continuar dentro da **V14**.
+- Não criar V15/V16 etc. apenas para adicionar mecanismo novo; a V14 é a linha ativa de evolução até decisão explícita em contrário.
+- Mudança relevante na V14 deve atualizar no mesmo conjunto de alterações: `README.md`, `README.txt`, `GPU_README.txt` e `PROJECT_STATE_2026-08-21.md`.
+- Quando a mudança alterar testes, métricas, runtime, arquivos centrais ou comportamento, atualizar também benchmark/resultados e `SHA256SUMS.txt`.
+- A documentação deve registrar limitações reais; é proibido declarar qualidade/performance não medida ou esconder `evidence_limited`/regressões.

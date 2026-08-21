@@ -4,6 +4,7 @@ from dataclasses import dataclass, field
 import re
 
 from autonomous_rule_vm_v6 import CorpusAssociationRuleLearnerGPU, IndexedAssociationRuleVM
+from argument_planner_v14 import EvidenceArgumentPlannerV14
 
 SLOT_RX = re.compile(r"\b(?:e\d+|a\d+|v\d+|r\d+)\b", re.I)
 WORD_RX = re.compile(r"[A-Za-zÀ-ÖØ-öø-ÿ0-9]+", re.UNICODE)
@@ -29,20 +30,40 @@ _ENTITY_FALLBACKS = ('contexto do tema','desenvolvimento do tema','perspectiva d
 
 _PREDICATE_SURFACE_VARIANTS = {
     'compartilha contexto com': (
-        'compartilha contexto com', 'também surge junto de', 'aparece ainda no mesmo contexto que', 'mantém proximidade contextual com'
+        'se relaciona tematicamente com', 'surge no mesmo contexto que',
+        'mantém proximidade temática com', 'se conecta contextualmente a'
+    ),
+    'aparece em expressões como': (
+        'aparece em expressões como', 'surge em construções como',
+        'é recorrente em expressões como'
     ),
     'surge em contextos semelhantes a': (
-        'surge em contextos semelhantes a', 'aparece em contexto próximo de', 'mantém contexto semelhante a'
+        'compartilha padrões de contexto com', 'mantém semelhança contextual com',
+        'surge em contexto próximo de'
     ),
     'aparece no mesmo contexto temático que': (
-        'aparece no mesmo contexto temático que', 'também surge no mesmo pedido que', 'aparece ainda no pedido ao lado de'
+        'se conecta a', 'integra o mesmo recorte temático que', 'surge no mesmo eixo temático que'
     ),
-    'forma um núcleo contextual com': ('forma um núcleo contextual com',),
+    'forma um núcleo contextual com': ('reúne associações com',),
 }
 
 
 def _clean_space(text: str) -> str:
     return re.sub(r'\s+', ' ', str(text or '')).strip()
+
+
+def _sentence_case(text: str) -> str:
+    chars=list(str(text or ''))
+    capitalize=True
+    for i,ch in enumerate(chars):
+        if capitalize and ch.isalpha():
+            chars[i]=ch.upper()
+            capitalize=False
+        elif ch in '.!?\n':
+            capitalize=True
+        elif capitalize and not ch.isspace() and not ch in '"\'([{':
+            capitalize=False
+    return ''.join(chars)
 
 
 def alpha_label(index: int) -> str:
@@ -91,7 +112,7 @@ def lexicalize_text(text: str, lexicon: dict[str, str] | None = None) -> str:
         tag = alpha_label(int(m.group(2)))
         return {'e':'elemento ','a':'aspecto ','v':'valor ','r':'relação '}[m.group(1)] + tag
 
-    return SLOT_RX.sub(repl, text)
+    return _sentence_case(SLOT_RX.sub(repl, text))
 
 
 def contains_raw_slots(text: str) -> bool:
@@ -108,6 +129,7 @@ class PromptPlan:
     focus_order: list[str]
     predicate_relations: set[str] = field(default_factory=set)
     predicate_classes: dict[str, str] = field(default_factory=dict)
+    argument_roles: dict[str, str] = field(default_factory=dict)
     reasoning_stats: dict = field(default_factory=dict)
 
 
@@ -121,8 +143,10 @@ class PromptAdapterV14:
     TARGET_RX = re.compile(r'\b(\d{2,6})\s*(?:caracteres|caráter(?:es)?|carateres|chars)\b', re.I)
     TOPIC_RX = re.compile(r'\b(?:sobre|acerca\s+de|a\s+respeito\s+de|tema\s*[:=-])\s+(.+)', re.I)
 
-    def __init__(self, default_target_chars: int = 2000):
+    def __init__(self, default_target_chars: int = 2000, argument_planner_enabled: bool = True):
         self.default_target_chars = max(200, int(default_target_chars))
+        self.argument_planner_enabled = bool(argument_planner_enabled)
+        self.argument_planner = EvidenceArgumentPlannerV14()
         self._learner_cache = {}
 
     def _learner_for(self, scorer):
@@ -186,21 +210,52 @@ class PromptAdapterV14:
         rule_budget = max(8, min(180, rule_budget))
 
         learner = self._learner_for(scorer)
-        # Learn a slightly larger bank than the emitted plan so the VM can select
-        # the strongest reachable rules without re-training at inference time.
-        bank = learner.fit(concepts, rule_budget=min(256, max(rule_budget + 8, int(rule_budget * 1.35))),
-                           expansion_depth=1)
-        vm = IndexedAssociationRuleVM(bank)
-        # Execute the complete compact bank before selecting the emitted plan. This
-        # prevents high-scoring corpus neighbors from consuming the runtime budget
-        # before explicit same-prompt observations are seen.
-        execution = vm.execute(concepts, max_depth=2, max_rules=max(1, len(bank.rules)))
-        fired_all = execution['fired']
-        prompt_rules = [row for row in fired_all if row[0].kind == 'prompt_observation']
-        prompt_ids = {id(row[0]) for row in prompt_rules}
-        others = [row for row in fired_all if id(row[0]) not in prompt_ids]
-        emit_budget = max(rule_budget, len(prompt_rules))
-        fired = (prompt_rules + others)[:emit_budget]
+        emit_budget = max(rule_budget, max(0, len(concepts) - 1))
+        initial_bank_budget=min(256, max(rule_budget + 8, int(rule_budget * 1.35)))
+
+        def select_bank(candidate_bank):
+            vm = IndexedAssociationRuleVM(candidate_bank)
+            execution_local = vm.execute(concepts, max_depth=2, max_rules=max(1, len(candidate_bank.rules)))
+            fired_all_local = execution_local['fired']
+            prompt_rules_local = [row for row in fired_all_local if row[0].kind == 'prompt_observation']
+            if self.argument_planner_enabled:
+                argument_plan_local = self.argument_planner.plan(fired_all_local, concepts, emit_budget)
+                planned_rows_local = argument_plan_local['planned']
+                fired_local = [row for row, _role in planned_rows_local]
+                roles_local = {id(row[0]): role for row, role in planned_rows_local}
+                argument_stats_local = argument_plan_local['stats']
+            else:
+                prompt_ids = {id(row[0]) for row in prompt_rules_local}
+                others = [row for row in fired_all_local if id(row[0]) not in prompt_ids]
+                fired_local = (prompt_rules_local + others)[:emit_budget]
+                roles_local = {id(row[0]): ('opening' if row[0].kind == 'prompt_observation' else 'development') for row in fired_local}
+                argument_stats_local = {
+                    'engine': 'disabled', 'planner_seconds': 0.0, 'input_rules': len(fired_all_local),
+                    'selected_rules': len(fired_local), 'phase_counts': {}, 'phase_monotonic': True,
+                }
+            return execution_local, fired_local, roles_local, argument_stats_local
+
+        bank = learner.fit(concepts, rule_budget=initial_bank_budget, expansion_depth=1)
+        execution, fired, role_by_rule, argument_stats = select_bank(bank)
+
+        # If contextual quality filtering removed realizations even though the bank had
+        # enough candidates, widen the learned bank once before rendering. This is a
+        # replacement search, not a relaxation of promotion thresholds.
+        refill_passes=0
+        if self.argument_planner_enabled and len(fired) < emit_budget and len(bank.rules) >= emit_budget:
+            filtered=(int(argument_stats.get('context_filtered_rules',0))
+                      + int(argument_stats.get('context_filtered_synthesis',0)))
+            if filtered:
+                wider_budget=min(256,max(initial_bank_budget + 2*filtered,int(initial_bank_budget*1.5)))
+                if wider_budget > initial_bank_budget:
+                    wider_bank=learner.fit(concepts,rule_budget=wider_budget,expansion_depth=1)
+                    candidate=select_bank(wider_bank)
+                    if len(candidate[1]) > len(fired):
+                        bank=wider_bank
+                        execution,fired,role_by_rule,argument_stats=candidate
+                        refill_passes=1
+        argument_stats['refill_passes']=refill_passes
+        argument_stats['emit_budget']=emit_budget
 
         if not fired:
             # Sparse/OOV fallback remains auditable and uses only prompt observations.
@@ -224,6 +279,7 @@ class PromptAdapterV14:
         facts = []
         predicate_relations = set()
         predicate_classes = {}
+        argument_roles = {}
         surface_counts = {}
         rule_rows = []
         for rule, path_conf, depth in fired:
@@ -238,6 +294,7 @@ class PromptAdapterV14:
             lex[rid] = variants[surface_i % len(variants)]
             predicate_relations.add(rid)
             predicate_classes[rid] = canonical
+            argument_roles[rid] = role_by_rule.get(id(rule), 'development')
             facts.append(('rel', src, rid, dst))
             rule_rows.append({
                 'source': rule.source,
@@ -249,6 +306,7 @@ class PromptAdapterV14:
                 'support': rule.support,
                 'score': rule.score,
                 'depth': depth,
+                'argument_role': argument_roles[rid],
                 'evidence': list(rule.evidence),
             })
 
@@ -262,9 +320,10 @@ class PromptAdapterV14:
             'reachable_nodes': len(execution.get('nodes', [])),
             'vm_seconds': execution.get('vm_seconds', 0.0),
             'indexed_lookups': execution.get('indexed_lookups', 0),
+            'argument_planner': argument_stats,
             'rules': rule_rows,
         }
-        return PromptPlan(prompt, topic, target, facts, lex, focus, predicate_relations, predicate_classes, stats)
+        return PromptPlan(prompt, topic, target, facts, lex, focus, predicate_relations, predicate_classes, argument_roles, stats)
 
     def build(self, prompt: str, target_chars: int | None = None, seed: int = 101,
               fact_count: int | None = None) -> PromptPlan:

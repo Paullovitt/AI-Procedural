@@ -16,7 +16,10 @@ class PromptSessionV14:
     """Persistent V14 prompt session: GPU tables and learned context index are reused."""
     def __init__(self, cfg=None):
         self.cfg = dict(cfg or load_config())
-        self.adapter = PromptAdapterV14(int(self.cfg.get('default_target_chars', 2000)))
+        self.adapter = PromptAdapterV14(
+            int(self.cfg.get('default_target_chars', 2000)),
+            argument_planner_enabled=bool(self.cfg.get('argument_planner_enabled', True)),
+        )
         t0 = time.perf_counter()
         self.scorer, self.grammar, self.inducer, self.renderer = load_runtime(
             self.cfg, lexicon={}, prompt_mode=True)
@@ -66,6 +69,7 @@ class PromptSessionV14:
         report = {
             'runtime': 'V14',
             'content_reasoner': 'Learned-Association-RuleVM-v6',
+            'argument_planner': reasoning_stats.get('argument_planner', {}).get('engine') if reasoning_stats else None,
             'session_prompt': self.prompt_count,
             'model_load_seconds_once': round(self.load_seconds, 3),
             'facts': len(plan),

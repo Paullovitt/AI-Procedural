@@ -96,7 +96,8 @@ def _apply_prompt_plan(renderer, pp, custom_lexicon):
     lexicon = dict(pp.lexicon)
     lexicon.update(custom_lexicon)
     renderer.set_prompt_surface(lexicon=lexicon, predicate_relations=pp.predicate_relations,
-                                predicate_classes=getattr(pp, 'predicate_classes', {}))
+                                predicate_classes=getattr(pp, 'predicate_classes', {}),
+                                argument_roles=getattr(pp, 'argument_roles', {}))
     return pp.facts, lexicon, pp.focus_order
 
 
@@ -116,6 +117,14 @@ def _refine_prompt_length(renderer, scorer, adapter, prompt_meta, args, cfg, cus
         if abs(err) <= tolerance or not display:
             break
         next_count = max(8, min(180, round(len(plan) * target / max(1, len(display)))))
+        # Contextual disambiguation can reject otherwise strong-but-off-topic rules.
+        # Search a wider bank to replace them instead of weakening the quality filter.
+        arg_stats=(reasoning_stats or {}).get('argument_planner', {})
+        context_filtered=(int(arg_stats.get('context_filtered_rules',0))
+                          + int(arg_stats.get('context_filtered_synthesis',0)))
+        if err < 0 and context_filtered:
+            refill_target=len(plan) + 2*context_filtered
+            next_count=max(next_count,min(180,refill_target))
         if next_count in seen_counts:
             next_count += -1 if err > 0 else 1
             next_count = max(8, min(180, next_count))
@@ -164,6 +173,7 @@ def _reasoning_summary(stats):
         'rulebank_kinds': bank.get('kinds', {}),
         'rule_learning_seconds': round(float(bank.get('learn_seconds', 0.0)), 6),
         'context_index_seconds': round(float(bank.get('index_seconds', 0.0)), 6),
+        'argument_planner': stats.get('argument_planner', {}),
         'gpu': bank.get('gpu'),
     }
 
@@ -191,7 +201,10 @@ def main():
 
     # Non-prompt paths keep their historical explicit fact semantics.
     plan = None; lexicon = None; focus_hint = None; prompt_meta = None
-    adapter = PromptAdapterV14(int(cfg.get('default_target_chars', 2000)))
+    adapter = PromptAdapterV14(
+        int(cfg.get('default_target_chars', 2000)),
+        argument_planner_enabled=bool(cfg.get('argument_planner_enabled', True)),
+    )
     if args.facts:
         plan = [tuple(x) for x in json.loads(args.facts.read_text(encoding='utf8'))]
         lexicon = default_lexicon(plan);lexicon.update(custom_lexicon)

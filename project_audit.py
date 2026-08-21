@@ -22,12 +22,15 @@ REQUIRED = (
     "prompt_runtime_v14.py",
     "prompt_session_v14.py",
     "procedural_runtime_v14.py",
+    "argument_planner_v14.py",
     "autonomous_rule_vm_v6.py",
     "test_v14_prompt.py",
     "test_rulevm_v6_prompt.py",
+    "test_argument_planner_v14.py",
     "benchmark_prompt_rulevm_v6.py",
     "PROJECT_RULES.md",
     "PROJECT_STATE_2026-08-21.md",
+    "GPU_README.txt",
     "README.txt",
     "README.md",
     "requirements-gpu.txt",
@@ -114,6 +117,8 @@ def audit_consistency(problems: list[str]) -> None:
         problems.append(f"runtime_version is not V14: {cfg.get('runtime_version')}")
     if cfg.get("content_reasoner") != "Learned-Association-RuleVM-v6":
         problems.append(f"unexpected content_reasoner: {cfg.get('content_reasoner')}")
+    if cfg.get("argument_planner_enabled") is not True:
+        problems.append("argument_planner_enabled is not true")
 
     launcher = (ROOT / "RUN_GPU.bat").read_text(encoding="utf8", errors="replace")
     if "prompt_session_v14.py" not in launcher:
@@ -122,6 +127,13 @@ def audit_consistency(problems: list[str]) -> None:
     req = (ROOT / "requirements-gpu.txt").read_text(encoding="utf8")
     if "V9 GPU" in req:
         problems.append("requirements-gpu.txt still references V9 GPU as current runtime")
+
+    docs = "\n".join(
+        (ROOT / rel).read_text(encoding="utf8", errors="replace")
+        for rel in ("README.md", "GPU_README.txt", "PROJECT_STATE_2026-08-21.md")
+    )
+    if "Argument Planner" not in docs:
+        problems.append("project documentation does not mention Argument Planner")
 
     for pattern in TEMP_PATTERNS:
         for path in ROOT.glob(pattern):

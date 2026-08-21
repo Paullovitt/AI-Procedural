@@ -86,6 +86,7 @@ class CorpusAssociationRuleLearnerGPU:
     context-similarity rules.
     """
     PREDICATE_NEIGHBOR = 'compartilha contexto com'
+    PREDICATE_PHRASE = 'aparece em expressões como'
     PREDICATE_SIMILAR = 'surge em contextos semelhantes a'
     PREDICATE_PROMPT = 'aparece no mesmo contexto temático que'
     PREDICATE_CLUSTER = 'forma um núcleo contextual com'
@@ -180,11 +181,14 @@ class CorpusAssociationRuleLearnerGPU:
                             positions.append(left)
                         if right < len(parts):
                             positions.append(right)
-                    neighbor = next((parts[j] for j in positions if self._candidate_ok(parts[j], words[-1])), None)
-                    if neighbor is None:
+                    neighbor_pos = next((j for j in positions if self._candidate_ok(parts[j], words[-1])), None)
+                    if neighbor_pos is None:
                         continue
+                    neighbor = parts[neighbor_pos]
+                    lo=min(i,neighbor_pos);hi=max(i+n,neighbor_pos+1)
+                    evidence='\t'.join(parts[lo:hi])
                     old = best.get(neighbor)
-                    row = (neighbor, count, 'phrase', gram)
+                    row = (neighbor, count, 'phrase', evidence)
                     if old is None or count > old[1]:
                         best[neighbor] = row
         rows = tuple(sorted(best.values(), key=lambda x: x[1], reverse=True))
@@ -250,7 +254,8 @@ class CorpusAssociationRuleLearnerGPU:
             for neighbor, count, direction, evidence in source_rows:
                 if count < self.min_bigram_count or not self._candidate_ok(neighbor, head):
                     continue
-                target = neighbor if phrase_mode else self._phrase_target(concept, head, neighbor, direction)
+                target = (' '.join(evidence.split('\t')) if phrase_mode
+                          else self._phrase_target(concept, head, neighbor, direction))
                 if not target:
                     continue
                 flat_c.append(float(count))
@@ -366,8 +371,11 @@ class CorpusAssociationRuleLearnerGPU:
                         continue
                     seen_targets[source.lower()].add(target.lower())
                     conf = min(0.995, max(0.10, float(weight / max(maxw, 1e-12))))
-                    rules.append(AssociationRule(source, target, self.PREDICATE_NEIGHBOR,
-                                                 'corpus_neighbor', conf, support, float(weight), (evidence,)))
+                    phrase_context = (_direction == 'phrase')
+                    predicate = self.PREDICATE_PHRASE if phrase_context else self.PREDICATE_NEIGHBOR
+                    kind = 'phrase_context' if phrase_context else 'corpus_neighbor'
+                    rules.append(AssociationRule(source, target, predicate, kind,
+                                                 conf, support, float(weight), (evidence,)))
                     chosen += 1
                     next_frontier.append(target)
             frontier = next_frontier[:neighbor_budget]
@@ -382,7 +390,7 @@ class CorpusAssociationRuleLearnerGPU:
         # a generic aggregation of learned evidence, not a domain conclusion.
         by_source = defaultdict(list)
         for rule in rules:
-            if rule.kind == 'corpus_neighbor':
+            if rule.kind in {'corpus_neighbor','phrase_context'}:
                 by_source[rule.source].append(rule)
         for source, source_rules in by_source.items():
             source_rules.sort(key=lambda r: (r.confidence, r.score, r.support), reverse=True)

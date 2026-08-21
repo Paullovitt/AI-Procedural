@@ -12,10 +12,11 @@
   "repetition_weight": 1.1,
   "template_repetition_weight": null,
   "prompt_max_bundle": 4,
+  "argument_planner_enabled": true,
   "seed": 101,
   "verify_semantics": true,
   "readable_output": true,
   "prompt_mode": true,
   "default_target_chars": 2000,
-  "notes": "V14 padrão com RuleVM V6 aprendido a partir das estatísticas do corpus. GPU/VRAM via PyTorch apenas como runtime tensorial; sem rede neural, gradiente ou backprop. O RuleVM executa regras explícitas/indexadas e os IDs semânticos ficam internos."
+  "notes": "V14 padrão com RuleVM V6 aprendido + Evidence Argument Planner V14. GPU/VRAM via PyTorch apenas como runtime tensorial; sem rede neural, gradiente ou backprop. O planner só ordena/filtra regras explícitas já aprendidas e o RuleVM continua indexado. IDs semânticos ficam internos."
 }

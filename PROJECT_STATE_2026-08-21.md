@@ -407,3 +407,85 @@ Regressão final após essas mudanças:
 - V5 principal: accuracy/closure/proof = 1.0, aprendizagem ~1,075 s;
 - V5 generalidade: 6/6 mundos = 1.0, total ~5,498 s;
 - drift: revisões [1,5,9], falsas revisões 0, pós-revisão 1.0.
+
+## 16. Evidence Argument Planner V14
+
+A linha ativa continua sendo **V14**. Foi adicionada uma camada argumentativa baseada somente em regras/evidências já aprendidas, sem criar V15 e sem introduzir conhecimento de domínio manual.
+
+Fluxo promovido:
+
+```text
+prompt -> conceitos -> RuleBank V6 aprendido em CUDA -> RuleVM indexado
+       -> Evidence Argument Planner V14
+       -> opening -> development -> synthesis
+       -> Renderer V14 CUDA -> verificadores -> texto
+```
+
+Arquivo novo:
+- `argument_planner_v14.py`: seleciona, ordena e filtra regras já disparadas; não inventa fatos, causalidade ou conclusão de domínio.
+
+Integrações alteradas:
+- `prompt_runtime_v14.py`: executa o planner após a RuleVM e antes de converter regras em fatos de renderização.
+- `procedural_runtime_v14.py`: realiza superfícies específicas por fase e força fronteiras de parágrafo coerentes com as fases.
+- `autonomous_rule_vm_v6.py`: contextos de conceitos compostos preservam a expressão observada completa; um token solto não é mais apresentado como conceito independente quando a evidência real é uma construção p3-p5.
+- `run_gpu.py` / `prompt_session_v14.py`: reportam estatísticas do Argument Planner e mantêm refill de regras fortes quando a desambiguação remove candidatos.
+- `gpu_config.json`: `argument_planner_enabled=true`.
+
+Mecanismos genéricos do planner:
+- confiança, suporte, score e profundidade da regra;
+- cobertura dos conceitos do prompt;
+- alinhamento contextual global usando estatísticas do próprio corpus;
+- fases monotônicas `opening -> development -> synthesis`;
+- rejeição de associação isolada sem corroboração suficiente;
+- invalidação de síntese construída a partir de vizinhos posteriormente rejeitados;
+- busca de regras fortes adicionais quando a filtragem contextual abre espaço, sem baixar thresholds de evidência;
+- prevenção de repetição imediata do mesmo template quando existe alternativa semanticamente equivalente.
+
+Exemplos de bugs de qualidade corrigidos durante a implementação:
+- `energia solar` deixou de promover tokens soltos como `movidos`; a evidência passa a ser preservada como expressão observada, por exemplo `movidos a energia solar` / `produção de energia solar`.
+- no prompt de música, `composição musical` passou a ter prioridade contextual e expansões `composição química/corporal/nutricional` deixaram de ser realizadas quando incompatíveis com o restante do prompt.
+- associação isolada `privacidade cofina` foi removida no caso esparso de segurança digital.
+- `hospitais públicos` permanece elegível por possuir alinhamento contextual/morfológico com `saúde pública`.
+- fragmentos compostos são aparados ao menor trecho observado que contém a expressão e sua evidência, reduzindo finais quebrados de n-grama.
+
+Bateria final de 6 temas, alvo de 1000 caracteres:
+- exploração espacial: 957, dentro da tolerância;
+- energia solar: 1019, dentro da tolerância;
+- agricultura sustentável: 949, dentro da tolerância;
+- música clássica: 953, dentro da tolerância;
+- segurança digital: 223, `evidence_limited=true`;
+- saúde pública: 1032, dentro da tolerância.
+
+Gates finais dessa bateria:
+- semantic_verified: 6/6;
+- slot errors: 0;
+- trace errors: 0;
+- IDs internos expostos: 0;
+- cobertura dos conceitos do prompt: 100%;
+- sentenças exatas duplicadas: 0;
+- repetição imediata de template: 0;
+- fases argumentativas monotônicas: 6/6;
+- 5/6 prompts dentro da tolerância;
+- falhas de tamanho não explicadas: 0;
+- 9 regras removidas pelo filtro contextual na bateria.
+
+Performance medida:
+- carga inicial única GPU/modelo: ~3,235 s;
+- RuleVM máximo: ~0,036 ms;
+- Argument Planner máximo: ~0,861 ms;
+- raciocínio dos prompts posteriores: média ~17,4 ms, máximo ~23,3 ms.
+
+Testes automáticos após a implementação: **14/14**.
+Novo arquivo de regressão: `test_argument_planner_v14.py`.
+Resultado multi-tema atualizado: `rigorous_results_v12/prompt_rulevm_v6_generality.json`, formato `Prompt-RuleVM-V6-ArgumentPlanner-V14-Generality`.
+
+Limitação que permanece: o sistema é associativo/evidencial, não um LLM causal. Em áreas esparsas, ele deliberadamente produz menos texto e marca `evidence_limited` em vez de fabricar explicações não suportadas.
+
+Regra operacional permanente: novas implementações continuam na V14 e a documentação do projeto deve ser atualizada no mesmo commit de promoção.
+
+### Regressão V5 final após o Argument Planner
+
+Executada novamente depois da implementação e documentação da V14:
+- benchmark principal: transition accuracy = 1.0, closure exact = 1.0, proof validity = 1.0, 12/12 relações certificadas; aprendizagem ~1,092 s;
+- generalidade: 6/6 mundos com transition/closure/proof = 1.0; tempo total de aprendizado ~5,645 s;
+- drift: relações [1,5,9] detectadas e revisadas exatamente, 0 falsas revisões, pós-revisão = 1.0.

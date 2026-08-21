@@ -24,12 +24,13 @@ PROMPTS = [
 ]
 
 SURFACE_MARKERS = (
-    'compartilha contexto com', 'também surge junto de', 'aparece ainda no mesmo contexto que',
-    'mantém proximidade contextual com', 'surge em contextos semelhantes a',
-    'aparece em contexto próximo de', 'mantém contexto semelhante a',
-    'aparece no mesmo contexto temático que', 'também surge no mesmo pedido que',
-    'aparece ainda no pedido ao lado de', 'forma um núcleo contextual com',
+    'se relaciona tematicamente com', 'surge no mesmo contexto que', 'mant?m proximidade tem?tica com',
+    'se conecta contextualmente a', 'aparece em express?es como', 'surge em constru??es como',
+    '? recorrente em express?es como', 'se conecta a', 'integra o mesmo recorte tem?tico que',
+    'surge no mesmo eixo tem?tico que', 're?ne associa??es com',
 )
+ROLE_ORDER = {'opening': 0, 'development': 1, 'synthesis': 2}
+
 
 
 def sentence_metrics(text: str):
@@ -57,6 +58,11 @@ def main():
         lower = text.lower()
         covered = [c for c in concepts if str(c).lower() in lower]
         metrics = sentence_metrics(text)
+        arg = reasoning.get('argument_planner', {})
+        role_order = out.get('argument_role_order', [])
+        phase_monotonic = all(ROLE_ORDER.get(a, 1) <= ROLE_ORDER.get(b, 1) for a, b in zip(role_order, role_order[1:]))
+        templates = [pick[3].get('template') for pick in out.get('picks', [])]
+        immediate_template_repeats = sum(a == b for a, b in zip(templates, templates[1:]))
         row = {
             'name': name,
             'prompt': prompt,
@@ -76,6 +82,12 @@ def main():
             'rules': report['reasoning'].get('selected_rules', 0),
             'rule_learning_seconds': report['reasoning'].get('rule_learning_seconds', 0.0),
             'vm_seconds': report['reasoning'].get('vm_seconds', 0.0),
+            'argument_planner_seconds': float(arg.get('planner_seconds', 0.0)),
+            'argument_phase_monotonic': bool(arg.get('phase_monotonic', False) and phase_monotonic),
+            'argument_phase_counts': arg.get('phase_counts', {}),
+            'context_filtered_rules': int(arg.get('context_filtered_rules', 0)),
+            'context_filtered_synthesis': int(arg.get('context_filtered_synthesis', 0)),
+            'immediate_template_repeats': immediate_template_repeats,
             'seed_concepts': concepts,
             'seed_concept_coverage': len(covered)/max(1, len(concepts)),
             'covered_concepts': covered,
@@ -87,7 +99,7 @@ def main():
 
     later = rows[1:] if len(rows) > 1 else rows
     result = {
-        'format': 'Prompt-RuleVM-V6-Generality',
+        'format': 'Prompt-RuleVM-V6-ArgumentPlanner-V14-Generality',
         'gpu': session.scorer.gpu_status(),
         'model_load_seconds_once': session.load_seconds,
         'prompts': len(rows),
@@ -106,6 +118,10 @@ def main():
         'max_later_reasoning_ms': max(x['reasoning_seconds'] for x in later)*1000.0,
         'mean_rule_learning_ms': statistics.mean(x['rule_learning_seconds'] for x in rows)*1000.0,
         'max_vm_ms': max(x['vm_seconds'] for x in rows)*1000.0,
+        'max_argument_planner_ms': max(x['argument_planner_seconds'] for x in rows)*1000.0,
+        'all_argument_phases_monotonic': all(x['argument_phase_monotonic'] for x in rows),
+        'total_immediate_template_repeats': sum(x['immediate_template_repeats'] for x in rows),
+        'total_context_filtered_rules': sum(x['context_filtered_rules'] for x in rows),
         'rows': rows,
     }
     (OUT/'prompt_rulevm_v6_generality.json').write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding='utf8')
@@ -116,7 +132,8 @@ def main():
         not result['any_raw_slot_ids'], result['mean_seed_concept_coverage'] >= 0.95,
         result['unexplained_length_failures'] == 0,
         result['mean_unique_sentence_ratio'] >= 0.95, result['max_later_reasoning_ms'] < 100.0,
-        result['max_vm_ms'] < 5.0,
+        result['max_vm_ms'] < 5.0, result['max_argument_planner_ms'] < 5.0,
+        result['all_argument_phases_monotonic'], result['total_immediate_template_repeats'] == 0,
     ]
     if not all(gates):
         raise SystemExit('PROMPT RULEVM V6 GENERALITY GATE: FAIL')

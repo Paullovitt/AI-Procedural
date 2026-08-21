@@ -5,7 +5,7 @@
   "train_noise": 0.015,
   "val_examples": 60000,
   "test_examples": 100000,
-  "learn_seconds": 1.0749923000003037,
+  "learn_seconds": 1.0915175000009185,
   "test_transition_accuracy": 1.0,
   "selected_orders": [
     4,
