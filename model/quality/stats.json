@@ -1,0 +1,22 @@
+{
+  "rows_seen": 5696334,
+  "eligible_docs": 774357,
+  "sampled_docs": 96885,
+  "stream_items": 55290095,
+  "ngram2": 46346385,
+  "ngram3": 42885704,
+  "ngram4": 39674772,
+  "ngram5": 36689702,
+  "open": 8255555,
+  "close": 8152112,
+  "connect": 7982838,
+  "seconds": 98.17343044281006,
+  "peak_pool_bytes": 626756096,
+  "quality_filter": {
+    "educational_min": 2,
+    "ptpt_min": 0.9,
+    "language_min": 0.99,
+    "sample_mod": 8
+  },
+  "shards": 80
+}

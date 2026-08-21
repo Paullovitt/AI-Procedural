@@ -1,0 +1,79 @@
+{
+  "format": "Bagaco-GPU-Discourse-v1",
+  "gpu": "NVIDIA GeForce RTX 3050",
+  "vocab_size": 120000,
+  "files": [
+    {
+      "name": "close.jsonl",
+      "bytes": 3263495,
+      "sha256": "d7f5bff227665c2878bf590377d1a066044933336919d13a10ce7434cd0b6f5c"
+    },
+    {
+      "name": "connect.jsonl",
+      "bytes": 3283946,
+      "sha256": "57ac421b39c60347295adb286cced573c1601457d17e3151f53baf2b5e101e5a"
+    },
+    {
+      "name": "open.jsonl",
+      "bytes": 3280626,
+      "sha256": "343b523c017484f91a4b8462a3296200f70e7d544fa413775a70164fdb004979"
+    },
+    {
+      "name": "p2.jsonl",
+      "bytes": 3930979,
+      "sha256": "1320c30e1434902703d5dd54016108f19dbcaf7fb3d290f1826b0653f1af7b62"
+    },
+    {
+      "name": "p3.jsonl",
+      "bytes": 3727656,
+      "sha256": "7c32b4a4f581cd665815fe8bc6b9e705afe7fbc31c6ad500d8357444ad3f3c8b"
+    },
+    {
+      "name": "p4.jsonl",
+      "bytes": 3036708,
+      "sha256": "2c07dc70004ffaf61ee6fb6cfcc9616196884b4be73479da2afb2cee6bc40337"
+    },
+    {
+      "name": "p5.jsonl",
+      "bytes": 2548605,
+      "sha256": "ed6aee49330cbb486e6f2b3a2adce9c992a1d34e33eaca63cb85fb6cb7a71456"
+    },
+    {
+      "name": "stats.json",
+      "bytes": 476,
+      "sha256": "a0d8b7d32bf3989ed75963c86da46c1fcd2f4ceb934fb2e96629fee94910f8ab"
+    },
+    {
+      "name": "structural.json",
+      "bytes": 3934,
+      "sha256": "56b933f673094440dbb4fd5035bc7d93c2aca8ffba4ead4c7a7636aa7369c345"
+    },
+    {
+      "name": "tokens.jsonl",
+      "bytes": 2835596,
+      "sha256": "43187c8485a803b3fc1ac82f018aaad08dfdfd47f01ad38f7a52043c943740df"
+    }
+  ],
+  "stats": {
+    "rows_seen": 5696334,
+    "eligible_docs": 774357,
+    "sampled_docs": 96885,
+    "stream_items": 55290095,
+    "ngram2": 46346385,
+    "ngram3": 42885704,
+    "ngram4": 39674772,
+    "ngram5": 36689702,
+    "open": 8255555,
+    "close": 8152112,
+    "connect": 7982838,
+    "seconds": 98.17343044281006,
+    "peak_pool_bytes": 626756096,
+    "quality_filter": {
+      "educational_min": 2,
+      "ptpt_min": 0.9,
+      "language_min": 0.99,
+      "sample_mod": 8
+    },
+    "shards": 80
+  }
+}

@@ -1,6 +1,0 @@
-﻿data/*.bin
-__pycache__/
-*.pyc
-*.log
-.vscode/
-.idea/

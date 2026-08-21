@@ -1,5 +1,0 @@
-seconds=0.2482021000014356
-generated_bytes=400
-temperature=0.85
-top_p=0.95
-seed=42

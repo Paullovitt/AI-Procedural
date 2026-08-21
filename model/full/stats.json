@@ -1,0 +1,44 @@
+{
+  "gpu": "NVIDIA GeForce RTX 3050",
+  "cuda_runtime": 12090,
+  "cupy": "14.1.1",
+  "processed_shards": 459,
+  "missing_shards": [
+    109
+  ],
+  "rows": 32982796,
+  "chars": 90377289911,
+  "deep_docs": 2061433,
+  "deep_sentences": 42688638,
+  "deep_tokens": 931938051,
+  "lex_docs": 257676,
+  "peak_cupy_pool_bytes": 1225864704,
+  "train_seconds": 163.7686288356781,
+  "audit_before_fold": {
+    "heldout_shard": 459,
+    "heldout_rows": 6788,
+    "means": {
+      "sentence": {
+        "train": 21.67794459273702,
+        "heldout": 23.806311456665906
+      },
+      "para_sent": {
+        "train": 17.18315242260696,
+        "heldout": 18.43348623853211
+      },
+      "para_tok": {
+        "train": 265.953418322698,
+        "heldout": 277.9655963302752
+      }
+    },
+    "structural_distance": 0.20044757351098974,
+    "heavy_coverage": {
+      "p2": 0.6325202262911369,
+      "p3": 0.23754662246166597,
+      "p4": 0.08395285584768812,
+      "p5": 0.032466223028836456,
+      "open": 0.6354057428214731,
+      "connect": 0.659452479338843
+    }
+  }
+}
