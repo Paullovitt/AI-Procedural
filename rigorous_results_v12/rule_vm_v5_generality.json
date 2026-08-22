@@ -26,7 +26,7 @@
       "max_selected_order": 5,
       "all_val_zero": true,
       "parallel_certified": true,
-      "learn_seconds": 1.288723800000298,
+      "learn_seconds": 1.3791752999995879,
       "peak_allocated_mb": 93.74609375,
       "hidden_gate_orders_audit_only": [
         1,
@@ -65,7 +65,7 @@
       "max_selected_order": 5,
       "all_val_zero": true,
       "parallel_certified": true,
-      "learn_seconds": 1.058914399999594,
+      "learn_seconds": 1.123637000000599,
       "peak_allocated_mb": 93.63427734375,
       "hidden_gate_orders_audit_only": [
         1,
@@ -104,7 +104,7 @@
       "max_selected_order": 5,
       "all_val_zero": true,
       "parallel_certified": true,
-      "learn_seconds": 1.007608099999743,
+      "learn_seconds": 0.9725056999996013,
       "peak_allocated_mb": 93.736328125,
       "hidden_gate_orders_audit_only": [
         1,
@@ -143,7 +143,7 @@
       "max_selected_order": 5,
       "all_val_zero": true,
       "parallel_certified": true,
-      "learn_seconds": 1.077404700000443,
+      "learn_seconds": 1.0263851999998224,
       "peak_allocated_mb": 93.669921875,
       "hidden_gate_orders_audit_only": [
         3,
@@ -182,7 +182,7 @@
       "max_selected_order": 5,
       "all_val_zero": true,
       "parallel_certified": true,
-      "learn_seconds": 1.0009612000003472,
+      "learn_seconds": 1.0565773999996964,
       "peak_allocated_mb": 93.31201171875,
       "hidden_gate_orders_audit_only": [
         2,
@@ -221,7 +221,7 @@
       "max_selected_order": 5,
       "all_val_zero": true,
       "parallel_certified": true,
-      "learn_seconds": 1.067647599999873,
+      "learn_seconds": 1.1381345000008878,
       "peak_allocated_mb": 93.39208984375,
       "hidden_gate_orders_audit_only": [
         0,
@@ -243,5 +243,5 @@
   "mean_proof_validity": 1.0,
   "all_parallel_certified": true,
   "worlds_requiring_order5": 6,
-  "total_learn_seconds": 6.501259800000298
+  "total_learn_seconds": 6.696415100000195
 }

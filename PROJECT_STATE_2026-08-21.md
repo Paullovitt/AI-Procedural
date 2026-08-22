@@ -471,10 +471,10 @@ Gates finais dessa bateria:
 - 9 regras removidas pelo filtro contextual na bateria.
 
 Performance medida:
-- carga inicial única GPU/modelo: ~2,983 s;
-- RuleVM máximo: ~0,030 ms;
-- Argument Planner máximo: ~0,608 ms;
-- raciocínio dos prompts posteriores: média ~17,14 ms, máximo ~22,7 ms.
+- carga inicial única GPU/modelo: ~2,927 s;
+- RuleVM máximo: ~0,029 ms;
+- Argument Planner máximo: ~0,631 ms;
+- raciocínio dos prompts posteriores: média ~16,98 ms, máximo ~23,0 ms.
 
 Testes automáticos após a implementação: **14/14**.
 Novo arquivo de regressão: `test_argument_planner_v14.py`.
@@ -534,7 +534,7 @@ Bateria extrema final de 22/08/2026:
 - 448 avaliações;
 - recall médio de informação: 0.904935;
 - recall numérico/data/quantidade: 0.994978;
-- p50: ~0,476 ms; p95: ~13,339 ms; máximo: ~61,541 ms;
+- p50: ~0,474 ms; p95: ~13,333 ms; máximo: ~69,047 ms;
 - 121 avaliações com falhas classificadas;
 - classes: 113 perdas de informação, 15 inclusões de ruído, 9 erros de relação/significado, 3 numéricos;
 - archive cumulativo: 353 casos distintos;
@@ -559,6 +559,100 @@ ciclo detectar -> minimizar -> regressão permanente -> corrigir -> rerodar.
 O archive deixou de ser somente registro passivo. `robust_semantic_failure_replay_v14.py` reexecuta
 todos os casos já descobertos usando a referência original do caso-base e informa quais foram resolvidos
 por mudanças posteriores sem apagar o histórico. Na validação final: 353 casos arquivados, 32 já
-resolvidos e 321 ainda não resolvidos; p50 ~2,285 ms, p95 ~29,555 ms e máximo ~69,429 ms no conjunto
+resolvidos e 321 ainda não resolvidos; p50 ~2,146 ms, p95 ~25,741 ms e máximo ~50,701 ms no conjunto
 adversarial histórico. Casos não resolvidos permanecem visíveis; eles não são tratados como regressões
 aprovadas nem usados para justificar redução dos gates atuais.
+
+## 18. Persistent Dimensional Memory V14 — memória episódica externa complementar
+
+A linha ativa permanece **V14**. Foi integrada uma memória persistente externa inspirada no repositório
+`AI-Memory`, sem substituir a memória estatística Bagaço já existente.
+
+### Arquitetura promovida
+
+```text
+prompt bruto
+   ↓
+Robust Semantic Intake V14 → shadow canônico de índice
+   ↓
+Persistent Dimensional Memory V14 (SQLite incremental)
+   ↓ episódios recuperados + provenance
+RuleVM V6 / memory_retrieval
+   ↓
+Evidence Argument Planner V14
+   ↓
+Renderer V14 CUDA + verificadores
+```
+
+Arquivo principal: `persistent_memory_v14.py`. O conhecimento episódico é explícito e auditável em
+`episodes`, `terms`, `postings` e `edges`; não há embedding treinável, rede neural ou peso de domínio.
+O banco de uso real fica em `memory_v14/episodic_v14.sqlite3` e é ignorado pelo Git.
+
+Decisões de segurança/qualidade:
+- somente entradas não interrogativas do usuário são autoarmazenadas após uma geração válida; perguntas explícitas (`?`/`¿`) são usadas para consulta, mas não promovidas como fatos;
+- texto gerado pelo próprio modelo não vira memória automaticamente;
+- o texto bruto é preservado; canonicalização serve apenas como shadow de índice;
+- repetição exata aumenta `recurrence` sem duplicar episódio;
+- conflitos permanecem registros separados em vez de serem mesclados como fato verdadeiro;
+- recuperação é convertida em regra genérica `memory_retrieval` com ID/origem como evidência;
+- esquecimento atualiza termos/postings/arestas incrementalmente;
+- expansão associativa rejeita hubs cujo document frequency excede 20% dos episódios; busca exata permanece disponível;
+- `/memoria` mostra o estado da memória na sessão persistente.
+
+Configuração promovida em `gpu_config.json`:
+- `persistent_memory_enabled=true`;
+- `persistent_memory_path=memory_v14/episodic_v14.sqlite3`;
+- `persistent_memory_top_k=4`;
+- `persistent_memory_candidate_limit=512`;
+- `persistent_memory_associative=true`;
+- `persistent_memory_associative_per_term=4`;
+- `persistent_memory_auto_store_user=true`;
+- `persistent_memory_inject_chars=480`;
+- `persistent_memory_rule_cap=4`;
+- `persistent_memory_min_query_term_coverage=0.30`;
+- `persistent_memory_max_associative_document_ratio=0.20`.
+
+### Bateria final de 22/08/2026
+
+`python persistent_memory_battery_v14.py`:
+- 20.000 registros sintéticos base. 20.005 episódios no pico com casos auxiliares;
+- 500 consultas principais;
+- exact top-1 = 1.0; numeric top-1 = 1.0;
+- 50 consultas irrelevantes: 0 falso positivo;
+- noisy semantic shadow retrieval = true;
+- duplicate recurrence = true;
+- contradição isolada = true;
+- persistência após reopen = true; reopen ~2,347 ms;
+- forget incremental = true;
+- latência: mean ~3,958 ms, p50 ~4,584 ms, p95 ~4,930 ms, p99 ~5,095 ms, max ~5,246 ms;
+- pico: 61.928 dimensões. 123.819 arestas dirigidas;
+- integração viva: o fato `Meu carro é um Civic 2015.` é armazenado; a pergunta seguinte não é gravada (`interrogative`),
+  e tanto a segunda quanto a terceira pergunta recuperam 1 episódio, injetam 1 regra e preservam `Civic 2015`;
+  semantic_verified=true, slot_errors=0, trace_errors=0;
+- gate: **OK**.
+
+Novo resultado: `rigorous_results_v12/persistent_memory_v14.json`.
+Novos testes: `test_persistent_memory_v14.py` (10 casos). A suíte total após a integração passa a 34 testes.
+
+Limitações explícitas:
+- a integração SQLite V14 foi medida até ~20 mil episódios nesta promoção; os benchmarks de 1 milhão do
+  repositório AI-Memory original não são automaticamente transferíveis para esta implementação;
+- busca sem sobreposição lexical depende do grafo dimensional já observado e ainda não oferece recall semântico geral;
+- ainda não existe política automática de expiração, consolidação temporal, resolução de conflito ou importância;
+- memória é local ao banco configurado e ainda não possui separação multiusuário.
+
+### Validação isolada do Prompt RuleVM após memória persistente
+
+`benchmark_prompt_rulevm_v6.py` agora força `persistent_memory_enabled=false` para que a memória episódica
+local não contamine a regressão de generalidade do corpus/RuleVM/Planner. O resultado salvo registra
+`persistent_memory_isolated=true` e a auditoria rejeita qualquer resultado que contenha evidência
+`memory_retrieval`/`memória recuperada`.
+
+Última execução isolada de 22/08/2026:
+- tamanhos: 957 / 1019 / 949 / 953 / 175 / 1032 caracteres;
+- 5/6 dentro da tolerância; segurança digital permanece `evidence_limited=true`;
+- semantic verified 6/6; slot/trace errors 0; cobertura de conceitos 100%;
+- carga única ~2,927 s; raciocínio posterior médio ~16,98 ms, máximo ~23,0 ms;
+- RuleVM máximo ~0,029 ms; Argument Planner máximo ~0,631 ms;
+- 9 regras removidas pelo filtro contextual; fases monotônicas 6/6; repetição imediata de template 0;
+- gate: OK.

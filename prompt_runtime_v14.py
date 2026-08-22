@@ -4,7 +4,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 import re
 
-from autonomous_rule_vm_v6 import CorpusAssociationRuleLearnerGPU, IndexedAssociationRuleVM
+from autonomous_rule_vm_v6 import AssociationRule, CorpusAssociationRuleLearnerGPU, IndexedAssociationRuleVM
 from argument_planner_v14 import EvidenceArgumentPlannerV14
 from robust_semantic_intake_v14 import RobustSemanticIntakeV14, LearnedAliasBankV14, semantic_shadow
 
@@ -47,6 +47,10 @@ _PREDICATE_SURFACE_VARIANTS = {
         'se conecta a', 'integra o mesmo recorte temático que', 'surge no mesmo eixo temático que'
     ),
     'forma um núcleo contextual com': ('reúne associações com',),
+    'registra como contexto anterior': (
+        'registra como contexto anterior', 'recupera da memória como contexto',
+        'mantém como memória relevante'
+    ),
 }
 
 
@@ -146,11 +150,14 @@ class PromptAdapterV14:
     TOPIC_RX = re.compile(r'\b(?:sobre|acerca\s+de|a\s+respeito\s+de|tema\s*[:=-])\s+(.+)', re.I)
 
     def __init__(self, default_target_chars: int = 2000, argument_planner_enabled: bool = True,
-                 robust_intake_enabled: bool = True, robust_intake_warm_index: bool = False):
+                 robust_intake_enabled: bool = True, robust_intake_warm_index: bool = False,
+                 persistent_memory_inject_chars: int = 480, persistent_memory_rule_cap: int = 4):
         self.default_target_chars = max(200, int(default_target_chars))
         self.argument_planner_enabled = bool(argument_planner_enabled)
         self.robust_intake_enabled = bool(robust_intake_enabled)
         self.robust_intake_warm_index = bool(robust_intake_warm_index)
+        self.persistent_memory_inject_chars = max(80, int(persistent_memory_inject_chars))
+        self.persistent_memory_rule_cap = max(0, int(persistent_memory_rule_cap))
         self.argument_planner = EvidenceArgumentPlannerV14()
         self._learner_cache = {}
         self._intake_cache = {}
@@ -265,6 +272,35 @@ class PromptAdapterV14:
             if len(out)>=12: break
         return root,out[:12]
 
+    def _memory_rows(self, memory_records):
+        """Turn retrieved episodes into explicit generic evidence rules."""
+        rows=[];seen=set()
+        for record in list(memory_records or ())[:self.persistent_memory_rule_cap]:
+            raw=_clean_space(record.get('text',''))
+            if not raw:
+                continue
+            key=raw.casefold()
+            if key in seen:
+                continue
+            seen.add(key)
+            if len(raw)>self.persistent_memory_inject_chars:
+                raw=raw[:self.persistent_memory_inject_chars].rstrip()+'…'
+            raw=raw.rstrip(' .!?') or raw
+            coverage=max(0.0,min(1.0,float(record.get('coverage',0.0))))
+            exact=str(record.get('match_kind','exact'))=='exact'
+            confidence=max(0.10,min(0.995,coverage if exact else max(0.20,coverage*0.75)))
+            support=max(1,int(record.get('recurrence',1)))
+            score=max(0.0,float(record.get('score',0.0)))
+            rid=record.get('id')
+            source=str(record.get('source','user'))
+            rule=AssociationRule(
+                'memória recuperada', raw, 'registra como contexto anterior',
+                'memory_retrieval', confidence, support, score,
+                (f'memory:{rid}',f'source:{source}'),
+            )
+            rows.append((rule,confidence,1))
+        return rows
+
     @staticmethod
     def _compact_intake_stats(result):
         local_echo=[{'source':e.source,'target':e.target,'strength':e.strength} for e in result.edges if e.kind=='local_echo_variant']
@@ -277,7 +313,8 @@ class PromptAdapterV14:
         }
 
     def build_learned(self, prompt: str, scorer, target_chars: int | None = None,
-                      seed: int = 101, fact_count: int | None = None) -> PromptPlan:
+                      seed: int = 101, fact_count: int | None = None,
+                      memory_records=None) -> PromptPlan:
         raw_prompt = str(prompt or '')
         prompt = _clean_space(raw_prompt)
         target = self.target_from_prompt(prompt, target_chars)
@@ -297,11 +334,12 @@ class PromptAdapterV14:
         learner = self._learner_for(scorer)
         emit_budget = max(rule_budget, max(0, len(concepts) - 1))
         initial_bank_budget=min(256, max(rule_budget + 8, int(rule_budget * 1.35)))
+        memory_rows=self._memory_rows(memory_records)
 
         def select_bank(candidate_bank):
             vm = IndexedAssociationRuleVM(candidate_bank)
             execution_local = vm.execute(concepts, max_depth=2, max_rules=max(1, len(candidate_bank.rules)))
-            fired_all_local = execution_local['fired']
+            fired_all_local = execution_local['fired'] + memory_rows
             prompt_rules_local = [row for row in fired_all_local if row[0].kind == 'prompt_observation']
             if self.argument_planner_enabled:
                 argument_plan_local = self.argument_planner.plan(fired_all_local, concepts, emit_budget)
@@ -348,7 +386,9 @@ class PromptAdapterV14:
             fallback=self.build(prompt, target_chars=target, seed=seed, fact_count=rule_budget)
             fallback.prompt=raw_prompt
             fallback.topic=topic
-            fallback.reasoning_stats={'engine':'Legacy-Fallback-V14','seed_concepts':concepts,'semantic_intake':intake_stats}
+            fallback.reasoning_stats={'engine':'Legacy-Fallback-V14','seed_concepts':concepts,'semantic_intake':intake_stats,
+                                      'persistent_memory':{'retrieved':len(list(memory_records or ())),
+                                                           'injected_rules':0,'ids':[x.get('id') for x in list(memory_records or ())[:self.persistent_memory_rule_cap]]}}
             return fallback
 
         entity_ids: dict[str, str] = {}
@@ -412,6 +452,11 @@ class PromptAdapterV14:
             'indexed_lookups': execution.get('indexed_lookups', 0),
             'argument_planner': argument_stats,
             'semantic_intake': intake_stats,
+            'persistent_memory': {
+                'retrieved': len(list(memory_records or ())),
+                'injected_rules': sum(1 for r in rule_rows if r.get('kind')=='memory_retrieval'),
+                'ids': [x.get('id') for x in list(memory_records or ())[:self.persistent_memory_rule_cap]],
+            },
             'rules': rule_rows,
         }
         return PromptPlan(raw_prompt, topic, target, facts, lex, focus, predicate_relations, predicate_classes, argument_roles, stats)

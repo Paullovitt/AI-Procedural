@@ -9,6 +9,7 @@ import time
 
 from prompt_session_v14 import PromptSessionV14
 from prompt_runtime_v14 import WORD_RX
+from run_gpu import load_config
 
 ROOT = Path(__file__).resolve().parent
 OUT = ROOT / 'rigorous_results_v12'
@@ -24,10 +25,10 @@ PROMPTS = [
 ]
 
 SURFACE_MARKERS = (
-    'se relaciona tematicamente com', 'surge no mesmo contexto que', 'mant?m proximidade tem?tica com',
-    'se conecta contextualmente a', 'aparece em express?es como', 'surge em constru??es como',
-    '? recorrente em express?es como', 'se conecta a', 'integra o mesmo recorte tem?tico que',
-    'surge no mesmo eixo tem?tico que', 're?ne associa??es com',
+    'se relaciona tematicamente com', 'surge no mesmo contexto que', 'mantém proximidade temática com',
+    'se conecta contextualmente a', 'aparece em expressões como', 'surge em construções como',
+    'é recorrente em expressões como', 'se conecta a', 'integra o mesmo recorte temático que',
+    'surge no mesmo eixo temático que', 'reúne associações com',
 )
 ROLE_ORDER = {'opening': 0, 'development': 1, 'synthesis': 2}
 
@@ -48,7 +49,12 @@ def sentence_metrics(text: str):
 
 
 def main():
-    session = PromptSessionV14()
+    # This benchmark measures the corpus/RuleVM/Planner path only. Episodic memory is
+    # deliberately disabled so a user's local persistent database cannot contaminate
+    # reproducibility or generality metrics. Persistent memory has its own battery.
+    cfg = load_config()
+    cfg['persistent_memory_enabled'] = False
+    session = PromptSessionV14(cfg)
     rows = []
     for i, (name, prompt) in enumerate(PROMPTS, 1):
         t0 = time.perf_counter()
@@ -102,6 +108,7 @@ def main():
         'format': 'Prompt-RuleVM-V6-ArgumentPlanner-V14-Generality',
         'gpu': session.scorer.gpu_status(),
         'model_load_seconds_once': session.load_seconds,
+        'persistent_memory_isolated': session.memory is None,
         'prompts': len(rows),
         'all_semantic_verified': all(x['semantic_verified'] for x in rows),
         'total_slot_errors': sum(x['slot_errors'] for x in rows),
@@ -124,7 +131,7 @@ def main():
         'total_context_filtered_rules': sum(x['context_filtered_rules'] for x in rows),
         'rows': rows,
     }
-    (OUT/'prompt_rulevm_v6_generality.json').write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding='utf8')
+    (OUT/'prompt_rulevm_v6_generality.json').write_text(json.dumps(result, ensure_ascii=False, indent=2)+'\n', encoding='utf8', newline='\n')
     print('SUMMARY', json.dumps({k:v for k,v in result.items() if k not in ('rows','gpu')}, ensure_ascii=False), flush=True)
 
     gates = [
@@ -134,6 +141,7 @@ def main():
         result['mean_unique_sentence_ratio'] >= 0.95, result['max_later_reasoning_ms'] < 100.0,
         result['max_vm_ms'] < 5.0, result['max_argument_planner_ms'] < 5.0,
         result['all_argument_phases_monotonic'], result['total_immediate_template_repeats'] == 0,
+        result['persistent_memory_isolated'],
     ]
     if not all(gates):
         raise SystemExit('PROMPT RULEVM V6 GENERALITY GATE: FAIL')

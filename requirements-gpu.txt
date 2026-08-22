@@ -3,3 +3,5 @@ numpy>=2.2,<3
 xxhash>=3.6,<4
 torch==2.11.0
 # CuPy nao e necessario para executar o V14/RuleVM V6. O backend promovido usa PyTorch CUDA apenas como runtime tensorial, sem rede neural ou gradientes.
+# Persistent Dimensional Memory V14 usa sqlite3 da biblioteca padrão; não adiciona dependência Python externa.
+# Persistent Dimensional Memory V14 usa sqlite3 da biblioteca padrão; nenhuma dependência neural/vetorial adicional.

@@ -6,8 +6,10 @@ import json
 import time
 
 from prompt_runtime_v14 import PromptAdapterV14, contains_raw_slots
+from persistent_memory_v14 import should_auto_store_user_memory
 from run_gpu import (load_config, load_runtime, _apply_prompt_plan, _configure_console,
-                     _reasoning_summary, _refine_prompt_length, _render_checked)
+                     _reasoning_summary, _refine_prompt_length, _render_checked, _open_persistent_memory,
+                     _persistent_memory_projection)
 
 ROOT = Path(__file__).resolve().parent
 
@@ -21,6 +23,8 @@ class PromptSessionV14:
             argument_planner_enabled=bool(self.cfg.get('argument_planner_enabled', True)),
             robust_intake_enabled=bool(self.cfg.get('robust_semantic_intake_enabled', True)),
             robust_intake_warm_index=bool(self.cfg.get('robust_semantic_warm_index', True)),
+            persistent_memory_inject_chars=int(self.cfg.get('persistent_memory_inject_chars',480)),
+            persistent_memory_rule_cap=int(self.cfg.get('persistent_memory_rule_cap',4)),
         )
         t0 = time.perf_counter()
         self.scorer, self.grammar, self.inducer, self.renderer = load_runtime(
@@ -29,6 +33,7 @@ class PromptSessionV14:
             self.adapter._intake_for(self.scorer)
         self.load_seconds = time.perf_counter() - t0
         self.prompt_count = 0
+        self.memory = _open_persistent_memory(self.cfg)
 
     def _reset_document_state(self, seed):
         if hasattr(self.renderer.structure, 'max_bundle'):
@@ -49,15 +54,25 @@ class PromptSessionV14:
         custom_lexicon = dict(custom_lexicon or {})
         self._reset_document_state(seed)
 
+        memory_records=[]
+        memory_index_text=prompt
+        memory_semantic_keys=[]
+        if self.memory is not None:
+            memory_index_text,memory_semantic_keys=_persistent_memory_projection(self.adapter,self.scorer,prompt)
+            memory_query_text=' '.join(memory_semantic_keys) or prompt
+            memory_records=self.memory.search(memory_query_text,k=int(self.cfg.get('persistent_memory_top_k',4)),
+                                              associative=bool(self.cfg.get('persistent_memory_associative',True)))
         t0 = time.perf_counter()
-        pp = self.adapter.build_learned(prompt, self.scorer, target_chars=target_chars, seed=seed)
+        pp = self.adapter.build_learned(prompt, self.scorer, target_chars=target_chars, seed=seed,
+                                        memory_records=memory_records)
         reasoning_s = time.perf_counter() - t0
         plan, lexicon, focus_hint = _apply_prompt_plan(self.renderer, pp, custom_lexicon)
         out, display, checks, verified, render_s = _render_checked(
             self.renderer, plan, lexicon, focus_hint, self.cfg)
 
         args = SimpleNamespace(seed=int(seed))
-        prompt_meta = {'prompt': pp.prompt, 'topic': pp.topic, 'target_chars': pp.target_chars}
+        prompt_meta = {'prompt': pp.prompt, 'topic': pp.topic, 'target_chars': pp.target_chars,
+                       'memory_records': memory_records}
         (plan, lexicon, focus_hint, out, display, checks, verified, render_s,
          attempts, reasoning_stats, extra_reason_s) = _refine_prompt_length(
             self.renderer, self.scorer, self.adapter, prompt_meta, args, self.cfg, custom_lexicon,
@@ -65,6 +80,15 @@ class PromptSessionV14:
             pp.reasoning_stats)
         reasoning_s += extra_reason_s
         self.prompt_count += 1
+        memory_store_result=None
+        memory_store_skipped_reason=None
+        if self.memory is not None and verified and bool(self.cfg.get('persistent_memory_auto_store_user',True)):
+            if should_auto_store_user_memory(prompt):
+                memory_store_result=self.memory.remember(prompt,source='user',
+                    metadata={'runtime':'V14','topic':pp.topic,'session_prompt':self.prompt_count,
+                              'semantic_keys':memory_semantic_keys[:32]},index_text=memory_index_text)
+            else:
+                memory_store_skipped_reason='interrogative'
 
         target_error = len(display) - int(pp.target_chars)
         tolerance = max(70, int(int(pp.target_chars) * 0.06))
@@ -94,8 +118,23 @@ class PromptSessionV14:
             'backend': out.get('compute_backend', 'cuda-batched-v14'),
             'reasoning': _reasoning_summary(reasoning_stats),
             'gpu': self.scorer.gpu_status(),
+            'persistent_memory': ({
+                'retrieved':len(memory_records),
+                'retrieved_ids':[x.get('id') for x in memory_records],
+                'stored':memory_store_result,
+                'store_skipped_reason':memory_store_skipped_reason,
+                'stats':self.memory.stats(),
+            } if self.memory is not None else {'enabled':False}),
         }
         return report, display, out, reasoning_stats
+
+    def close(self):
+        if self.memory is not None:
+            self.memory.close()
+            self.memory=None
+
+    def memory_status(self):
+        return self.memory.stats() if self.memory is not None else {'enabled':False}
 
     def loop(self):
         _configure_console()
@@ -110,6 +149,8 @@ class PromptSessionV14:
                 break
             if prompt.lower() in {'/sair','sair','exit','quit'}:
                 break
+            if prompt.lower() in {'/memoria','/memória','/memory'}:
+                print(json.dumps(self.memory_status(),ensure_ascii=False,indent=2));print();continue
             if not prompt:
                 continue
             try:
@@ -120,6 +161,7 @@ class PromptSessionV14:
                 print()
             except Exception as exc:
                 print(f'ERRO: {exc}')
+        self.close()
 
 
 if __name__ == '__main__':

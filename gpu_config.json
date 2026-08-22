@@ -20,5 +20,16 @@
   "default_target_chars": 2000,
   "notes": "V14 padrão com Robust Semantic Intake + RuleVM V6 aprendido + Evidence Argument Planner V14. GPU/VRAM via PyTorch apenas como runtime tensorial; sem rede neural, gradiente ou backprop. O intake preserva texto bruto/evidência e não executa pipeline de correção. O RuleVM continua indexado e IDs semânticos ficam internos.",
   "robust_semantic_intake_enabled": true,
-  "robust_semantic_warm_index": true
+  "robust_semantic_warm_index": true,
+  "persistent_memory_enabled": true,
+  "persistent_memory_path": "memory_v14/episodic_v14.sqlite3",
+  "persistent_memory_top_k": 4,
+  "persistent_memory_candidate_limit": 512,
+  "persistent_memory_associative": true,
+  "persistent_memory_associative_per_term": 4,
+  "persistent_memory_auto_store_user": true,
+  "persistent_memory_inject_chars": 480,
+  "persistent_memory_rule_cap": 4,
+  "persistent_memory_min_query_term_coverage": 0.3,
+  "persistent_memory_max_associative_document_ratio": 0.2
 }

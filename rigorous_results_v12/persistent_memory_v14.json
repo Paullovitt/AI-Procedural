@@ -1,0 +1,72 @@
+{
+  "format": "Persistent-Dimensional-Memory-V14-Battery",
+  "source_design": "AI-Memory dimensional external memory; V14 integration is incremental SQLite + explicit postings/edges",
+  "non_neural": true,
+  "store": {
+    "records_requested": 20000,
+    "queries": 500,
+    "build_seconds": 17.71384560000024,
+    "exact_top1_accuracy": 1.0,
+    "numeric_top1_accuracy": 1.0,
+    "irrelevant_false_positives": 0,
+    "weak_overlap_false_positive": false,
+    "weak_exact_ok": true,
+    "noisy_semantic_shadow_retrieval": true,
+    "duplicate_recurrence_ok": true,
+    "contradiction_isolated": true,
+    "persistence_reopen_ok": true,
+    "reopen_ms": 2.346700000089186,
+    "forget_ok": true,
+    "latency_ms": {
+      "mean": 3.9428134,
+      "p50": 4.58435,
+      "p95": 4.92964,
+      "p99": 5.095112,
+      "max": 5.2459
+    },
+    "stats_before_reopen": {
+      "engine": "Persistent-Dimensional-Memory-V14",
+      "schema_version": 2,
+      "episodes": 20005,
+      "observations": 20006,
+      "dimensions": 61928,
+      "directed_edges": 123819,
+      "database_bytes": 30958080,
+      "candidate_limit": 512,
+      "associative_per_term": 4,
+      "min_query_term_coverage": 0.3,
+      "max_associative_document_ratio": 0.2
+    },
+    "stats_after_forget": {
+      "engine": "Persistent-Dimensional-Memory-V14",
+      "schema_version": 2,
+      "episodes": 20004,
+      "observations": 20005,
+      "dimensions": 61921,
+      "directed_edges": 123812,
+      "database_bytes": 26792496,
+      "candidate_limit": 512,
+      "associative_per_term": 4,
+      "min_query_term_coverage": 0.3,
+      "max_associative_document_ratio": 0.2
+    }
+  },
+  "live_v14": {
+    "weak_topic_source_stored": true,
+    "weak_topic_retrieved": 0,
+    "first_turn_stored": true,
+    "second_turn_retrieved": 1,
+    "second_turn_injected_rules": 1,
+    "second_turn_question_stored": false,
+    "second_turn_store_skipped_reason": "interrogative",
+    "answer_contains_civic_2015": true,
+    "third_turn_retrieved": 1,
+    "third_turn_injected_rules": 1,
+    "third_answer_contains_civic_2015": true,
+    "semantic_verified": true,
+    "slot_errors": 0,
+    "trace_errors": 0
+  },
+  "seconds": 27.237925700000233,
+  "gate": "OK"
+}

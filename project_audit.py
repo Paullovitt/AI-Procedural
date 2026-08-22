@@ -35,8 +35,12 @@ REQUIRED = (
     "train_robust_semantic_v14.py",
     "robust_semantic_failure_archive_v14.jsonl",
     "robust_semantic_failure_replay_v14.py",
+    "persistent_memory_v14.py",
+    "persistent_memory_battery_v14.py",
+    "test_persistent_memory_v14.py",
     "rigorous_results_v12/robust_semantic_v14.json",
     "rigorous_results_v12/robust_semantic_failure_replay_v14.json",
+    "rigorous_results_v12/persistent_memory_v14.json",
     "PROJECT_RULES.md",
     "PROJECT_STATE_2026-08-21.md",
     "GPU_README.txt",
@@ -132,6 +136,14 @@ def audit_consistency(problems: list[str]) -> None:
         problems.append("robust_semantic_intake_enabled is not true")
     if cfg.get("robust_semantic_warm_index") is not True:
         problems.append("robust_semantic_warm_index is not true")
+    if cfg.get("persistent_memory_enabled") is not True:
+        problems.append("persistent_memory_enabled is not true")
+    if int(cfg.get("persistent_memory_top_k",0)) <= 0:
+        problems.append("persistent_memory_top_k is not positive")
+    if not (0.0 < float(cfg.get("persistent_memory_min_query_term_coverage",0.0)) <= 1.0):
+        problems.append("persistent_memory_min_query_term_coverage is invalid")
+    if not (0.0 < float(cfg.get("persistent_memory_max_associative_document_ratio",0.0)) <= 1.0):
+        problems.append("persistent_memory_max_associative_document_ratio is invalid")
 
     launcher = (ROOT / "RUN_GPU.bat").read_text(encoding="utf8", errors="replace")
     if "prompt_session_v14.py" not in launcher:
@@ -149,12 +161,21 @@ def audit_consistency(problems: list[str]) -> None:
         problems.append("project documentation does not mention Argument Planner")
     if "Robust Semantic Intake" not in docs:
         problems.append("project documentation does not mention Robust Semantic Intake")
+    if "Persistent Dimensional Memory" not in docs:
+        problems.append("project documentation does not mention Persistent Dimensional Memory")
 
     regressions = json.loads((ROOT / "robust_semantic_regressions_v14.json").read_text(encoding="utf8"))
     if regressions.get("format") != "Robust-Semantic-Regressions-V14":
         problems.append("unexpected robust semantic regression format")
     if len(regressions.get("cases", [])) < 16:
         problems.append("robust semantic permanent regressions below promoted floor of 16")
+
+    prompt_benchmark=json.loads((ROOT / "rigorous_results_v12/prompt_rulevm_v6_generality.json").read_text(encoding="utf8"))
+    if prompt_benchmark.get("persistent_memory_isolated") is not True:
+        problems.append("prompt RuleVM benchmark is not isolated from persistent episodic memory")
+    prompt_benchmark_text="\n".join(str(x.get("text","")) for x in prompt_benchmark.get("rows",[])).casefold()
+    if "memória recuperada" in prompt_benchmark_text or "memory_retrieval" in json.dumps(prompt_benchmark,ensure_ascii=False):
+        problems.append("prompt RuleVM benchmark was contaminated by persistent memory retrieval")
 
     robust_result = json.loads((ROOT / "rigorous_results_v12/robust_semantic_v14.json").read_text(encoding="utf8"))
     robust_summary = robust_result.get("summary", {})
@@ -179,6 +200,37 @@ def audit_consistency(problems: list[str]) -> None:
         problems.append("robust battery result and cumulative failure archive are out of sync")
     if "Failure Replay" not in docs and "failure replay" not in docs:
         problems.append("project documentation does not mention failure replay")
+
+    memory_result=json.loads((ROOT / "rigorous_results_v12/persistent_memory_v14.json").read_text(encoding="utf8"))
+    if memory_result.get("format") != "Persistent-Dimensional-Memory-V14-Battery":
+        problems.append("unexpected persistent memory battery format")
+    if memory_result.get("gate") != "OK":
+        problems.append("persistent memory battery gate is not OK")
+    store=memory_result.get("store",{})
+    live=memory_result.get("live_v14",{})
+    if int(store.get("records_requested",0)) < 20000:
+        problems.append("persistent memory promoted battery below 20k episodes")
+    if float(store.get("exact_top1_accuracy",0.0)) < 0.99 or float(store.get("numeric_top1_accuracy",0.0)) < 0.99:
+        problems.append("persistent memory retrieval accuracy below gate")
+    if int(store.get("irrelevant_false_positives",1)) != 0:
+        problems.append("persistent memory irrelevant false-positive gate failed")
+    if store.get("weak_overlap_false_positive") is not False or store.get("weak_exact_ok") is not True:
+        problems.append("persistent memory weak-overlap relevance gate failed")
+    if int(live.get("weak_topic_retrieved",1)) != 0:
+        problems.append("persistent memory live weak-topic isolation failed")
+    if live.get("second_turn_question_stored") is not False or live.get("second_turn_store_skipped_reason") != "interrogative":
+        problems.append("persistent memory interrogative auto-store gate failed")
+    if int(live.get("second_turn_retrieved",0)) != 1 or int(live.get("third_turn_retrieved",0)) != 1:
+        problems.append("persistent memory repeated-question retrieval is not stable")
+    if int(live.get("second_turn_injected_rules",0)) < 1 or int(live.get("third_turn_injected_rules",0)) < 1:
+        problems.append("persistent memory repeated-question rule injection failed")
+    if live.get("answer_contains_civic_2015") is not True or live.get("third_answer_contains_civic_2015") is not True:
+        problems.append("persistent memory repeated-question factual recall failed")
+    if not (live.get("semantic_verified") and int(live.get("slot_errors",1))==0 and int(live.get("trace_errors",1))==0):
+        problems.append("persistent memory live V14 semantic gate failed")
+    gitignore=(ROOT/'.gitignore').read_text(encoding='utf8')
+    if 'memory_v14/' not in gitignore:
+        problems.append("memory_v14 runtime database is not ignored by Git")
 
     for pattern in TEMP_PATTERNS:
         for path in ROOT.glob(pattern):

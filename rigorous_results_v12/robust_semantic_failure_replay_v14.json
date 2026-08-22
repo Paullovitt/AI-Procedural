@@ -12,18 +12,18 @@
       "numeric_date_quantity_error": 16
     },
     "latency_ms": {
-      "p50": 2.285399999891524,
-      "p95": 29.5548999993116,
-      "max": 69.42879999951401
+      "p50": 2.1464000001287786,
+      "p95": 25.741299999936018,
+      "max": 50.70100000011735
     },
-    "seconds": 2.6467730999993364,
-    "model_load_seconds": 2.9132016000003205
+    "seconds": 2.5792926000003717,
+    "model_load_seconds": 2.9114871000001585
   },
   "rows": [
     {
       "case": "long-noise",
       "text": "bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla energia solar baterias armazenamento futuro",
-      "latency_ms": 2.7254999995420803,
+      "latency_ms": 2.4716000007174443,
       "previous_failure_classes": [
         "noise_inclusion"
       ],
@@ -42,7 +42,7 @@
     {
       "case": "contradiction-evidence",
       "text": "joao comprou 3 carros ontem mas depois disse que nao comprou carros",
-      "latency_ms": 0.7689999993090169,
+      "latency_ms": 0.6144999997559353,
       "previous_failure_classes": [
         "relation_or_meaning_error"
       ],
@@ -61,7 +61,7 @@
     {
       "case": "typo-energy",
       "text": "enerjia solar bateras armazenamnto futouo",
-      "latency_ms": 0.5602000001090346,
+      "latency_ms": 0.5773000002591289,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -84,7 +84,7 @@
     {
       "case": "typo-energy",
       "text": "enerjia solar baterasarmazenamnto futoro",
-      "latency_ms": 19.55439999983355,
+      "latency_ms": 20.08620000015071,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -108,7 +108,7 @@
     {
       "case": "typo-energy",
       "text": "enerjia solar bateras armazenam nto futoro",
-      "latency_ms": 0.5140000002938905,
+      "latency_ms": 0.5127000003994908,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -131,7 +131,7 @@
     {
       "case": "typo-energy",
       "text": "enerj solar bateras armazenamnto futoro",
-      "latency_ms": 0.4963999999745283,
+      "latency_ms": 0.48269999933836516,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -154,7 +154,7 @@
     {
       "case": "paguo-not-paulo",
       "text": "joao comprou carro ontem e ptguo 20 mil cada",
-      "latency_ms": 12.922599999910744,
+      "latency_ms": 12.570700000651414,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -177,7 +177,7 @@
     {
       "case": "paguo-not-paulo",
       "text": "joao compro carro ontem e paguo 20 mil cada",
-      "latency_ms": 0.5799999998998828,
+      "latency_ms": 0.6393999992724275,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -200,7 +200,7 @@
     {
       "case": "valid-caro-not-rewritten",
       "text": "joao... comprou ;;; 3 ?? caro... ontem... e ;;; paguo... 20!!! mil ?? cada ?? mas ?? acho ;;; que ?? ele... tava!!! falando... de!!! carros ?? usados ;;; bla... bla",
-      "latency_ms": 1.0879999999815482,
+      "latency_ms": 1.0484999993423116,
       "previous_failure_classes": [
         "noise_inclusion",
         "relation_or_meaning_error"
@@ -225,7 +225,7 @@
     {
       "case": "valid-caro-not-rewritten",
       "text": "joao​comprou​3​caro​ontem​e​paguo​20​mil​cada​mas​acho​que​ele​tava​falando​de​carros​usados​bla​bla",
-      "latency_ms": 0.9203999998135259,
+      "latency_ms": 0.9030000001075678,
       "previous_failure_classes": [
         "important_information_loss",
         "relation_or_meaning_error"
@@ -250,7 +250,7 @@
     {
       "case": "valid-caro-not-rewritten",
       "text": "joao comprou 3 caro ontem e pagguo 20 mil cada mas acho que ele tava falando de carros usados bla bla",
-      "latency_ms": 19.003299999894807,
+      "latency_ms": 18.560799999249866,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -273,7 +273,7 @@
     {
       "case": "valid-caro-not-rewritten",
       "text": "joao comprou 3 caro ontem e paguo 20 mil cada mas acho que ele tava falando de canros usados bla bla",
-      "latency_ms": 1.2081999993824866,
+      "latency_ms": 1.194700000269222,
       "previous_failure_classes": [
         "important_information_loss",
         "relation_or_meaning_error"
@@ -298,7 +298,7 @@
     {
       "case": "valid-caro-not-rewritten",
       "text": "joao compr 3 caro ontem e paguo 20 mil cada mas acho que ele tava falando de carros usados bla bla",
-      "latency_ms": 1.0842000001503038,
+      "latency_ms": 1.0984999998981948,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -321,7 +321,7 @@
     {
       "case": "single-negation-bridge",
       "text": "[ruido] nada haver joao nao comprou carro ontem",
-      "latency_ms": 0.3468999993856414,
+      "latency_ms": 0.34020000020973384,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -344,7 +344,7 @@
     {
       "case": "single-negation-bridge",
       "text": "joao nao comprou corro ontem",
-      "latency_ms": 0.14899999951012433,
+      "latency_ms": 0.14599999940401176,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -367,7 +367,7 @@
     {
       "case": "single-negation-bridge",
       "text": "joao naocomprou carro ontem",
-      "latency_ms": 3.4856000002037035,
+      "latency_ms": 3.3699000005071866,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -390,7 +390,7 @@
     {
       "case": "single-negation-bridge",
       "text": "joao nao compro carro ontem",
-      "latency_ms": 0.19810000048892107,
+      "latency_ms": 0.1781999999366235,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -413,7 +413,7 @@
     {
       "case": "single-negation-bridge",
       "text": "nao joao comprou carro ontem",
-      "latency_ms": 0.17299999944953015,
+      "latency_ms": 0.1640999998926418,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -436,7 +436,7 @@
     {
       "case": "double-negation-bridge",
       "text": "xxxxx qqq joao nao nao comprou carro ontem",
-      "latency_ms": 0.2834999995684484,
+      "latency_ms": 0.27630000022327295,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -459,7 +459,7 @@
     {
       "case": "double-negation-bridge",
       "text": "joao nao nao comprou carlo ontem",
-      "latency_ms": 0.20080000012967503,
+      "latency_ms": 0.20620000032067765,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -482,7 +482,7 @@
     {
       "case": "double-negation-bridge",
       "text": "joao nao nao comproucarro ontem",
-      "latency_ms": 16.105899999274698,
+      "latency_ms": 16.69309999942925,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -506,7 +506,7 @@
     {
       "case": "double-negation-bridge",
       "text": "joao nao nao compro carro ontem",
-      "latency_ms": 0.21779999951831996,
+      "latency_ms": 0.22080000053392723,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -529,7 +529,7 @@
     {
       "case": "typed-date-time-value",
       "text": "Maria comprou 3 carros em 21 08 2026 às 14 30 por 20 000 reais",
-      "latency_ms": 0.5065000004833564,
+      "latency_ms": 0.49339999986841576,
       "previous_failure_classes": [
         "important_information_loss",
         "numeric_date_quantity_error"
@@ -560,7 +560,7 @@
     {
       "case": "typed-date-time-value",
       "text": "Maria comprou 3 casros em 21/08/2026 às 14:30 por 20.000 reais",
-      "latency_ms": 0.6296999999904074,
+      "latency_ms": 0.6109000005380949,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -583,7 +583,7 @@
     {
       "case": "typed-date-time-value",
       "text": "Maria compro 3 carros em 21/08/2026 às 14:30 por 20.000 reais",
-      "latency_ms": 0.3898999993907637,
+      "latency_ms": 0.3882000000885455,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -606,7 +606,7 @@
     {
       "case": "mojibake-health",
       "text": "saAode pAoblica prevencao hospitais",
-      "latency_ms": 39.865800000370655,
+      "latency_ms": 42.34040000028472,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -630,7 +630,7 @@
     {
       "case": "mojibake-health",
       "text": "saÃºde§pÃºblica§prevencao§hospitais",
-      "latency_ms": 14.83730000018113,
+      "latency_ms": 14.1142000002219,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -654,7 +654,7 @@
     {
       "case": "mojibake-health",
       "text": "saÃºde pÃºblica prevencaohospitais",
-      "latency_ms": 2.2432999994634883,
+      "latency_ms": 2.239400000689784,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -678,7 +678,7 @@
     {
       "case": "mojibake-health",
       "text": "saÃºde pÃºblica prevencao hosp itais",
-      "latency_ms": 0.3930000002583256,
+      "latency_ms": 0.38409999979194254,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -701,7 +701,7 @@
     {
       "case": "mojibake-health",
       "text": "saÃºde pÃºblica prevencao hospita",
-      "latency_ms": 0.2786999993986683,
+      "latency_ms": 0.2690999999686028,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -724,7 +724,7 @@
     {
       "case": "mojibake-health",
       "text": "saÃÂºde pÃÂºblica prevencao hospitais",
-      "latency_ms": 24.56700000038836,
+      "latency_ms": 24.847000000590924,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -748,7 +748,7 @@
     {
       "case": "html-markup",
       "text": " div  energia solar   div    baterias  ",
-      "latency_ms": 0.22260000059759477,
+      "latency_ms": 0.2103000006172806,
       "previous_failure_classes": [
         "noise_inclusion"
       ],
@@ -771,7 +771,7 @@
     {
       "case": "html-markup",
       "text": "<div> energia solar </div> **bateiras**",
-      "latency_ms": 0.22220000028028153,
+      "latency_ms": 0.22059999992052326,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -794,7 +794,7 @@
     {
       "case": "html-markup",
       "text": "<div> energia solar </div> **bate rias**",
-      "latency_ms": 0.22770000032323878,
+      "latency_ms": 0.21850000030099181,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -817,7 +817,7 @@
     {
       "case": "html-markup",
       "text": "<div> energia solar </div> **bateri**",
-      "latency_ms": 0.27399999999033753,
+      "latency_ms": 0.28139999994891696,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -840,7 +840,7 @@
     {
       "case": "glued-split-phrase",
       "text": "ener ;;; giasolar ;;; baterias",
-      "latency_ms": 11.2515999999232,
+      "latency_ms": 10.690299999623676,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -864,7 +864,7 @@
     {
       "case": "glued-split-phrase",
       "text": "ener​giasolar​baterias",
-      "latency_ms": 0.24709999979677377,
+      "latency_ms": 0.2532999997129082,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -888,7 +888,7 @@
     {
       "case": "glued-split-phrase",
       "text": "ener giasolar bat erias",
-      "latency_ms": 11.296899999251764,
+      "latency_ms": 10.858399999960966,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -911,7 +911,7 @@
     {
       "case": "glued-split-phrase",
       "text": "ener giasola baterias",
-      "latency_ms": 19.78439999948023,
+      "latency_ms": 19.032199999855948,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -935,7 +935,7 @@
     {
       "case": "emoji-punctuation",
       "text": "energia🔥solar!!! baterias?? armazena mento",
-      "latency_ms": 0.2710999997361796,
+      "latency_ms": 0.2523000002838671,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -958,7 +958,7 @@
     {
       "case": "long-noise",
       "text": "bla... bla ;;; bla... bla ?? bla... bla ?? bla... bla ?? bla!!! bla ?? bla ?? bla ;;; bla ?? bla ?? bla ;;; bla... bla!!! bla!!! bla!!! bla ;;; bla!!! bla... bla... bla ;;; bla ;;; bla ?? bla ;;; bla ;;; bla ?? bla... bla... bla ?? bla!!! bla ;;; bla ;;; bla ;;; bla ;;; bla... bla ;;; bla ;;; bla ;;; bla ?? bla ;;; bla... bla ;;; bla... bla!!! bla ?? bla!!! bla ?? bla ;;; bla!!! bla!!! bla ;;; bla ;;; bla... bla!!! bla ;;; bla!!! bla!!! bla ;;; bla ?? bla ;;; bla!!! bla... bla... bla!!! bla ;;; bla... bla!!! bla ;;; bla ;;; bla!!! bla ;;; bla!!! bla... bla... bla... bla ?? bla!!! bla ;;; bla... bla!!! bla... bla ?? bla!!! bla... bla!!! bla ?? bla!!! bla... bla ;;; bla!!! bla ?? bla ?? bla ;;; bla!!! bla ;;; bla ;;; bla ?? bla ?? bla ?? bla ?? bla ?? bla!!! bla ?? bla ;;; bla ;;; bla... bla ;;; bla ;;; bla ;;; bla ?? bla ?? bla!!! bla ;;; bla... bla... bla... bla!!! energia ?? solar... baterias ;;; armazenamento!!! futuro",
-      "latency_ms": 4.754000000502856,
+      "latency_ms": 4.455899999811663,
       "previous_failure_classes": [
         "noise_inclusion"
       ],
@@ -977,7 +977,7 @@
     {
       "case": "long-noise",
       "text": "bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla energia solar baterias armazenamento futuro",
-      "latency_ms": 2.285699999447388,
+      "latency_ms": 2.435999999761407,
       "previous_failure_classes": [
         "noise_inclusion"
       ],
@@ -996,7 +996,7 @@
     {
       "case": "long-noise",
       "text": "bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla xxxxx qqq bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla energia solar baterias armazenamento futuro",
-      "latency_ms": 2.3295999999390915,
+      "latency_ms": 2.3189000003185356,
       "previous_failure_classes": [
         "noise_inclusion"
       ],
@@ -1015,7 +1015,7 @@
     {
       "case": "long-noise",
       "text": "<div>**bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla energia solar baterias armazenamento futuro**</div>",
-      "latency_ms": 2.3373999993054895,
+      "latency_ms": 2.171299999645271,
       "previous_failure_classes": [
         "noise_inclusion"
       ],
@@ -1034,7 +1034,7 @@
     {
       "case": "long-noise",
       "text": "{\"conteudo\": \"bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla energia solar baterias armazenamento futuro\", \"meta\":\"ruido\"}",
-      "latency_ms": 2.6439000002937973,
+      "latency_ms": 2.2642999992967816,
       "previous_failure_classes": [
         "noise_inclusion"
       ],
@@ -1053,7 +1053,7 @@
     {
       "case": "long-noise",
       "text": "bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​bla​energia​solar​baterias​armazenamento​futuro",
-      "latency_ms": 3.0939000007492723,
+      "latency_ms": 2.8795000007448834,
       "previous_failure_classes": [
         "noise_inclusion"
       ],
@@ -1072,7 +1072,7 @@
     {
       "case": "long-noise",
       "text": "BLa bLA blA BlA bLa bLA BLa bLa bla bla BLa bLa BLa bLa blA bLa bLA BlA Bla blA BLA Bla bLA bla Bla BLa Bla Bla bla Bla blA blA bLa bla bLA blA bla bLA bla bLA BlA BlA blA bla BlA Bla bla bLA bla bLA BlA Bla bLa bla bla bLa bLA BlA bla Bla bla BlA Bla bLa blA bLa Bla bla BlA bla BLa bLa bla blA Bla bla BlA Bla bla bla bLa bla bla bla bLa bLa bLa bla bLa bla bLA BlA BlA bla bla blA bla Bla bla BLa Bla blA bla Bla bla blA blA BlA blA bLa blA BlA Bla blA bLa bLA bLA Bla bla bla ENerGIA solAr BaTErias ARMAzeNAmentO fuTuro",
-      "latency_ms": 2.2523999996337807,
+      "latency_ms": 2.224200000455312,
       "previous_failure_classes": [
         "noise_inclusion"
       ],
@@ -1091,7 +1091,7 @@
     {
       "case": "long-noise",
       "text": "bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla energia solar baterias armazenamnto futuro",
-      "latency_ms": 2.3370999997496256,
+      "latency_ms": 2.268700000058743,
       "previous_failure_classes": [
         "noise_inclusion"
       ],
@@ -1110,7 +1110,7 @@
     {
       "case": "long-noise",
       "text": "bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla energia solar baterias armazenamento fuuturo",
-      "latency_ms": 2.285399999891524,
+      "latency_ms": 2.1987000000081025,
       "previous_failure_classes": [
         "noise_inclusion"
       ],
@@ -1129,7 +1129,7 @@
     {
       "case": "long-noise",
       "text": "bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla energia soalr baterias armazenamento futuro",
-      "latency_ms": 2.3725999999442138,
+      "latency_ms": 2.1842000005563023,
       "previous_failure_classes": [
         "noise_inclusion"
       ],
@@ -1148,7 +1148,7 @@
     {
       "case": "long-noise",
       "text": "bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla energaa solar baterias armazenamento futuro",
-      "latency_ms": 2.3150999995777966,
+      "latency_ms": 2.1425000004455796,
       "previous_failure_classes": [
         "noise_inclusion"
       ],
@@ -1167,7 +1167,7 @@
     {
       "case": "long-noise",
       "text": "bla bla bla bla bla bla bla bla blabla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla energia solar baterias armazenamento futuro",
-      "latency_ms": 19.05059999990044,
+      "latency_ms": 18.46990000012738,
       "previous_failure_classes": [
         "noise_inclusion"
       ],
@@ -1190,7 +1190,7 @@
     {
       "case": "long-noise",
       "text": "bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla energia solar bat erias armazenamento futuro",
-      "latency_ms": 2.81269999959477,
+      "latency_ms": 2.6225999999951455,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -1213,7 +1213,7 @@
     {
       "case": "long-noise",
       "text": "bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla energia solar bateri armazenamento futuro",
-      "latency_ms": 2.3677999997744337,
+      "latency_ms": 2.1999000000505475,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -1236,7 +1236,7 @@
     {
       "case": "long-noise",
       "text": "bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla energia solar baterias armazenamento futuro mudando de assunto futebol receita viagem bla bla qualquer coisa",
-      "latency_ms": 3.0931999999666004,
+      "latency_ms": 2.827400000569469,
       "previous_failure_classes": [
         "noise_inclusion"
       ],
@@ -1255,7 +1255,7 @@
     {
       "case": "long-noise",
       "text": "bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla energia solar baterias armazenamento futuro anyway random stuff pero entonces bla",
-      "latency_ms": 2.8308999999353546,
+      "latency_ms": 2.422399999886693,
       "previous_failure_classes": [
         "noise_inclusion"
       ],
@@ -1274,7 +1274,7 @@
     {
       "case": "contradiction-evidence",
       "text": "joao ;;; comprou ;;; 3 ?? carros ?? ontem ?? mas ;;; depois ;;; disse ?? que ;;; nao... comprou ?? carros",
-      "latency_ms": 0.6264999992708908,
+      "latency_ms": 0.601499999902444,
       "previous_failure_classes": [
         "relation_or_meaning_error"
       ],
@@ -1293,7 +1293,7 @@
     {
       "case": "contradiction-evidence",
       "text": "joao comprou comprou comprou 3 carros ontem mas depois disse que nao comprou carros",
-      "latency_ms": 0.602699999944889,
+      "latency_ms": 0.5905999996684841,
       "previous_failure_classes": [
         "relation_or_meaning_error"
       ],
@@ -1312,7 +1312,7 @@
     {
       "case": "contradiction-evidence",
       "text": "joao comprou 3 carros ontem bla bla tipo assim mas depois disse que nao comprou carros",
-      "latency_ms": 0.7194999998318963,
+      "latency_ms": 0.6846999995104852,
       "previous_failure_classes": [
         "relation_or_meaning_error"
       ],
@@ -1331,7 +1331,7 @@
     {
       "case": "contradiction-evidence",
       "text": "<div>**joao comprou 3 carros ontem mas depois disse que nao comprou carros**</div>",
-      "latency_ms": 0.6514999995488324,
+      "latency_ms": 0.6016000006638933,
       "previous_failure_classes": [
         "relation_or_meaning_error"
       ],
@@ -1350,7 +1350,7 @@
     {
       "case": "contradiction-evidence",
       "text": "{\"conteudo\": \"joao comprou 3 carros ontem mas depois disse que nao comprou carros\", \"meta\":\"ruido\"}",
-      "latency_ms": 0.713000000359898,
+      "latency_ms": 0.686899999891466,
       "previous_failure_classes": [
         "relation_or_meaning_error"
       ],
@@ -1369,7 +1369,7 @@
     {
       "case": "contradiction-evidence",
       "text": "joao​comprou​3​carros​ontem​mas​depois​disse​que​nao​comprou​carros",
-      "latency_ms": 0.5269000002954272,
+      "latency_ms": 0.507899999320216,
       "previous_failure_classes": [
         "relation_or_meaning_error"
       ],
@@ -1388,7 +1388,7 @@
     {
       "case": "contradiction-evidence",
       "text": "Joao compRou 3 carRos ontem MAS dEpoiS dISSe qUe naO cOmpRou CArroS",
-      "latency_ms": 0.5449999998745625,
+      "latency_ms": 0.549700000192388,
       "previous_failure_classes": [
         "relation_or_meaning_error"
       ],
@@ -1407,7 +1407,7 @@
     {
       "case": "contradiction-evidence",
       "text": "joao comprou 3 carros ontem mas depois disse que nao coomprou carros",
-      "latency_ms": 0.6305999995674938,
+      "latency_ms": 0.7685000000492437,
       "previous_failure_classes": [
         "relation_or_meaning_error"
       ],
@@ -1426,7 +1426,7 @@
     {
       "case": "contradiction-evidence",
       "text": "joao comprou 3 carros otnem mas depois disse que nao comprou carros",
-      "latency_ms": 0.6501000007119728,
+      "latency_ms": 0.6642999996984145,
       "previous_failure_classes": [
         "relation_or_meaning_error"
       ],
@@ -1445,7 +1445,7 @@
     {
       "case": "contradiction-evidence",
       "text": "joao comprou 3 carros ostem mas depois disse que nao comprou carros",
-      "latency_ms": 0.7497999995393911,
+      "latency_ms": 0.75970000034431,
       "previous_failure_classes": [
         "relation_or_meaning_error"
       ],
@@ -1464,7 +1464,7 @@
     {
       "case": "contradiction-evidence",
       "text": "joao comprou 3 carros ontem mas depoisdisse que nao comprou carros",
-      "latency_ms": 12.095799999769952,
+      "latency_ms": 11.738700000023528,
       "previous_failure_classes": [
         "relation_or_meaning_error"
       ],
@@ -1483,7 +1483,7 @@
     {
       "case": "contradiction-evidence",
       "text": "joao comprou carros 3 ontem mas depois disse que nao comprou carros",
-      "latency_ms": 0.647900000330992,
+      "latency_ms": 0.6382999999914318,
       "previous_failure_classes": [
         "relation_or_meaning_error"
       ],
@@ -1502,7 +1502,7 @@
     {
       "case": "pronoun-preservation",
       "text": "joao comprou carros ontem. ele paou 20 mil cada",
-      "latency_ms": 0.6361999994624057,
+      "latency_ms": 0.6272999999055173,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -1525,7 +1525,7 @@
     {
       "case": "pronoun-preservation",
       "text": "joao comprou carros ontem. elepagou 20 mil cada",
-      "latency_ms": 10.319199999685225,
+      "latency_ms": 9.688099999948463,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -1549,7 +1549,7 @@
     {
       "case": "mixed-language",
       "text": "joao bought 3 caros usados yesterday mas paguo 20 mil cada",
-      "latency_ms": 0.7018000005700742,
+      "latency_ms": 0.6404999994629179,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -1572,7 +1572,7 @@
     {
       "case": "mixed-language",
       "text": "joao bought 3 carros usados yesterday mas pagro 20 mil cada",
-      "latency_ms": 0.7383000001937035,
+      "latency_ms": 0.6870999995953753,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -1595,7 +1595,7 @@
     {
       "case": "minimal-negation-positive",
       "text": "joao comprou carroontem",
-      "latency_ms": 15.782899999976507,
+      "latency_ms": 15.432399999554036,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -1618,7 +1618,7 @@
     {
       "case": "minimal-negation-positive",
       "text": "joao compro carro ontem",
-      "latency_ms": 0.17639999987295596,
+      "latency_ms": 0.16709999999875436,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -1641,7 +1641,7 @@
     {
       "case": "minimal-negation-positive",
       "text": "comprou joao carro ontem",
-      "latency_ms": 0.13790000048174988,
+      "latency_ms": 0.13419999959296547,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -1664,7 +1664,7 @@
     {
       "case": "minimal-negation-negative",
       "text": "joao... nao... comprou... carro ?? ontem",
-      "latency_ms": 0.27239999963057926,
+      "latency_ms": 0.2908000005845679,
       "previous_failure_classes": [
         "relation_or_meaning_error"
       ],
@@ -1683,7 +1683,7 @@
     {
       "case": "minimal-negation-negative",
       "text": "joao nao comproucarro ontem",
-      "latency_ms": 0.14139999984763563,
+      "latency_ms": 0.14540000029228395,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -1707,7 +1707,7 @@
     {
       "case": "minimal-negation-negative",
       "text": "joao nao compro carro ontem",
-      "latency_ms": 0.178799999957846,
+      "latency_ms": 0.1750999999785563,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -1730,7 +1730,7 @@
     {
       "case": "typo-energy",
       "text": "enerjia solra bateras armazenam nto nto futoro",
-      "latency_ms": 0.6298999996943166,
+      "latency_ms": 0.5952000001343549,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -1753,7 +1753,7 @@
     {
       "case": "typo-energy",
       "text": "enerjia solar batera armazenamnto futoro",
-      "latency_ms": 0.6680999995296588,
+      "latency_ms": 0.5165000002307352,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -1776,7 +1776,7 @@
     {
       "case": "valid-caro-not-rewritten",
       "text": "joao... comprou ;;; 3!!! caro... ontem... e!!! [ruido] ;;; nada!!! haver... paguo!!! 20!!! mil... cada... mas ?? acho!!! que!!! ele ?? tava... falando!!! de ;;; carros!!! usados... bla ;;; bla",
-      "latency_ms": 1.3453999999910593,
+      "latency_ms": 1.3863000003766501,
       "previous_failure_classes": [
         "noise_inclusion",
         "relation_or_meaning_error"
@@ -1801,7 +1801,7 @@
     {
       "case": "valid-caro-not-rewritten",
       "text": "<div>**joao•comprou•3•caro•ontlm•e•paguo•20•mil•cada•mas•acho•que•ele•tava•falando•de•carros•usados•bla•bla**</div>",
-      "latency_ms": 0.9325999999418855,
+      "latency_ms": 0.9589000001142267,
       "previous_failure_classes": [
         "important_information_loss",
         "relation_or_meaning_error"
@@ -1826,7 +1826,7 @@
     {
       "case": "valid-caro-not-rewritten",
       "text": "Comprou Joao 3 CARO ONTem E paGuo 20 mil caDA mAs achO quE elE tAVa faLAndo DE carros usADoS bla bLa",
-      "latency_ms": 0.9239000000889064,
+      "latency_ms": 0.8910000005926122,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -1849,7 +1849,7 @@
     {
       "case": "double-negation-bridge",
       "text": "joao xxxxx qqq nao nao compro carro ontem",
-      "latency_ms": 0.3112999993390986,
+      "latency_ms": 0.3115999998044572,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -1872,7 +1872,7 @@
     {
       "case": "typed-date-time-value",
       "text": "Maria comprou 3 carrros em 21 08 2026 às 14 30 por 20 000 reais",
-      "latency_ms": 0.5355000002964516,
+      "latency_ms": 0.5078000003777561,
       "previous_failure_classes": [
         "important_information_loss",
         "numeric_date_quantity_error"
@@ -1903,7 +1903,7 @@
     {
       "case": "typed-date-time-value",
       "text": "<div>**Mania comprou3 carros em 21/08/2026 às 14:30 por 20.000 reais**</div>",
-      "latency_ms": 0.49390000003768364,
+      "latency_ms": 0.4643000002033659,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -1926,7 +1926,7 @@
     {
       "case": "typed-date-time-value",
       "text": "Maria... comrp!!! 3 ?? carros!!! em... 21/08/2026 ?? às ;;; 14:30 ?? por!!! 20.000 ;;; reais",
-      "latency_ms": 0.5277999998725136,
+      "latency_ms": 0.4914999999527936,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -1949,7 +1949,7 @@
     {
       "case": "mojibake-health",
       "text": "SAãºDe pÃºBlICa PrevEncAo hospittaIs mudando de assunto futebol receita viagem bla bla qualquer coisa",
-      "latency_ms": 41.68240000035439,
+      "latency_ms": 40.33460000027844,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -1972,7 +1972,7 @@
     {
       "case": "mojibake-health",
       "text": "saÃºdepÃºblica prevencao hospitais anyway random stuff pero entonces entonces entonces bla",
-      "latency_ms": 5.026099999668077,
+      "latency_ms": 4.944599999362254,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -1996,7 +1996,7 @@
     {
       "case": "mojibake-health",
       "text": "saÃºe​pÃºblica​prevenca​hospitais",
-      "latency_ms": 26.10940000067785,
+      "latency_ms": 25.55240000037884,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -2020,7 +2020,7 @@
     {
       "case": "html-markup",
       "text": "<div> energia solar </div> **bateria** mudando de assunto futebol receia viagem bla bla agora enfim",
-      "latency_ms": 0.6284000000960077,
+      "latency_ms": 0.5897999999433523,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -2043,7 +2043,7 @@
     {
       "case": "html-markup",
       "text": "<div> energia solar </div> **bater ias** anyway random stuff pero entonces bla xxxxx qqq",
-      "latency_ms": 0.659599999380589,
+      "latency_ms": 0.6269000004976988,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -2066,7 +2066,7 @@
     {
       "case": "glued-split-phrase",
       "text": "ener giasolar bateria mudando de assuno futebol receita viagem bla bla qualquer coisa",
-      "latency_ms": 12.096499999643129,
+      "latency_ms": 11.19029999972554,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -2089,7 +2089,7 @@
     {
       "case": "glued-split-phrase",
       "text": "ener ;;; gisolar ?? batersas",
-      "latency_ms": 0.2611999998407555,
+      "latency_ms": 0.24250000024039764,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -2113,7 +2113,7 @@
     {
       "case": "long-noise",
       "text": "bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla energi solar baterias arma zenamento futuro",
-      "latency_ms": 20.855400000073132,
+      "latency_ms": 21.252999999887834,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -2136,7 +2136,7 @@
     {
       "case": "long-noise",
       "text": "bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla xxxxx qqq bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla eenrgia solar bater ias armazenamento futuro",
-      "latency_ms": 2.473900000040885,
+      "latency_ms": 2.2851000003356603,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -2159,7 +2159,7 @@
     {
       "case": "long-noise",
       "text": "{\"conteudo\": \"bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla [ruido] nada haver bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla energia solar baterias armazenamento futuro\", \"meta\":\"rudio\"}",
-      "latency_ms": 2.6736999998320243,
+      "latency_ms": 2.4814999997033738,
       "previous_failure_classes": [
         "noise_inclusion"
       ],
@@ -2178,7 +2178,7 @@
     {
       "case": "contradiction-evidence",
       "text": "<div>**joao comprou 3 carros ontem mas depois diase que nao comprrou carros**</div>",
-      "latency_ms": 0.8699999998498242,
+      "latency_ms": 0.8351000005859532,
       "previous_failure_classes": [
         "relation_or_meaning_error"
       ],
@@ -2197,7 +2197,7 @@
     {
       "case": "mixed-language",
       "text": "joaobught 3 carros usados yeesterday mas paguo 20 mil cada",
-      "latency_ms": 3.0954000003475812,
+      "latency_ms": 2.985399999488436,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -2220,7 +2220,7 @@
     {
       "case": "mixed-language",
       "text": "joao bouht 3carros usados yesterday mas paguuo 20 mil cada",
-      "latency_ms": 21.144500000445987,
+      "latency_ms": 40.643899999849964,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -2243,7 +2243,7 @@
     {
       "case": "minimal-negation-positive",
       "text": "joao compro carro onteem mudando de assunto futebol receita viagem bla bla agora enfim",
-      "latency_ms": 0.7218999999167863,
+      "latency_ms": 0.6817999992563273,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -2266,7 +2266,7 @@
     {
       "case": "minimal-negation-negative",
       "text": "joao ?? hmm... enfim ?? sei... la ;;; nao ??comprou!!! carro!!! ontem",
-      "latency_ms": 0.4600000002028537,
+      "latency_ms": 0.43679999998857966,
       "previous_failure_classes": [
         "relation_or_meaning_error"
       ],
@@ -2285,7 +2285,7 @@
     {
       "case": "typo-energy",
       "text": "enerjia solar bateras armazenam nto futoro mudando de assunto futebol receita viagem bla bla agora enfim",
-      "latency_ms": 0.9976999999707914,
+      "latency_ms": 0.96659999962867,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -2308,7 +2308,7 @@
     {
       "case": "typo-energy",
       "text": "enerjia solar bateras armazenam nto futoro mudando de assunto futebol receita viagem bla blaagora enfim",
-      "latency_ms": 47.282800000175484,
+      "latency_ms": 22.21319999989646,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -2331,7 +2331,7 @@
     {
       "case": "typo-energy",
       "text": "enerjia solar bateras armazenam nto futoro mudando de assunto futebol receita viagem bla blaagora enfim mudando de assunto futebol receita viagem bla bla agora enfim",
-      "latency_ms": 23.035999999592605,
+      "latency_ms": 22.015700000338256,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -2354,7 +2354,7 @@
     {
       "case": "paguo-not-paulo",
       "text": "joaocomprou carro ontem e paguo 20 mil cada",
-      "latency_ms": 2.7329000004101545,
+      "latency_ms": 2.5851000000329805,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -2378,7 +2378,7 @@
     {
       "case": "paguo-not-paulo",
       "text": "joaocomprou!!! carro ?? ontem... e!!! paguo!!! 20... mil ;;; cada",
-      "latency_ms": 2.5538999998389045,
+      "latency_ms": 2.4570000005041948,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -2402,7 +2402,7 @@
     {
       "case": "paguo-not-paulo",
       "text": "joaocomprou!!! carro ?? ontem... e!!! pagguo!!! 20... mil ;;; cada",
-      "latency_ms": 19.26050000020041,
+      "latency_ms": 18.715899999733665,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -2427,7 +2427,7 @@
     {
       "case": "paguo-not-paulo",
       "text": "joaocompro!!! carro ?? ontem... e!!! pagguo!!! 20... mil ;;; cada",
-      "latency_ms": 16.884800000298128,
+      "latency_ms": 16.465700000480865,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -2452,7 +2452,7 @@
     {
       "case": "valid-caro-not-rewritten",
       "text": "joao comprou 3 caro ontem e paguo 20 mil cada mas acho que ele tava falando de carrosusados bla bla",
-      "latency_ms": 22.151400000439025,
+      "latency_ms": 21.368100000472623,
       "previous_failure_classes": [
         "important_information_loss",
         "relation_or_meaning_error"
@@ -2478,7 +2478,7 @@
     {
       "case": "valid-caro-not-rewritten",
       "text": "joao ;;; comprou!!! 3 ;;; caro!!! ontem ?? e... paguo ;;; 20 ?? mil!!! cada... mas!!! acho ;;; que!!! ele!!! tava ;;; falando ?? de ;;; carrosusados ?? bla!!! bla",
-      "latency_ms": 21.882199999708973,
+      "latency_ms": 21.174800000153482,
       "previous_failure_classes": [
         "important_information_loss",
         "noise_inclusion",
@@ -2508,7 +2508,7 @@
     {
       "case": "valid-caro-not-rewritten",
       "text": "joao ;;; comprou!!! 3 ;;; caro!!! ontem ?? e... paguo ;;; 20 ?? mil!!! cada... mas!!! acho xxxxx qqq ;;; que!!! ele!!! tava ;;; falando ?? de ;;; carrosusados ?? bla!!! bla",
-      "latency_ms": 1.0452999995322898,
+      "latency_ms": 0.9800000007089693,
       "previous_failure_classes": [
         "important_information_loss",
         "noise_inclusion",
@@ -2538,7 +2538,7 @@
     {
       "case": "valid-caro-not-rewritten",
       "text": "joao ;;; compro!!! 3 ;;; caro!!! ontem ?? e... paguo ;;; 20 ?? mil!!! cada... mas!!! acho xxxxx qqq ;;; que!!! ele!!! tava ;;; falando ?? de ;;; carrosusados ?? bla!!! bla",
-      "latency_ms": 1.001399999950081,
+      "latency_ms": 0.9459999992031953,
       "previous_failure_classes": [
         "important_information_loss",
         "noise_inclusion",
@@ -2569,7 +2569,7 @@
     {
       "case": "single-negation-bridge",
       "text": "joao nao compr carro ontem",
-      "latency_ms": 0.3206999999747495,
+      "latency_ms": 0.33290000010310905,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -2592,7 +2592,7 @@
     {
       "case": "single-negation-bridge",
       "text": "joao nao compr carro ontem anyway random stuff pero entonces bla",
-      "latency_ms": 0.5883000003450434,
+      "latency_ms": 0.5681000002368819,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -2615,7 +2615,7 @@
     {
       "case": "single-negation-bridge",
       "text": "joao nao compr carroontem anyway random stuff pero entonces bla",
-      "latency_ms": 16.3845000006404,
+      "latency_ms": 16.156800000317162,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -2639,7 +2639,7 @@
     {
       "case": "single-negation-bridge",
       "text": "joao nao compr carroontem anyway random stuff pero entonce bla",
-      "latency_ms": 30.269699999735167,
+      "latency_ms": 29.595899999549147,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -2663,7 +2663,7 @@
     {
       "case": "double-negation-bridge",
       "text": "joao nao nao comprou carroontem anyway random stuff pero entonce bla",
-      "latency_ms": 15.691000000515487,
+      "latency_ms": 15.744899999845074,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -2686,7 +2686,7 @@
     {
       "case": "double-negation-bridge",
       "text": "joao nao nao comprou carroontem anyway random random random random stuff pero entonce bla",
-      "latency_ms": 30.51049999976385,
+      "latency_ms": 29.376000000411295,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -2709,7 +2709,7 @@
     {
       "case": "typed-date-time-value",
       "text": "Maria comprou 3 carros em 21 08 2026 às 14 30 por 20 000 reais anyway random stuff pero entonces bla",
-      "latency_ms": 0.8967000003394787,
+      "latency_ms": 0.7863999999244697,
       "previous_failure_classes": [
         "important_information_loss",
         "numeric_date_quantity_error"
@@ -2740,7 +2740,7 @@
     {
       "case": "typed-date-time-value",
       "text": "Maria comprou 3 carros em 21 08 2026 às 14 30 por 20 000 reais anyway random stuff pero entonce bla",
-      "latency_ms": 15.793099999427795,
+      "latency_ms": 15.092499999809661,
       "previous_failure_classes": [
         "important_information_loss",
         "numeric_date_quantity_error"
@@ -2771,7 +2771,7 @@
     {
       "case": "typed-date-time-value",
       "text": "Maria comprou 3 carros em 21 08 2026 às 14 30 por 20 000 reais anyway random stuff pero entonce bla mudando de assunto futebol receita viagem bla bla agora enfim",
-      "latency_ms": 16.263900000012654,
+      "latency_ms": 15.736900000774767,
       "previous_failure_classes": [
         "important_information_loss",
         "numeric_date_quantity_error"
@@ -2802,7 +2802,7 @@
     {
       "case": "mojibake-health",
       "text": "saÃºde pÃÃºblica prevencao hospitais",
-      "latency_ms": 25.07179999975051,
+      "latency_ms": 24.633299999550218,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -2826,7 +2826,7 @@
     {
       "case": "mojibake-health",
       "text": "saÃºde pÃÃºblica prev encao hospitais",
-      "latency_ms": 38.9285999999629,
+      "latency_ms": 37.57729999961157,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -2851,7 +2851,7 @@
     {
       "case": "mojibake-health",
       "text": "saÃºde pÃÃºblica prev encao hospitais anyway random stuff pero entonces bla",
-      "latency_ms": 39.15480000068783,
+      "latency_ms": 38.467400000627094,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -2876,7 +2876,7 @@
     {
       "case": "mojibake-health",
       "text": "saÃºde pÃÃºblica prev encaohospitais anyway random stuff pero entonces bla",
-      "latency_ms": 47.71300000084011,
+      "latency_ms": 46.364400000129535,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -2902,7 +2902,7 @@
     {
       "case": "html-markup",
       "text": " div  energia solar   div    bateri  ",
-      "latency_ms": 0.28900000052090036,
+      "latency_ms": 0.2818000002662302,
       "previous_failure_classes": [
         "important_information_loss",
         "noise_inclusion"
@@ -2929,7 +2929,7 @@
     {
       "case": "html-markup",
       "text": " div  energ solar   div    bateri  ",
-      "latency_ms": 0.32190000001719454,
+      "latency_ms": 0.31380000018543797,
       "previous_failure_classes": [
         "important_information_loss",
         "noise_inclusion"
@@ -2957,7 +2957,7 @@
     {
       "case": "html-markup",
       "text": "div energ solar div bateri bateri bateri",
-      "latency_ms": 0.3845999999612104,
+      "latency_ms": 0.3720999993674923,
       "previous_failure_classes": [
         "important_information_loss",
         "noise_inclusion"
@@ -2985,7 +2985,7 @@
     {
       "case": "glued-split-phrase",
       "text": "ener giasolarbaterias",
-      "latency_ms": 3.365700000358629,
+      "latency_ms": 3.2683999997971114,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -3010,7 +3010,7 @@
     {
       "case": "glued-split-phrase",
       "text": "ener giasolarbaterias mudando de assunto futebol receita viagem bla bla agora enfim",
-      "latency_ms": 4.204099999697064,
+      "latency_ms": 3.8183000006029033,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -3035,7 +3035,7 @@
     {
       "case": "glued-split-phrase",
       "text": "ener giasolarbaterias mduando de assunto futebol receita viagem bla bla agora enfim",
-      "latency_ms": 4.01629999942088,
+      "latency_ms": 3.834600000118371,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -3060,7 +3060,7 @@
     {
       "case": "glued-split-phrase",
       "text": "ener giasolarbaterias mduando de asusnto futebol receita viagem bla bla agora enfim",
-      "latency_ms": 3.9698000000498723,
+      "latency_ms": 3.934299999855284,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -3085,7 +3085,7 @@
     {
       "case": "emoji-punctuation",
       "text": "energia🔥solar!!! bater ias?? armazenamento",
-      "latency_ms": 0.27260000024398323,
+      "latency_ms": 0.3490999997666222,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -3108,7 +3108,7 @@
     {
       "case": "emoji-punctuation",
       "text": "energia🔥solar!!! bater ias?? armazenamento anyway random stuff pero entonces bla",
-      "latency_ms": 0.5638000002363697,
+      "latency_ms": 0.5604999996648985,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -3131,7 +3131,7 @@
     {
       "case": "emoji-punctuation",
       "text": "energia🔥solar!!! bater ias?? xxxxx qqq armazenamento anyway random stuff pero entonces bla",
-      "latency_ms": 0.692400000843918,
+      "latency_ms": 0.6564999994225218,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -3154,7 +3154,7 @@
     {
       "case": "emoji-punctuation",
       "text": "{\"conteudo\": \"energia🔥solar!!! bater ias?? xxxxx qqq armazenamento anyway random stuff pero entonces bla\", \"meta\":\"ruido\"}",
-      "latency_ms": 0.8342999999513268,
+      "latency_ms": 0.7926999996925588,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -3177,7 +3177,7 @@
     {
       "case": "long-noise",
       "text": "bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla energia solar bateri armazenamen futuro",
-      "latency_ms": 11.46969999990688,
+      "latency_ms": 11.067400000683847,
       "previous_failure_classes": [
         "important_information_loss",
         "noise_inclusion"
@@ -3201,7 +3201,7 @@
     {
       "case": "long-noise",
       "text": "bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla energia solar bateri armazenmen futuro",
-      "latency_ms": 12.785500000063621,
+      "latency_ms": 12.461399999665446,
       "previous_failure_classes": [
         "important_information_loss",
         "noise_inclusion"
@@ -3226,7 +3226,7 @@
     {
       "case": "contradiction-evidence",
       "text": "  conteudo    joao comprou 3 carros ontem mas depois disse que nao comprou carros    meta   ruido  ",
-      "latency_ms": 0.8262999999715248,
+      "latency_ms": 0.799600000391365,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -3249,7 +3249,7 @@
     {
       "case": "contradiction-evidence",
       "text": "conteudo🙂joao🙂comprou🙂3🙂carros🙂ontem🙂mas🙂depois🙂disse🙂que🙂nao🙂comprou🙂carros🙂meta🙂ruido",
-      "latency_ms": 0.6994999994276441,
+      "latency_ms": 0.6763000001228647,
       "previous_failure_classes": [
         "important_information_loss",
         "relation_or_meaning_error"
@@ -3273,7 +3273,7 @@
     {
       "case": "contradiction-evidence",
       "text": "conteudo🙂joao🙂comprou🙂3🙂carros🙂otem🙂mas🙂depois🙂disse🙂que🙂nao🙂comprou🙂carros🙂meta🙂ruido",
-      "latency_ms": 0.8926999998948304,
+      "latency_ms": 0.8653999993839534,
       "previous_failure_classes": [
         "important_information_loss",
         "relation_or_meaning_error"
@@ -3297,7 +3297,7 @@
     {
       "case": "mixed-language",
       "text": "joao bought 3 caros usados yesterday mas pgauo 20 mil cada",
-      "latency_ms": 0.5365999995774473,
+      "latency_ms": 0.5184000001463573,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -3321,7 +3321,7 @@
     {
       "case": "mixed-language",
       "text": "joao bought 3 caros usados yesterday mas pgauo [ruido] nada haver 20 mil cada",
-      "latency_ms": 0.7021000001259381,
+      "latency_ms": 0.6783999997423962,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -3345,7 +3345,7 @@
     {
       "case": "mixed-language",
       "text": "joaobought 3 caros usados yesterday mas pgauo [ruido] nada haver 20 mil cada",
-      "latency_ms": 2.4856999998519314,
+      "latency_ms": 2.4484999994456302,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -3370,7 +3370,7 @@
     {
       "case": "minimal-negation-positive",
       "text": "joao comproucarro ontem",
-      "latency_ms": 16.127800000504067,
+      "latency_ms": 17.19660000071599,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -3394,7 +3394,7 @@
     {
       "case": "minimal-negation-positive",
       "text": "joao comprouca rro ontem",
-      "latency_ms": 32.10510000008071,
+      "latency_ms": 50.34539999996923,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -3418,7 +3418,7 @@
     {
       "case": "minimal-negation-positive",
       "text": "joaocomprouca rro ontem",
-      "latency_ms": 5.672799999956624,
+      "latency_ms": 5.486399999426794,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -3443,7 +3443,7 @@
     {
       "case": "minimal-negation-positive",
       "text": "joaocomprouca rroontem",
-      "latency_ms": 36.25890000057552,
+      "latency_ms": 16.2227000000712,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -3468,7 +3468,7 @@
     {
       "case": "minimal-negation-negative",
       "text": "nao joao comprou carro ontem",
-      "latency_ms": 0.22499999977299012,
+      "latency_ms": 0.1937000006364542,
       "previous_failure_classes": [
         "important_information_loss",
         "relation_or_meaning_error"
@@ -3492,7 +3492,7 @@
     {
       "case": "minimal-negation-negative",
       "text": "nao joaocomprou carro ontem",
-      "latency_ms": 2.2955000004003523,
+      "latency_ms": 2.215999999862106,
       "previous_failure_classes": [
         "important_information_loss",
         "relation_or_meaning_error"
@@ -3517,7 +3517,7 @@
     {
       "case": "minimal-negation-negative",
       "text": "nao joaocomprou carro hmm enfim sei la ontem",
-      "latency_ms": 2.3929999997562845,
+      "latency_ms": 2.35659999998461,
       "previous_failure_classes": [
         "important_information_loss",
         "relation_or_meaning_error"
@@ -3542,7 +3542,7 @@
     {
       "case": "minimal-negation-negative",
       "text": "nao joaocomprou carro hmm enfim sei sei sei sei la ontem",
-      "latency_ms": 2.425599999696715,
+      "latency_ms": 2.3613000003024354,
       "previous_failure_classes": [
         "important_information_loss",
         "relation_or_meaning_error"
@@ -3567,7 +3567,7 @@
     {
       "case": "paguo-not-paulo",
       "text": "joaocomprou carro onetm e paguo 20 mil cada",
-      "latency_ms": 2.567300000009709,
+      "latency_ms": 2.546799999436189,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -3591,7 +3591,7 @@
     {
       "case": "paguo-not-paulo",
       "text": "joaocomprou carro onetm e paaguo 20 mil cada",
-      "latency_ms": 18.87929999975313,
+      "latency_ms": 18.357299999479437,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -3616,7 +3616,7 @@
     {
       "case": "paguo-not-paulo",
       "text": "joaocomproucarro onetm e paaguo 20 mil cada",
-      "latency_ms": 21.48289999968256,
+      "latency_ms": 20.37709999967774,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -3642,7 +3642,7 @@
     {
       "case": "valid-caro-not-rewritten",
       "text": "joao ?? comprou ?? 3!!! caro!!! ontem!!! e ?? paguo ;;; 20 ?? mil ;;; cada!!! mas ;;; acho ;;; que!!! ele!!! tava ?? falando ;;; de ;;; carros ;;; usados ;;; bla... bla",
-      "latency_ms": 1.0153000002901535,
+      "latency_ms": 0.9589999999661813,
       "previous_failure_classes": [
         "noise_inclusion",
         "relation_or_meaning_error"
@@ -3667,7 +3667,7 @@
     {
       "case": "valid-caro-not-rewritten",
       "text": "joao ?? comprou ??3!!! caro!!! ontem!!! e ?? paguo ;;; 20 ?? mil ;;; cada!!! mas ;;; acho ;;; que!!! ele!!! tava ?? falando ;;; de ;;; carros ;;; usados ;;; bla... bla",
-      "latency_ms": 0.9632000001147389,
+      "latency_ms": 0.9114000004046829,
       "previous_failure_classes": [
         "noise_inclusion",
         "relation_or_meaning_error"
@@ -3692,7 +3692,7 @@
     {
       "case": "valid-caro-not-rewritten",
       "text": "<div>**joao ?? comprou ??3!!! caro!!! ontem!!! e ?? paguo ;;; 20 ?? mil ;;; cada!!! mas ;;; acho ;;; que!!! ele!!! tava ?? falando ;;; de ;;; carros ;;; usados ;;; bla... bla**</div>",
-      "latency_ms": 1.0412999999971362,
+      "latency_ms": 0.991700000668061,
       "previous_failure_classes": [
         "noise_inclusion",
         "relation_or_meaning_error"
@@ -3717,7 +3717,7 @@
     {
       "case": "valid-caro-not-rewritten",
       "text": "<div>**joao ?? ??3!!! comprou caro!!! ontem!!! e ?? paguo ;;; 20 ?? mil ;;; cada!!! mas ;;; acho ;;; que!!! ele!!! tava ?? falando ;;; de ;;; carros ;;; usados ;;; bla... bla**</div>",
-      "latency_ms": 1.0281999993821955,
+      "latency_ms": 0.9581999993315549,
       "previous_failure_classes": [
         "important_information_loss",
         "noise_inclusion",
@@ -3746,7 +3746,7 @@
     {
       "case": "single-negation-bridge",
       "text": "joao naocompruo carro ontem",
-      "latency_ms": 17.639499999859254,
+      "latency_ms": 17.867300000034447,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -3769,7 +3769,7 @@
     {
       "case": "single-negation-bridge",
       "text": "joao ;;; naocompruo!!! carro ?? ontem",
-      "latency_ms": 17.56660000046395,
+      "latency_ms": 17.03540000016801,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -3792,7 +3792,7 @@
     {
       "case": "single-negation-bridge",
       "text": "joao ;;; naocompruo!!! caro ?? ontem",
-      "latency_ms": 17.344699999739532,
+      "latency_ms": 16.9700999995257,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -3816,7 +3816,7 @@
     {
       "case": "double-negation-bridge",
       "text": "joao nao naocomprou carro ontem",
-      "latency_ms": 3.439000000071246,
+      "latency_ms": 3.3644999994066893,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -3839,7 +3839,7 @@
     {
       "case": "double-negation-bridge",
       "text": "joao nao naocomprou carro ontem hmm enfim sei la",
-      "latency_ms": 3.5444000004645204,
+      "latency_ms": 3.439500000240514,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -3862,7 +3862,7 @@
     {
       "case": "double-negation-bridge",
       "text": "joao nao naocomprou carro ontem hmmenfim sei la",
-      "latency_ms": 11.074900000494381,
+      "latency_ms": 10.926300000392075,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -3885,7 +3885,7 @@
     {
       "case": "double-negation-bridge",
       "text": "joao nao naocomprou carro ontem hmmenfim sei la mudando de assunto futebol receita viagem bla bla qualquer coisa",
-      "latency_ms": 8.122000000184926,
+      "latency_ms": 7.953899999847636,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -3908,7 +3908,7 @@
     {
       "case": "typed-date-time-value",
       "text": "Mara comprou 3 carros em 21/08/2026 às 14:30 por 20.000 reais",
-      "latency_ms": 0.4273000004104688,
+      "latency_ms": 0.42830000074900454,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -3931,7 +3931,7 @@
     {
       "case": "typed-date-time-value",
       "text": "Mara comprou 3 caros em 21/08/2026 às 14:30 por 20.000 reais",
-      "latency_ms": 0.39569999989907956,
+      "latency_ms": 0.532500000190339,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -3955,7 +3955,7 @@
     {
       "case": "typed-date-time-value",
       "text": "Mara comprou 3 caros em 21 08 2026 às 14 30 por 20 000 reais",
-      "latency_ms": 0.47990000075515127,
+      "latency_ms": 0.5089000005682465,
       "previous_failure_classes": [
         "important_information_loss",
         "numeric_date_quantity_error"
@@ -3988,7 +3988,7 @@
     {
       "case": "typed-date-time-value",
       "text": "Mara cmoprou 3 caros em 21 08 2026 às 14 30 por 20 000 reais",
-      "latency_ms": 0.5049999999755528,
+      "latency_ms": 0.5061000001660432,
       "previous_failure_classes": [
         "important_information_loss",
         "numeric_date_quantity_error"
@@ -4021,7 +4021,7 @@
     {
       "case": "mojibake-health",
       "text": "saÃºde pÃbºlica prevencao hmm enfim sei la hospitais",
-      "latency_ms": 14.368400000421389,
+      "latency_ms": 13.865699999769276,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -4045,7 +4045,7 @@
     {
       "case": "mojibake-health",
       "text": "saÃºde pÃbºllica prevencao hmm enfim sei la hospitais",
-      "latency_ms": 25.6256000002395,
+      "latency_ms": 25.107499999649008,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -4069,7 +4069,7 @@
     {
       "case": "mojibake-health",
       "text": "saÃºde pÃbºllica prevencao hmm enfim sei la hos pitais",
-      "latency_ms": 0.5338000000847387,
+      "latency_ms": 0.5043000001023756,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -4094,7 +4094,7 @@
     {
       "case": "html-markup",
       "text": " div  energ solar   div    baterias  ",
-      "latency_ms": 0.28079999992769444,
+      "latency_ms": 0.2795999998852494,
       "previous_failure_classes": [
         "important_information_loss",
         "noise_inclusion"
@@ -4121,7 +4121,7 @@
     {
       "case": "html-markup",
       "text": " div  energ solar   div    bate rias  ",
-      "latency_ms": 0.38530000074388226,
+      "latency_ms": 0.2643999996507773,
       "previous_failure_classes": [
         "important_information_loss",
         "noise_inclusion"
@@ -4149,7 +4149,7 @@
     {
       "case": "html-markup",
       "text": " div  energ soar   div    bate rias  ",
-      "latency_ms": 0.3487999993012636,
+      "latency_ms": 0.25660000028437935,
       "previous_failure_classes": [
         "important_information_loss",
         "noise_inclusion"
@@ -4178,7 +4178,7 @@
     {
       "case": "glued-split-phrase",
       "text": "ener gialolar baterias",
-      "latency_ms": 10.565800000222225,
+      "latency_ms": 10.473199999978533,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -4202,7 +4202,7 @@
     {
       "case": "glued-split-phrase",
       "text": "ener gialolar baterras",
-      "latency_ms": 10.529099999985192,
+      "latency_ms": 10.610799999994924,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -4226,7 +4226,7 @@
     {
       "case": "glued-split-phrase",
       "text": "ener gialolor baterras",
-      "latency_ms": 10.543400000642578,
+      "latency_ms": 10.051299999759067,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -4250,7 +4250,7 @@
     {
       "case": "glued-split-phrase",
       "text": "ener gialolor bterras",
-      "latency_ms": 0.2395999999862397,
+      "latency_ms": 0.19020000036107376,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -4275,7 +4275,7 @@
     {
       "case": "long-noise",
       "text": "bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla blabla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla energia solar baterias armazenamento futuro",
-      "latency_ms": 2.5157000000035623,
+      "latency_ms": 2.1083999999973457,
       "previous_failure_classes": [
         "noise_inclusion"
       ],
@@ -4298,7 +4298,7 @@
     {
       "case": "long-noise",
       "text": "bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla blabla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla energ solar baterias armazenamento futuro",
-      "latency_ms": 2.3431999998138053,
+      "latency_ms": 2.18959999983781,
       "previous_failure_classes": [
         "important_information_loss",
         "noise_inclusion"
@@ -4325,7 +4325,7 @@
     {
       "case": "long-noise",
       "text": "bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla blabla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla energ solar bateria armazenamento futuro",
-      "latency_ms": 2.3414999996020924,
+      "latency_ms": 2.2720999995726743,
       "previous_failure_classes": [
         "important_information_loss",
         "noise_inclusion"
@@ -4353,7 +4353,7 @@
     {
       "case": "long-noise",
       "text": "bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla blabla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla energ solar bateria armaz enamento futuro",
-      "latency_ms": 26.25090000037744,
+      "latency_ms": 25.319499999568507,
       "previous_failure_classes": [
         "important_information_loss",
         "noise_inclusion"
@@ -4381,7 +4381,7 @@
     {
       "case": "pronoun-preservation",
       "text": "{\"conteudo\": \"joao comprou caros ontem. ele pagou 20 mil cada\", \"meta\":\"ruido\"} mudando de assunto futebol receita viagem bla bla agora enfim",
-      "latency_ms": 0.9350999998787302,
+      "latency_ms": 0.8944000001065433,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -4404,7 +4404,7 @@
     {
       "case": "pronoun-preservation",
       "text": "{\"conteudo\": \"joao comprou caros ontem. ele pagou 20 mil cada\", \"meta\":\"ruido\"} mudando de assunto futebol receita viagem bla bla agora enfim mudando de assunto futebol receita viagem bla bla qualquer coisa",
-      "latency_ms": 1.4334000006783754,
+      "latency_ms": 1.3680000001841108,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -4427,7 +4427,7 @@
     {
       "case": "mixed-language",
       "text": "joaobought 3 carros usados yesterday mas paguo xxxxx qqq 20 mil cada",
-      "latency_ms": 2.619899999444897,
+      "latency_ms": 2.6143999994019396,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -4450,7 +4450,7 @@
     {
       "case": "mixed-language",
       "text": "joaobought 3 carros usados yesterd mas paguo xxxxx qqq 20 mil cada",
-      "latency_ms": 4.663100000470877,
+      "latency_ms": 4.53769999967335,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -4473,7 +4473,7 @@
     {
       "case": "mixed-language",
       "text": "joaobought 3 carros usados mas yesterd paguo xxxxx qqq 20 mil cada",
-      "latency_ms": 2.8147000002718414,
+      "latency_ms": 2.6559999996607075,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -4496,7 +4496,7 @@
     {
       "case": "minimal-negation-positive",
       "text": "joaocomprou carro ontem",
-      "latency_ms": 2.2650000000794535,
+      "latency_ms": 2.2245999998631305,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -4520,7 +4520,7 @@
     {
       "case": "minimal-negation-positive",
       "text": "joaocomprou carro ontem mudando de assunto futebol receita viagem bla bla qualquer coisa",
-      "latency_ms": 2.7373000002626213,
+      "latency_ms": 2.789199999824632,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -4544,7 +4544,7 @@
     {
       "case": "minimal-negation-positive",
       "text": "joaocomprou carro [ruido] nada haver ontem mudando de assunto futebol receita viagem bla bla qualquer coisa",
-      "latency_ms": 2.9349000005822745,
+      "latency_ms": 2.8938000004927744,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -4568,7 +4568,7 @@
     {
       "case": "minimal-negation-positive",
       "text": "joaocomproucarro [ruido] nada haver ontem mudando de assunto futebol receita viagem bla bla qualquer coisa",
-      "latency_ms": 3.3056000002034125,
+      "latency_ms": 3.2916000000113854,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -4593,7 +4593,7 @@
     {
       "case": "minimal-negation-negative",
       "text": "joao!!! nao!!! comprou ;;; carro... ontem",
-      "latency_ms": 0.2814999998008716,
+      "latency_ms": 0.270799999270821,
       "previous_failure_classes": [
         "relation_or_meaning_error"
       ],
@@ -4612,7 +4612,7 @@
     {
       "case": "minimal-negation-negative",
       "text": "joao!!! nao!!! compro ;;; carro... ontem",
-      "latency_ms": 0.2696999999898253,
+      "latency_ms": 0.25600000026315683,
       "previous_failure_classes": [
         "important_information_loss",
         "relation_or_meaning_error"
@@ -4636,7 +4636,7 @@
     {
       "case": "minimal-negation-negative",
       "text": "joao!!! nao!!! compro ;;; carro... ontem mudando de assunto futebol receita viagem bla bla agora enfim",
-      "latency_ms": 0.6459000005634152,
+      "latency_ms": 0.6344000003082328,
       "previous_failure_classes": [
         "important_information_loss",
         "relation_or_meaning_error"
@@ -4660,7 +4660,7 @@
     {
       "case": "minimal-negation-negative",
       "text": "joao!!! nao!!! compro ;;; carro... ontem mudandode assunto futebol receita viagem bla bla agora enfim",
-      "latency_ms": 14.6682000004148,
+      "latency_ms": 14.243200000237266,
       "previous_failure_classes": [
         "important_information_loss",
         "relation_or_meaning_error"
@@ -4684,7 +4684,7 @@
     {
       "case": "valid-caro-not-rewritten",
       "text": "jOaO ?? COmProu ?? 3!!! carO!!! OnteM!!! E ?? paGUo ;;; 20 ?? Mil ;;; Cada!!! Mas ;;; aCho ;;; quE!!! eLE!!! taVA ?? falAndO ;;; de ;;; carros ;;; uSadOs ;;; bLa... bLa",
-      "latency_ms": 1.0333000000173342,
+      "latency_ms": 0.957600000219827,
       "previous_failure_classes": [
         "noise_inclusion",
         "relation_or_meaning_error"
@@ -4709,7 +4709,7 @@
     {
       "case": "valid-caro-not-rewritten",
       "text": "jOaO ?? COmProu ?? 3!!! carO!!! OnteM!!! E ?? paGUo ;;; 20 ?? Mil ;;; Cada!!! Mas ;;; aCho ;;; quE!!! eLE!!! taVA ?? falAntO ;;; de ;;; carros ;;; uSadOs ;;; bLa... bLa",
-      "latency_ms": 1.0359999996580882,
+      "latency_ms": 0.9814999993977835,
       "previous_failure_classes": [
         "noise_inclusion",
         "relation_or_meaning_error"
@@ -4734,7 +4734,7 @@
     {
       "case": "valid-caro-not-rewritten",
       "text": "jOaO ?? COmProu ?? 3!!! carO!!! OnteM!!! E ?? paGUo ;;; 20 ?? Mil ;;; Cada!!! Mas ;;; aCho ;;; quE!!! eLE!!! taVA ?? faAntO ;;; de ;;; carros ;;; uSadOs ;;; bLa... bLa",
-      "latency_ms": 17.89680000001681,
+      "latency_ms": 17.141300000730553,
       "previous_failure_classes": [
         "noise_inclusion",
         "relation_or_meaning_error"
@@ -4759,7 +4759,7 @@
     {
       "case": "double-negation-bridge",
       "text": "joao nao nao comprou caro ontem",
-      "latency_ms": 0.18760000057227444,
+      "latency_ms": 0.1809999994293321,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -4782,7 +4782,7 @@
     {
       "case": "double-negation-bridge",
       "text": "nao joao nao comprou caro ontem",
-      "latency_ms": 0.15779999921505805,
+      "latency_ms": 0.15309999980672728,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -4806,7 +4806,7 @@
     {
       "case": "double-negation-bridge",
       "text": "nao joao nao compro caro ontem",
-      "latency_ms": 0.1581999995323713,
+      "latency_ms": 0.15840000014577527,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -4831,7 +4831,7 @@
     {
       "case": "double-negation-bridge",
       "text": "nao joao naocompro caro ontem",
-      "latency_ms": 20.12899999954243,
+      "latency_ms": 19.42510000026232,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -4856,7 +4856,7 @@
     {
       "case": "typed-date-time-value",
       "text": "Maria comprou 3 carros em 21/08/2026 às 14:30 por 20.000 reas",
-      "latency_ms": 0.4259000006641145,
+      "latency_ms": 0.41880000026139896,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -4879,7 +4879,7 @@
     {
       "case": "typed-date-time-value",
       "text": "Maria comprou 3 carros em 21 08 2026 às 14 30 por 20 000 reas",
-      "latency_ms": 0.4896000000371714,
+      "latency_ms": 0.4639000007955474,
       "previous_failure_classes": [
         "important_information_loss",
         "numeric_date_quantity_error"
@@ -4911,7 +4911,7 @@
     {
       "case": "typed-date-time-value",
       "text": "Maria Maria Maria comprou 3 carros em 21 08 2026 às 14 30 por 20 000 reas",
-      "latency_ms": 0.47540000014123507,
+      "latency_ms": 0.46380000003409805,
       "previous_failure_classes": [
         "important_information_loss",
         "numeric_date_quantity_error"
@@ -4944,7 +4944,7 @@
     {
       "case": "typed-date-time-value",
       "text": "Maria Maria Maria comprou 3 carnos em 21 08 2026 às 14 30 por 20 000 reas",
-      "latency_ms": 0.6774000003133551,
+      "latency_ms": 0.6593999996766797,
       "previous_failure_classes": [
         "important_information_loss",
         "numeric_date_quantity_error"
@@ -4977,7 +4977,7 @@
     {
       "case": "mojibake-health",
       "text": "saÃºde pÃºblicaprevencao hospitais",
-      "latency_ms": 3.0462999993687845,
+      "latency_ms": 3.0782000003455323,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -5001,7 +5001,7 @@
     {
       "case": "mojibake-health",
       "text": "saaÃºde pÃºblicaprevencao hospitais",
-      "latency_ms": 17.33059999969555,
+      "latency_ms": 17.547700000250188,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -5026,7 +5026,7 @@
     {
       "case": "mojibake-health",
       "text": "saaÃºde ;;; pÃºblicaprevencao ;;; hospitais",
-      "latency_ms": 15.064299999721698,
+      "latency_ms": 14.717299999574607,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -5051,7 +5051,7 @@
     {
       "case": "mojibake-health",
       "text": "saaÃde ;;; pÃºblicaprevencao ;;; hospitais",
-      "latency_ms": 12.955199999851175,
+      "latency_ms": 12.648999999328225,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -5076,7 +5076,7 @@
     {
       "case": "html-markup",
       "text": "<div>**<div> ene ergia solar </div> **baterias****</div>",
-      "latency_ms": 0.467900000330701,
+      "latency_ms": 0.4533000001174514,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -5099,7 +5099,7 @@
     {
       "case": "html-markup",
       "text": "<div>**<div> ene ergia solar </div> **bateri****</div>",
-      "latency_ms": 0.34469999991415534,
+      "latency_ms": 0.33119999989139615,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -5123,7 +5123,7 @@
     {
       "case": "glued-split-phrase",
       "text": "ener giasolaar baterias",
-      "latency_ms": 9.209699999701115,
+      "latency_ms": 9.119700000155717,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -5147,7 +5147,7 @@
     {
       "case": "glued-split-phrase",
       "text": "ener bla bla tipo assim giasolaar baterias",
-      "latency_ms": 9.352000000035332,
+      "latency_ms": 9.075000000848377,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -5171,7 +5171,7 @@
     {
       "case": "glued-split-phrase",
       "text": "ener🔥bla🔥bla🔥tipo🔥assim🔥giasolaar🔥baterias",
-      "latency_ms": 9.325799999714945,
+      "latency_ms": 9.167100000013306,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -5195,7 +5195,7 @@
     {
       "case": "glued-split-phrase",
       "text": "ener🔥bla🔥bla🔥tipo🔥assim🔥giasolaar🔥baterias mudando de assunto futebol receita viagem bla bla qualquer coisa",
-      "latency_ms": 9.795799999665178,
+      "latency_ms": 9.495999999671767,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -5219,7 +5219,7 @@
     {
       "case": "long-noise",
       "text": "bla... ;;; ?? bla!!!... bla!!! ??!!! bla!!! ;;; bla ;;; ?? ;;; bla!!! ?? ?? bla ;;; ?? ;;; bla ;;; ;;;!!! bla!!! ;;; bla!!! ??... bla...!!! bla...... bla...!!! bla!!!!!! bla!!!!!! bla ;;; ;;; ;;; bla...!!! bla ;;; ?? ;;; bla... ??... bla... ?? bla!!! ?? bla!!! ;;; bla!!!... bla!!! ?? bla... ;;; bla!!! ?? bla... ??... bla... ?? bla!!! ?? ?? bla ?? ?? ?? bla... ;;; ;;; bla... ??... bla!!!... bla ?? ;;; ;;; bla!!!... bla... ?? ;;; bla!!! ;;; ;;; bla ?? ;;; ;;; bla ?? ?? ;;; bla... ;;; bla ;;; ;;;... bla ?? ?? ?? bla!!! ?? bla... ;;; ?? bla ;;; ;;; ?? bla...!!! bla!!!... bla ?? ?? ;;; bla...!!! bla... ;;; ?? bla ?? ;;;... bla!!! ;;; bla ;;; ;;;... bla... ?? bla ;;; ?? ?? bla!!! ??... bla!!! ;;; bla... ?? ?? bla!!! ?? bla!!!... bla...... bla ;;; ;;;!!! bla ?? ;;;!!! bla...... bla...!!! bla... ??!!! bla...!!! bla!!! ;;; bla!!! ??!!! bla!!! ??!!! bla... ??!!! bla!!!... bla ?? ??!!! bla!!! ;;; ?? bla... ??... bla... ?? bla!!!... bla... ;;; bla... ;;; ?? bla!!!... bla... ?? bla!!! ?? bla...!!! bla...... bla ?? ;;;... bla ;;; ??... bla... ;;; ;;; bla ?? ?? ?? bla ?? ;;; ?? bla!!!!!! bla!!!... bla!!!!!! bla!!! ;;; bla... ;;; ?? bla...!!! bla... ;;; bla ?? ??!!! bla...... bla!!! ?? bla ?? ??... bla...... bla... ;;;... bla...... bla ?? ;;;... bla ?? ?? ?? bla... ;;; bla!!! ;;;... bla... ??!!! bla!!! ?? bla ;;; ;;;!!! bla!!! ??... bla!!! ?? ;;; bla!!!!!! bla!!! ;;; bla...!!! bla ?? ;;;... bla!!!!!! bla... ;;;!!! bla... ;;; ;;; bla!!! ;;; energia ;;; ;;; ;;; solar ?? ;;;!!! bater ias... ?? ;;; armazenamento ?? ;;; ;;; futuro",
-      "latency_ms": 8.242400000199268,
+      "latency_ms": 7.433699999637611,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -5242,7 +5242,7 @@
     {
       "case": "pronoun-preservation",
       "text": "  conteudo    joao comprou carros ontem  ontem  ontem  ontem  ele pagou 20 mil cada    meta   ruido  ",
-      "latency_ms": 0.7256999997480307,
+      "latency_ms": 0.6911999998919782,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -5265,7 +5265,7 @@
     {
       "case": "pronoun-preservation",
       "text": "  con teudo    joao comprou carros ontem  ontem  ontem  ontem  ele pagou 20 mil cada    meta   ruido  ",
-      "latency_ms": 0.7402999999612803,
+      "latency_ms": 0.7048999996186467,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -5288,7 +5288,7 @@
     {
       "case": "mixed-language",
       "text": "joao bought 3 carros usadosyesterd mas paguo 20 mil cada",
-      "latency_ms": 2.1640999993906007,
+      "latency_ms": 2.0653999999922235,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -5311,7 +5311,7 @@
     {
       "case": "mixed-language",
       "text": "joao bought 3 carros usadosyesterd mas psguo 20 mil cada",
-      "latency_ms": 12.873599999693397,
+      "latency_ms": 12.225899999975809,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -5335,7 +5335,7 @@
     {
       "case": "mixed-language",
       "text": "hmm enfim sei la joao bought 3 carros usadosyesterd mas psguo 20 mil cada",
-      "latency_ms": 2.076900000247406,
+      "latency_ms": 2.0087000002604327,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -5360,7 +5360,7 @@
     {
       "case": "minimal-negation-positive",
       "text": "joao comprou caro ontem",
-      "latency_ms": 0.14900000041961903,
+      "latency_ms": 0.12719999995169928,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -5383,7 +5383,7 @@
     {
       "case": "minimal-negation-positive",
       "text": "joao comproucaro ontem",
-      "latency_ms": 21.43290000003617,
+      "latency_ms": 20.815699999729986,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -5407,7 +5407,7 @@
     {
       "case": "minimal-negation-positive",
       "text": "bla bla tipo assim joao comproucaro ontem",
-      "latency_ms": 21.042100000158825,
+      "latency_ms": 20.56410000022879,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -5432,7 +5432,7 @@
     {
       "case": "minimal-negation-positive",
       "text": "bla bla tipo assim joao comproucaroontem",
-      "latency_ms": 3.1607000000803964,
+      "latency_ms": 3.070599999773549,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -5457,7 +5457,7 @@
     {
       "case": "minimal-negation-negative",
       "text": "joaoâ¢naoâ¢comprouâ¢carroâ¢onntem",
-      "latency_ms": 0.6270999992921134,
+      "latency_ms": 0.6172999992486439,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -5480,7 +5480,7 @@
     {
       "case": "valid-caro-not-rewritten",
       "text": "{\"conteudo\": \"joao ?? comprou ?? 3!!! caro!!! ontem!!! e ?? paguo ;;; 20 ?? mil ;;; cada!!! mas ;;; acho ;;; que!!! ele!!! tava ?? falando ;;; de ;;; carros ;;; usados ;;; bla... bla\", \"meta\":\"ruido\"}",
-      "latency_ms": 1.1554000002433895,
+      "latency_ms": 1.09119999979157,
       "previous_failure_classes": [
         "noise_inclusion",
         "relation_or_meaning_error"
@@ -5505,7 +5505,7 @@
     {
       "case": "valid-caro-not-rewritten",
       "text": "{\"conteudo\":!!! \"joao... ??!!! comprou... ??... 3!!! ;;; caro!!! ;;; ontem!!! ;;; e ?? ?? ?? paguo!!! ;;; ;;; 20!!! ?? ?? mil ;;; ;;; ?? cada!!!... mas... ;;; ;;; acho... ;;; ;;; que!!! ?? ele!!!!!! tava ;;; ??... falando ;;; ;;;!!! de!!! ;;; ;;; carros ?? ;;;... usados... ;;;!!! bla...!!! bla\",!!! \"meta\":\"ruido\"}",
-      "latency_ms": 1.7937000002348213,
+      "latency_ms": 1.6765999998824554,
       "previous_failure_classes": [
         "noise_inclusion",
         "relation_or_meaning_error"
@@ -5530,7 +5530,7 @@
     {
       "case": "valid-caro-not-rewritten",
       "text": "<div>**{\"conteudo\":!!! \"joao... ??!!! comprou... ??... 3!!! ;;; caro!!! ;;; ontem!!! ;;; e ?? ?? ?? paguo!!! ;;; ;;; 20!!! ?? ?? mil ;;; ;;; ?? cada!!!... mas... ;;; ;;; acho... ;;; ;;; que!!! ?? ele!!!!!! tava ;;; ??... falando ;;; ;;;!!! de!!! ;;; ;;; carros ?? ;;;... usados... ;;;!!! bla...!!! bla\",!!! \"meta\":\"ruido\"}**</div>",
-      "latency_ms": 1.7837999994299025,
+      "latency_ms": 1.6709999999875436,
       "previous_failure_classes": [
         "noise_inclusion",
         "relation_or_meaning_error"
@@ -5555,7 +5555,7 @@
     {
       "case": "single-negation-bridge",
       "text": "nao joao comprou carro ontem anyway random stuff pero entonces bla",
-      "latency_ms": 0.46999999995023245,
+      "latency_ms": 0.4559999997582054,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -5578,7 +5578,7 @@
     {
       "case": "single-negation-bridge",
       "text": "nao joao comprou carroontem anyway random stuff pero entonces bla",
-      "latency_ms": 16.319800000019313,
+      "latency_ms": 15.182399999503104,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -5602,7 +5602,7 @@
     {
       "case": "single-negation-bridge",
       "text": "nao joao comprou carroontem anyway random stuff pero entonc bla",
-      "latency_ms": 21.69640000010986,
+      "latency_ms": 21.169700000427838,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -5626,7 +5626,7 @@
     {
       "case": "typed-date-time-value",
       "text": "Maria compr 3 carros em 21/08/2026 às 14:30 por 20.000 reais",
-      "latency_ms": 0.541700000212586,
+      "latency_ms": 0.5061000001660432,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -5649,7 +5649,7 @@
     {
       "case": "typed-date-time-value",
       "text": "Maria compr 3 carros em 21 08 2026 às 14 30 por 20 000 reais",
-      "latency_ms": 0.5713000000469037,
+      "latency_ms": 0.540299999556737,
       "previous_failure_classes": [
         "important_information_loss",
         "numeric_date_quantity_error"
@@ -5681,7 +5681,7 @@
     {
       "case": "typed-date-time-value",
       "text": "Maria compr 3 carros em 21 08 2026 às 14 14 14 14 30 por 20 000 reais",
-      "latency_ms": 0.5328999995981576,
+      "latency_ms": 0.5025999998906627,
       "previous_failure_classes": [
         "important_information_loss",
         "numeric_date_quantity_error"
@@ -5713,7 +5713,7 @@
     {
       "case": "typed-date-time-value",
       "text": "Maria compr 3 carros em 21 08 08 08 08 2026 às 14 14 14 14 30 por 20 000 reais",
-      "latency_ms": 0.5859000002601533,
+      "latency_ms": 0.5581000004895031,
       "previous_failure_classes": [
         "important_information_loss",
         "numeric_date_quantity_error"
@@ -5745,7 +5745,7 @@
     {
       "case": "mojibake-health",
       "text": "saÃÂºde pÃÂºblica prevencao hospita",
-      "latency_ms": 25.368100000378035,
+      "latency_ms": 24.577299999691604,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -5770,7 +5770,7 @@
     {
       "case": "mojibake-health",
       "text": "saÃÂºde pÃÂºblicaprevencao hospita",
-      "latency_ms": 3.46350000017992,
+      "latency_ms": 3.103500000179338,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -5796,7 +5796,7 @@
     {
       "case": "mojibake-health",
       "text": "saÃÂºde pÃÂºblicaprevencao hospita mudando de assunto futebol receita viagem bla bla qualquer coisa",
-      "latency_ms": 3.8345000002664165,
+      "latency_ms": 3.7445999996634782,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -5822,7 +5822,7 @@
     {
       "case": "html-markup",
       "text": "div energia solar divbaterias",
-      "latency_ms": 28.669799999988754,
+      "latency_ms": 49.20080000010785,
       "previous_failure_classes": [
         "important_information_loss",
         "noise_inclusion"
@@ -5849,7 +5849,7 @@
     {
       "case": "html-markup",
       "text": "divenergia solar divbaterias",
-      "latency_ms": 69.42879999951401,
+      "latency_ms": 47.605400000065856,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -5873,7 +5873,7 @@
     {
       "case": "html-markup",
       "text": "divenergia solardivbaterias",
-      "latency_ms": 23.83319999989908,
+      "latency_ms": 22.997699999905308,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -5898,7 +5898,7 @@
     {
       "case": "glued-split-phrase",
       "text": "ener giasolar bateiras",
-      "latency_ms": 10.862599999200029,
+      "latency_ms": 10.68420000046899,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -5921,7 +5921,7 @@
     {
       "case": "glued-split-phrase",
       "text": "ener!!! giasolar ;;; bateiras",
-      "latency_ms": 0.18360000012762612,
+      "latency_ms": 0.17600000046513742,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -5946,7 +5946,7 @@
     {
       "case": "glued-split-phrase",
       "text": "ener!!! giasosar ;;; bateiras",
-      "latency_ms": 10.904300000220246,
+      "latency_ms": 10.677999999643362,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -5971,7 +5971,7 @@
     {
       "case": "glued-split-phrase",
       "text": "ener!!! giasosar ;;; batniras",
-      "latency_ms": 41.06229999979405,
+      "latency_ms": 39.415599999301776,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -5996,7 +5996,7 @@
     {
       "case": "emoji-punctuation",
       "text": "energia🔥sllra!!! baterias?? armazenamento",
-      "latency_ms": 15.139300000555522,
+      "latency_ms": 14.516299999741022,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -6019,7 +6019,7 @@
     {
       "case": "emoji-punctuation",
       "text": "energia🔥sllra!!! baterias?? armazenamento anyway random stuff pero entonces bla",
-      "latency_ms": 0.5142999998497544,
+      "latency_ms": 0.48149999929592013,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -6042,7 +6042,7 @@
     {
       "case": "emoji-punctuation",
       "text": "energia🔥sllra!!!... baterias?? ;;; armazenamento ?? anyway!!! random ;;; stuff... pero ?? entonces!!! bla",
-      "latency_ms": 15.24520000020857,
+      "latency_ms": 14.255400000365626,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -6065,7 +6065,7 @@
     {
       "case": "long-noise",
       "text": "bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla blabla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla energia solar baterias armazenamento futuro",
-      "latency_ms": 2.3393000001306063,
+      "latency_ms": 2.121199999237433,
       "previous_failure_classes": [
         "noise_inclusion"
       ],
@@ -6088,7 +6088,7 @@
     {
       "case": "long-noise",
       "text": "bla!!! bla ?? bla ;;; bla ;;; bla ?? bla ;;; bla!!! bla!!! bla!!! bla... bla ;;; bla!!! bla ;;; bla... bla... bla ?? bla... bla... bla!!! bla ?? bla ;;; bla!!! bla ;;; bla... bla ;;; blabla ?? bla ;;; bla!!! bla!!! bla ;;; bla... bla!!! bla ?? bla ;;; bla... bla!!! bla ;;; bla... bla ?? bla!!! bla!!! bla!!! bla ;;; bla ;;; bla ;;; bla!!! bla ?? bla ;;; bla ?? bla!!! bla!!! bla ;;; bla ;;; bla... bla!!! bla... bla!!! bla ?? bla ;;; bla... bla ?? bla ?? bla!!! bla ?? bla ?? bla!!! bla... bla ?? bla!!! bla ?? bla... bla ;;; bla!!! bla!!! bla!!! bla ;;; bla ?? bla ?? bla ;;; bla ;;; bla... bla ?? bla ;;; bla... bla ;;; bla ;;; bla ?? bla ?? bla ?? bla!!! bla... bla ?? bla ;;; bla!!! bla ?? bla ?? bla ?? bla ?? bla ?? bla... bla!!! bla!!! bla ?? bla!!! bla ;;; bla!!! bla ?? bla... bla ;;; bla ?? bla ?? bla!!! bla... bla... bla... bla!!! bla ?? bla!!! bla ;;; energia... solar ;;; baterias... armazenamento ?? futuro",
-      "latency_ms": 4.669399999329471,
+      "latency_ms": 4.3292999998811865,
       "previous_failure_classes": [
         "noise_inclusion"
       ],
@@ -6111,7 +6111,7 @@
     {
       "case": "long-noise",
       "text": "bla!!! bla ?? bla ;;; bla ;;; bla ?? bla ;;; bla!!! bla!!! bla!!! bla... bla ;;; bla!!! bla ;;; bla... bla... bla ?? bla... bla... bla!!! bla ?? bla ;;; bla!!! bla ;;; bla... bla ;;; blabla ?? bla ;;; bla!!! bla!!! bla ;;; bla... bla!!! bla ?? bla ;;; bla... bla!!! bla ;;; bla... bla ?? bla!!! bla!!! bla!!! bla ;;; bla ;;; bla ;;; bla!!! bla ?? bla ;;; bla ?? bla!!! bla!!! bla ;;; bla ;;; bla... bla!!! bla... bla!!! bla ?? bla ;;; bla... bla ?? bla ?? bla!!! bla ?? bla ?? bla!!! bla... bla ?? bla!!! bla ?? bla... bla ;;; bla!!! bla!!! bla!!! bla ;;; bla ?? bla ?? bla ;;; bla ;;; bla... bla ?? bla ;;; bla... bla ;;; bla ;;; bla ?? bla ?? bla ?? bla!!! bla... bla ?? bla ;;; bla!!! bla ?? bla ?? bla ?? bla ?? bla ?? bla... bla!!! bla!!! bla ?? bla!!! bla ;;; bla!!! bla ?? bla... bla ;;; bla ?? bla ?? bla!!! bla... bla... bla... bla!!! bla ?? bla!!! bla ;;; energia... sonar ;;; baterias... armazenamento ?? futuro",
-      "latency_ms": 4.627000000255066,
+      "latency_ms": 4.27049999962037,
       "previous_failure_classes": [
         "important_information_loss",
         "noise_inclusion"
@@ -6138,7 +6138,7 @@
     {
       "case": "long-noise",
       "text": "bla!!! bla ?? bla ;;; bla ;;; bla ?? bla ;;; bla!!! bla!!! bla!!! bla... bla ;;; bla!!! bla ;;; bla... bla... bla ?? bla... bla... bla!!! bla ?? bla ;;; bla!!! bla ;;; bla... bla ;;; blabla ?? bla ;;; bla!!! bla!!! bla ;;; bla... bla!!! bla ?? bla ;;; bla... bla!!! bla ;;; bla... bla ?? bla!!! bla!!! bla!!! bla ;;; bla ;;; bla ;;; bla!!! bla ?? bla ;;; bla ?? bla!!! bla!!! bla ;;; bla ;;; bla... bla!!! bla... bla!!! bla ?? bla ;;; bla... bla ?? bla ?? bla!!! bla ?? bla ?? bla!!! bla... bla ?? bla!!! bla ?? bla... bla ;;; bla!!! bla!!! bla!!! bla ;;; bla ?? bla ?? bla ;;; bla ;;; bla... bla ?? bla ;;; bla... bla ;;; bla ;;; bla ?? bla ?? bla ?? bla!!! bla... bla ?? bla ;;; bla!!! bla ?? bla ?? bla ?? bla ?? bla ?? bla... bla!!! bla!!! bla ?? bla!!! bla ;;; bla!!! bla ?? bla... bla ;;; bla ?? bla ?? bla!!! bla... bla... bla... bla!!! bla ?? bla!!! bla ;;; energia... sonar ;;; baterias... armazenam ento ?? futuro",
-      "latency_ms": 5.185699999856297,
+      "latency_ms": 4.2811999992409255,
       "previous_failure_classes": [
         "important_information_loss",
         "noise_inclusion"
@@ -6166,7 +6166,7 @@
     {
       "case": "pronoun-preservation",
       "text": "joao comproucarros ontem. elepagou 20 mil cada",
-      "latency_ms": 24.996899999678135,
+      "latency_ms": 24.255899999843678,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -6191,7 +6191,7 @@
     {
       "case": "pronoun-preservation",
       "text": "hmm enfim sei la joao comproucarros ontem. elepagou 20 mil cada",
-      "latency_ms": 25.073100000554405,
+      "latency_ms": 24.528700000701065,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -6217,7 +6217,7 @@
     {
       "case": "pronoun-preservation",
       "text": "hmm enfim sei la joao comprucarros ontem. elepagou 20 mil cada",
-      "latency_ms": 21.909099999902537,
+      "latency_ms": 21.470599999702245,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -6243,7 +6243,7 @@
     {
       "case": "mixed-language",
       "text": "joao bought 3 carros usados yesterday maspaguo 20 mil cada",
-      "latency_ms": 23.074100000485487,
+      "latency_ms": 23.488300000281015,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -6266,7 +6266,7 @@
     {
       "case": "mixed-language",
       "text": "{\"conteudo\": \"joao bought 3 carros usados yesterday maspaguo 20 mil cada\", \"meta\":\"ruido\"}",
-      "latency_ms": 0.6260000000111177,
+      "latency_ms": 0.6148000002212939,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -6289,7 +6289,7 @@
     {
       "case": "mixed-language",
       "text": "  conteudo    joao bought 3 carros usados yesterday maspaguo 20 mil cada    meta   ruido  ",
-      "latency_ms": 22.992299999714305,
+      "latency_ms": 22.680099999888625,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -6313,7 +6313,7 @@
     {
       "case": "mixed-language",
       "text": "conteudo joao bought 3 carros usados yesterday yesterday yesterday yesterday maspaguo 20 mil cada meta ruido",
-      "latency_ms": 23.491199999625678,
+      "latency_ms": 22.825799999736773,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -6337,7 +6337,7 @@
     {
       "case": "minimal-negation-positive",
       "text": "joao ?? ?? ;;; comprou!!! ;;;!!! caroo... ;;;... ottem",
-      "latency_ms": 0.5531999995582737,
+      "latency_ms": 0.5248999996183557,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -6360,7 +6360,7 @@
     {
       "case": "minimal-negation-negative",
       "text": "joao nao compreu carro ontem",
-      "latency_ms": 0.30639999931736384,
+      "latency_ms": 0.29410000024654437,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -6383,7 +6383,7 @@
     {
       "case": "minimal-negation-negative",
       "text": "joao nao compreu carro ontem mudando de assunto futebol receita viagem bla bla agora enfim",
-      "latency_ms": 0.6739000000379747,
+      "latency_ms": 0.6521000004795496,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -6406,7 +6406,7 @@
     {
       "case": "minimal-negation-negative",
       "text": "{\"conteudo\": \"joao nao compreu carro ontem mudando de assunto futebol receita viagem bla bla agora enfim\", \"meta\":\"ruido\"}",
-      "latency_ms": 0.713000000359898,
+      "latency_ms": 0.6912999997439329,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -6429,7 +6429,7 @@
     {
       "case": "minimal-negation-negative",
       "text": "{\"conteudo\": \"{\\\"conteudo\\\": \\\"joao nao compreu carro ontem mudando de assunto futebol receita viagem bla bla agora enfim\\\", \\\"meta\\\":\\\"ruido\\\"}\", \"meta\":\"ruido\"}",
-      "latency_ms": 0.9418999998160871,
+      "latency_ms": 0.8973999993031612,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -6453,7 +6453,7 @@
     {
       "case": "typo-energy",
       "text": "enerjia solar bateras armazenam nto futoro futoro futoro futoro",
-      "latency_ms": 0.5781999998362153,
+      "latency_ms": 0.555999999960477,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -6476,7 +6476,7 @@
     {
       "case": "typo-energy",
       "text": "enerjia solar bateras arm azenam nto futoro futoro futoro futoro",
-      "latency_ms": 0.7215999994514277,
+      "latency_ms": 0.7073999995554914,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -6499,7 +6499,7 @@
     {
       "case": "typo-energy",
       "text": "enerjia solar batera arm azenam nto futoro futoro futoro futoro",
-      "latency_ms": 0.6566000001839711,
+      "latency_ms": 0.6349999994199607,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -6523,7 +6523,7 @@
     {
       "case": "valid-caro-not-rewritten",
       "text": "joao ;;; comprou!!! 3 ;;; caro!!! otnem ?? e... paguo ;;; 20 ?? mil!!! cada... mas!!! acho ;;; que!!! ele!!! tava ;;; falando ?? de ;;; carrosusados ?? bla!!! bla",
-      "latency_ms": 1.0293999994246406,
+      "latency_ms": 1.0264000002280227,
       "previous_failure_classes": [
         "important_information_loss",
         "noise_inclusion",
@@ -6553,7 +6553,7 @@
     {
       "case": "valid-caro-not-rewritten",
       "text": "joao ;;; comprou!!! 3 ;;; caro!!! otnem ?? e... paaguo ;;; 20 ?? mil!!! cada... mas!!! acho ;;; que!!! ele!!! tava ;;; falando ?? de ;;; carrosusados ?? bla!!! bla",
-      "latency_ms": 19.216000000596978,
+      "latency_ms": 18.690900000365218,
       "previous_failure_classes": [
         "important_information_loss",
         "noise_inclusion",
@@ -6584,7 +6584,7 @@
     {
       "case": "single-negation-bridge",
       "text": "joao nao comprou cario ontem",
-      "latency_ms": 0.5221999999776017,
+      "latency_ms": 0.5056999998487299,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -6607,7 +6607,7 @@
     {
       "case": "single-negation-bridge",
       "text": "joao naocomprou cario ontem",
-      "latency_ms": 3.723800000443589,
+      "latency_ms": 3.619300000536896,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -6631,7 +6631,7 @@
     {
       "case": "single-negation-bridge",
       "text": "naocomprou joao cario ontem",
-      "latency_ms": 0.17610000031709205,
+      "latency_ms": 0.1762000001690467,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -6656,7 +6656,7 @@
     {
       "case": "single-negation-bridge",
       "text": "naocoprou joao cario ontem",
-      "latency_ms": 4.158699999607052,
+      "latency_ms": 4.140900000493275,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -6681,7 +6681,7 @@
     {
       "case": "double-negation-bridge",
       "text": "joao nao nao comprouiarro ontem",
-      "latency_ms": 16.521300000022165,
+      "latency_ms": 16.46459999938088,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -6705,7 +6705,7 @@
     {
       "case": "double-negation-bridge",
       "text": "joao nao nao com prouiarro ontem",
-      "latency_ms": 25.628600000345614,
+      "latency_ms": 24.643200000355137,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -6729,7 +6729,7 @@
     {
       "case": "double-negation-bridge",
       "text": "joao nao nao com prouiarro ontem mudando de assunto futebol receita viagem bla bla qualquer coisa",
-      "latency_ms": 25.697500000205764,
+      "latency_ms": 25.741299999936018,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -6753,7 +6753,7 @@
     {
       "case": "typed-date-time-value",
       "text": "Moria comprou 3 carros em 21/08/2026 às 14:30 por 20.000 reais mudando de assunto futebol receita viagem bla bla agora enfim",
-      "latency_ms": 0.8862000004228321,
+      "latency_ms": 0.8366000001842622,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -6776,7 +6776,7 @@
     {
       "case": "typed-date-time-value",
       "text": "Moria comprou 3 carros em 21 08 2026 às 14 30 por 20 000 reais mudando de assunto futebol receita viagem bla bla agora enfim",
-      "latency_ms": 0.9223000006386428,
+      "latency_ms": 0.8761999997659586,
       "previous_failure_classes": [
         "important_information_loss",
         "numeric_date_quantity_error"
@@ -6808,7 +6808,7 @@
     {
       "case": "typed-date-time-value",
       "text": "Moria comprou 3 carros em 21 08 2026 às 14 30 por 20 000 reais mudando de assunto futeb receita viagem bla bla agora enfim",
-      "latency_ms": 4.522400000496418,
+      "latency_ms": 4.6200000006138,
       "previous_failure_classes": [
         "important_information_loss",
         "numeric_date_quantity_error"
@@ -6840,7 +6840,7 @@
     {
       "case": "mojibake-health",
       "text": "saÃÂºde pÃÂºblica prev encao hospitais",
-      "latency_ms": 25.86260000043694,
+      "latency_ms": 24.91719999943598,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -6865,7 +6865,7 @@
     {
       "case": "mojibake-health",
       "text": "saÃÂºde pÃÂºblica prev encaohospitais",
-      "latency_ms": 33.43189999941387,
+      "latency_ms": 33.3466000001863,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -6891,7 +6891,7 @@
     {
       "case": "mojibake-health",
       "text": "saAAode pAAoblica prev encaohospitais",
-      "latency_ms": 34.13339999951859,
+      "latency_ms": 33.09170000011363,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -6917,7 +6917,7 @@
     {
       "case": "html-markup",
       "text": "<div>**<div>**<div> <div>**<div> <div>**<div> <div>**<div> energia solar </div> **bater ias****</div>**</div>",
-      "latency_ms": 0.6088000000090688,
+      "latency_ms": 0.5825999996886821,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -6940,7 +6940,7 @@
     {
       "case": "glued-split-phrase",
       "text": "xxxxx•qqq•ener•giasolar•baterias",
-      "latency_ms": 10.985599999912665,
+      "latency_ms": 11.49879999957193,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -6964,7 +6964,7 @@
     {
       "case": "glued-split-phrase",
       "text": "xxxxx•qqq•ener•giasolar•baterias mudando de assunto futebol receita viagem bla bla agora enfim",
-      "latency_ms": 11.339899999256886,
+      "latency_ms": 11.637799999334675,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -6988,7 +6988,7 @@
     {
       "case": "glued-split-phrase",
       "text": "xxxxxâ¢qqqâ¢enerâ¢giasolarâ¢baterias mudando de assunto futebol receita viagem bla bla agora enfim",
-      "latency_ms": 29.5548999993116,
+      "latency_ms": 50.70100000011735,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -7012,7 +7012,7 @@
     {
       "case": "emoji-punctuation",
       "text": "energ🔥solar!!! baterias?? armazenamento",
-      "latency_ms": 0.30779999997321283,
+      "latency_ms": 0.29799999992974335,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -7035,7 +7035,7 @@
     {
       "case": "emoji-punctuation",
       "text": "energ🔥solar!!! baterias?? arma zenamento",
-      "latency_ms": 40.14089999964199,
+      "latency_ms": 18.155900000238034,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -7059,7 +7059,7 @@
     {
       "case": "emoji-punctuation",
       "text": "energ🔥solar!!! batterias?? arma zenamento",
-      "latency_ms": 18.654000000424276,
+      "latency_ms": 18.035900000541005,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -7084,7 +7084,7 @@
     {
       "case": "emoji-punctuation",
       "text": "energ🔥solar!!! batterias?? arma zenamento zenamento zenamento zenamento",
-      "latency_ms": 37.29639999983192,
+      "latency_ms": 41.76909999932832,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -7109,7 +7109,7 @@
     {
       "case": "long-noise",
       "text": "bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla energ solar baterias armazenamento futuro",
-      "latency_ms": 2.3473000001104083,
+      "latency_ms": 2.206299999670591,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -7132,7 +7132,7 @@
     {
       "case": "long-noise",
       "text": "bla!!! bla ;;; bla ;;; bla ?? bla ?? bla!!! bla!!! bla!!! bla ?? bla!!! bla ;;; bla... bla ;;; bla... bla... bla ;;; bla ;;; bla ?? bla ;;; bla ?? bla!!! bla!!! bla!!! bla... bla ;;; bla ;;; bla!!! bla... bla!!! bla... bla ;;; bla ;;; bla ?? bla ?? bla ?? bla ?? bla ?? bla!!! bla ;;; bla... bla ;;; bla... bla ;;; bla ;;; bla ?? bla ;;; bla ;;; bla... bla ?? bla ;;; bla... bla ;;; bla!!! bla ?? bla ;;; bla... bla ;;; bla... bla... bla!!! bla ;;; bla!!! bla!!! bla ;;; bla... bla ;;; bla ?? bla... bla... bla ;;; bla ;;; bla... bla ?? bla ;;; bla ;;; bla!!! bla... bla... bla ?? bla ;;; bla ?? bla ;;; bla!!! bla!!! bla ?? bla ?? bla... bla ?? bla!!! bla ;;; bla!!! bla ?? bla... bla!!! bla ;;; bla!!! bla... bla... bla ;;; bla... bla!!! bla ;;; bla ?? bla!!! bla ?? bla ?? bla!!! bla ;;; bla ?? bla!!! bla!!! bla ?? bla!!! bla ;;; bla ;;; bla ;;; bla ?? bla... bla ;;; bla... energ!!! solar... baterias ;;; armazenamento ?? futuro",
-      "latency_ms": 4.8906000001807115,
+      "latency_ms": 4.457500000171422,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -7155,7 +7155,7 @@
     {
       "case": "long-noise",
       "text": "bla!!! bla ;;; bla ;;; bla ?? bla ?? bla!!! bla!!! bla!!! bla ?? bla!!! bla ;;; bla... bla ;;; bla... bla... bla ;;; bla ;;; bla ?? bla ;;; bla ?? bla!!! bla!!! bla!!! bla... bla ;;; bla ;;; bla!!! bla... bla!!! bla... bla ;;; bla ;;; bla ?? bla?? bla ?? bla ?? bla ?? bla!!! bla ;;; bla... bla ;;; bla... bla ;;; bla ;;; bla ?? bla ;;; bla ;;; bla... bla ?? bla ;;; bla... bla ;;; bla!!! bla ?? bla ;;; bla... bla ;;; bla... bla... bla!!! bla ;;; bla!!! bla!!! bla ;;; bla... bla ;;; bla ?? bla... bla... bla ;;; bla ;;; bla... bla ?? bla ;;; bla ;;; bla!!! bla... bla... bla ?? bla ;;; bla ?? bla ;;; bla!!! bla!!! bla ?? bla ?? bla... bla ?? bla!!! bla ;;; bla!!! bla ?? bla... bla!!! bla ;;; bla!!! bla... bla... bla ;;; bla... bla!!! bla ;;; bla ?? bla!!! bla ?? bla ?? bla!!! bla ;;; bla ?? bla!!! bla!!! bla ?? bla!!! bla ;;; bla ;;; bla ;;; bla ?? bla... bla ;;; bla... energ!!! solar... baterias ;;; armazenamento ?? futuro",
-      "latency_ms": 4.840100000365055,
+      "latency_ms": 4.44580000021233,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -7178,7 +7178,7 @@
     {
       "case": "long-noise",
       "text": "bla!!!!!! bla ?? ;;; ;;; bla ;;; ;;; ?? bla ;;; ??!!! bla!!! ??!!! bla!!!... bla!!! ;;; bla!!!!!! bla ;;; ??... bla!!!... bla ?? ;;;... bla...... bla!!! ;;; ?? bla... ;;; bla...!!! bla ;;; ;;;... bla ;;; ;;; ?? bla ;;; ??!!! bla!!! ;;; ;;; bla... ??!!! bla!!! ?? bla!!! ;;; bla!!!... bla...!!! bla ;;; ;;;... bla ?? ;;;!!! bla!!!!!! bla...!!! bla!!! ;;; bla... ;;; bla ;;; ;;;!!! bla ?? ;;; ;;; bla ?? ??!!! bla??!!! bla ;;; ?? ;;; bla... ??!!! bla... ??!!! bla!!! ?? bla ;;; ;;;... bla... ?? bla ?? ;;;!!! bla... ?? bla ?? ;;;!!! bla... ;;; ?? bla!!! ?? ?? bla... ;;; ;;; bla!!! ;;;!!! bla...!!! bla ;;; ?? ?? bla ?? ;;; ;;; bla... ;;; bla... ;;; ?? bla!!! ;;; bla... ?? ;;; bla ;;; ;;; ?? bla... ?? bla ?? ;;;!!! bla...... bla... ?? bla!!! ;;; bla!!! ;;; ?? bla!!! ?? bla!!! ?? bla ?? ;;; ?? bla...... bla!!! ;;;!!! bla ?? ??!!! bla... ;;; bla...!!! bla ?? ;;;... bla ;;; ;;; ?? bla... ?? bla!!! ??... bla... ;;;... bla!!! ;;; ?? bla!!!!!! bla... ;;; bla...... bla ;;; ??... bla ?? ;;; ?? bla!!! ??!!! bla... ;;; ;;; bla!!! ;;; bla!!! ;;; bla... ??... bla ?? ?? ;;; bla... ?? bla ?? ?? ?? bla!!!... bla ?? ;;; ?? bla!!! ;;; bla ;;; ?? ;;; bla... ;;; bla!!! ?? bla... ;;; ?? bla!!! ;;; bla... ?? bla...... bla!!! ;;;... bla...... bla!!!... bla ?? ;;; ?? bla ;;; ??... bla!!! ?? bla!!! ??... bla ;;; ??... bla!!! ;;; bla!!! ;;; ;;; bla!!! ??!!! bla!!!!!! bla!!! ?? bla ?? ?? ;;; bla!!!!!! bla... ;;; ;;; bla!!! ;;; ;;; bla... ;;; ;;; bla ;;; ??... bla... ;;; bla ;;; ;;;!!! bla...!!! energ!!! ?? solar...!!! baterias ;;; ;;;... armazenamento... ?? ;;; futuro",
-      "latency_ms": 8.565600000110862,
+      "latency_ms": 7.640799999535375,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -7201,7 +7201,7 @@
     {
       "case": "contradiction-evidence",
       "text": "  conteudo    joao comprou 3 carros ontem masdepois disse que nao comprou carros    meta   ruido  ",
-      "latency_ms": 32.909199999267,
+      "latency_ms": 31.902700000500772,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -7224,7 +7224,7 @@
     {
       "case": "contradiction-evidence",
       "text": "conteudo​joao​comprou​3​carros​ontem​masdepois​disse​que​nao​comprou​carros​meta​ruido",
-      "latency_ms": 31.903199999760545,
+      "latency_ms": 30.99370000018098,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -7247,7 +7247,7 @@
     {
       "case": "pronoun-preservation",
       "text": "joao comprou carros ontem. ele paou 20 mil cada mudando de assunto futebol receita viagem bla bla qualquer coisa",
-      "latency_ms": 1.1600999996517203,
+      "latency_ms": 1.1104999994131504,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -7270,7 +7270,7 @@
     {
       "case": "pronoun-preservation",
       "text": "joao!!! comprou ?? carros ?? ontem. ;;; ele ?? paou ;;; 20 ?? mil!!! cada ;;; mudando ?? de... assunto... futebol ;;; receita ?? viagem!!! bla ?? bla... qualquer ?? coisa",
-      "latency_ms": 1.1100000001533772,
+      "latency_ms": 1.0291999997207313,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -7293,7 +7293,7 @@
     {
       "case": "pronoun-preservation",
       "text": "joao!!! comprou ?? carros ?? ontem. ;;; ele ?? paou ;;; 20 ?? mil!!! cada ;;; mudando ?? de... assunto... futebol ;;; receita ?? viagem!!! bla ?? bla... qualquer ?? coisa anyway random stuff pero entonces bla",
-      "latency_ms": 1.2332999995123828,
+      "latency_ms": 1.3394000006883289,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -7316,7 +7316,7 @@
     {
       "case": "mixed-language",
       "text": "joao ?? bought ?? 3 ;;; carros ?? usados ;;; yesterd!!! mas ;;; pguo... 20... mil!!! cada",
-      "latency_ms": 2.75340000007418,
+      "latency_ms": 2.741299999797775,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -7339,7 +7339,7 @@
     {
       "case": "mixed-language",
       "text": "joao🧪??🧪bought🧪??🧪3🧪;;;🧪carros🧪??🧪usados🧪;;;🧪yesterd!!!🧪mas🧪;;;🧪pguo...🧪20...🧪mil!!!🧪cada",
-      "latency_ms": 2.8231999995114165,
+      "latency_ms": 2.7229999996052356,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -7362,7 +7362,7 @@
     {
       "case": "minimal-negation-positive",
       "text": "compr joao carro ontem",
-      "latency_ms": 0.2691999998205574,
+      "latency_ms": 0.2690999999686028,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -7386,7 +7386,7 @@
     {
       "case": "minimal-negation-positive",
       "text": "compr joao carro onttem",
-      "latency_ms": 0.2770000000964501,
+      "latency_ms": 0.27520000003278255,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -7410,7 +7410,7 @@
     {
       "case": "minimal-negation-positive",
       "text": "cotpr joao carro onttem",
-      "latency_ms": 10.878000000047905,
+      "latency_ms": 10.1583000005121,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -7434,7 +7434,7 @@
     {
       "case": "minimal-negation-negative",
       "text": "xxxxx qqq joao nao comprou carro ontem",
-      "latency_ms": 0.27320000026520574,
+      "latency_ms": 0.268300000243471,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -7457,7 +7457,7 @@
     {
       "case": "minimal-negation-negative",
       "text": "xxxxx qqq joao nao comprou caror ontem",
-      "latency_ms": 0.4386000000522472,
+      "latency_ms": 0.4349999999249121,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -7480,7 +7480,7 @@
     {
       "case": "minimal-negation-negative",
       "text": "xxxxx qqq joao nao comprou caror ontem mudando de assunto futebol receita viagem bla bla agora enfim",
-      "latency_ms": 0.8639000006951392,
+      "latency_ms": 0.8312999998452142,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -7503,7 +7503,7 @@
     {
       "case": "minimal-negation-negative",
       "text": "xxxxx qqq joao nao comprou caror ontem mudando de assunto futebol receita viagem bla bla agora enfim mudando de assunto futebol receita viagem bla bla qualquer coisa",
-      "latency_ms": 1.193799999782641,
+      "latency_ms": 1.1346999999659602,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -7526,7 +7526,7 @@
     {
       "case": "typo-energy",
       "text": "enerjia solar bateras armazenm nto futoro",
-      "latency_ms": 0.5837999997311272,
+      "latency_ms": 0.559899999643676,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -7549,7 +7549,7 @@
     {
       "case": "typo-energy",
       "text": "enerjia solarbateras armazenm nto futoro",
-      "latency_ms": 19.570499999645108,
+      "latency_ms": 18.810300000041025,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -7574,7 +7574,7 @@
     {
       "case": "paguo-not-paulo",
       "text": "joaocomprou carro ontem e poguo 20 mil cada",
-      "latency_ms": 0.45479999971576035,
+      "latency_ms": 0.44660000003204914,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -7599,7 +7599,7 @@
     {
       "case": "paguo-not-paulo",
       "text": "joaocomprou carrro ontem e poguo 20 mil cada",
-      "latency_ms": 2.5832000001173583,
+      "latency_ms": 2.510700000129873,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -7624,7 +7624,7 @@
     {
       "case": "paguo-not-paulo",
       "text": "joaocomproucarrro ontem e poguo 20 mil cada",
-      "latency_ms": 2.593900000647409,
+      "latency_ms": 2.4026999999477994,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -7650,7 +7650,7 @@
     {
       "case": "valid-caro-not-rewritten",
       "text": "joao ?? comprou ?? 3 ?? caro ?? ontem... e ;;; paguo... 20!!! mil ?? cada ?? mas!!! acho!!! que!!! ele ?? tava ;;; falando ?? de ;;; carros!!! usados ;;; bla ;;; bla",
-      "latency_ms": 0.9774000000106753,
+      "latency_ms": 0.9312000001955312,
       "previous_failure_classes": [
         "noise_inclusion",
         "relation_or_meaning_error"
@@ -7675,7 +7675,7 @@
     {
       "case": "valid-caro-not-rewritten",
       "text": "joao ?? comprou ?? 3 ?? caro ?? ontem... e ;;; paguo...20!!! mil ?? cada ?? mas!!! acho!!! que!!! ele ?? tava ;;; falando ?? de ;;; carros!!! usados ;;; bla ;;; bla",
-      "latency_ms": 0.943800000641204,
+      "latency_ms": 0.8809000000837841,
       "previous_failure_classes": [
         "noise_inclusion",
         "relation_or_meaning_error"
@@ -7700,7 +7700,7 @@
     {
       "case": "valid-caro-not-rewritten",
       "text": "joao ?? comprou ?? 3 ?? caro ?? ontem... e ;;; pagro...20!!! mil ?? cada ?? mas!!! acho!!! que!!! ele ?? tava ;;; falando ?? de ;;; carros!!! usados ;;; bla ;;; bla",
-      "latency_ms": 1.0984999998981948,
+      "latency_ms": 1.0387000002083369,
       "previous_failure_classes": [
         "important_information_loss",
         "noise_inclusion",
@@ -7729,7 +7729,7 @@
     {
       "case": "valid-caro-not-rewritten",
       "text": "joao ?? comprou ?? 3 ?? caro ?? ontem... e ;;; pagro...20!!! mil ?? cada ?? mas!!! acho!!! que!!! ele ?? tava ;;; falando ?? de ;;; carros!!! usados ;;; bla xxxxx qqq ;;; bla",
-      "latency_ms": 1.0191999999733525,
+      "latency_ms": 0.9433000004719361,
       "previous_failure_classes": [
         "important_information_loss",
         "noise_inclusion",
@@ -7758,7 +7758,7 @@
     {
       "case": "single-negation-bridge",
       "text": "joao nao comprou carroonem",
-      "latency_ms": 18.141799999284558,
+      "latency_ms": 17.674900000201887,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -7781,7 +7781,7 @@
     {
       "case": "single-negation-bridge",
       "text": "joao naocomprou carroonem",
-      "latency_ms": 21.135400000275695,
+      "latency_ms": 20.22450000004028,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -7805,7 +7805,7 @@
     {
       "case": "single-negation-bridge",
       "text": "joao joao joao joao naocomprou carroonem",
-      "latency_ms": 0.18179999915446388,
+      "latency_ms": 0.1810000003388268,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -7830,7 +7830,7 @@
     {
       "case": "double-negation-bridge",
       "text": "joao nao nao compro carro onttem",
-      "latency_ms": 0.26759999946079915,
+      "latency_ms": 0.24920000032579992,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -7853,7 +7853,7 @@
     {
       "case": "double-negation-bridge",
       "text": "joaonao nao compro carro onttem",
-      "latency_ms": 16.81189999999333,
+      "latency_ms": 16.20290000028035,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -7877,7 +7877,7 @@
     {
       "case": "double-negation-bridge",
       "text": "joaonao🧪nao🧪compro🧪carro🧪onttem",
-      "latency_ms": 16.949700000623125,
+      "latency_ms": 16.02889999958279,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -7901,7 +7901,7 @@
     {
       "case": "typed-date-time-value",
       "text": "Maia comprou 3 carros em 21/08/2026 às 14:30por 20.000 reais",
-      "latency_ms": 0.4386000000522472,
+      "latency_ms": 0.40669999998499407,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -7924,7 +7924,7 @@
     {
       "case": "typed-date-time-value",
       "text": "Maia comprou 3 carmos em 21/08/2026 às 14:30por 20.000 reais",
-      "latency_ms": 0.6606000006286195,
+      "latency_ms": 0.6483999995907652,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -7948,7 +7948,7 @@
     {
       "case": "typed-date-time-value",
       "text": "Maia comprou 3 carmos em 21 08 2026 às 14 30por 20 000 reais",
-      "latency_ms": 0.7075000003169407,
+      "latency_ms": 0.6678999998257495,
       "previous_failure_classes": [
         "important_information_loss",
         "numeric_date_quantity_error"
@@ -7980,7 +7980,7 @@
     {
       "case": "mojibake-health",
       "text": "saÃºde•pÃºblicaprevencao•hospitais",
-      "latency_ms": 2.323900000192225,
+      "latency_ms": 2.348300000448944,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -8005,7 +8005,7 @@
     {
       "case": "mojibake-health",
       "text": "saÃºde•pÃºblicaprevencao•hospiais",
-      "latency_ms": 2.301900000020396,
+      "latency_ms": 2.2896999998920364,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -8030,7 +8030,7 @@
     {
       "case": "html-markup",
       "text": "<div> energia soar </div> **baterias**",
-      "latency_ms": 0.2181999998356332,
+      "latency_ms": 0.21839999953954248,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -8053,7 +8053,7 @@
     {
       "case": "html-markup",
       "text": " div  energia soar   div    baterias  ",
-      "latency_ms": 0.1940000001923181,
+      "latency_ms": 0.1900000006571645,
       "previous_failure_classes": [
         "important_information_loss",
         "noise_inclusion"
@@ -8080,7 +8080,7 @@
     {
       "case": "html-markup",
       "text": " div  ennergia soar   div    baterias  ",
-      "latency_ms": 0.3102000000581029,
+      "latency_ms": 0.294400000711903,
       "previous_failure_classes": [
         "important_information_loss",
         "noise_inclusion"
@@ -8107,7 +8107,7 @@
     {
       "case": "html-markup",
       "text": "div•ennergia•soar•div•baterias",
-      "latency_ms": 0.2938999996331404,
+      "latency_ms": 0.28670000028796494,
       "previous_failure_classes": [
         "important_information_loss",
         "noise_inclusion"
@@ -8134,7 +8134,7 @@
     {
       "case": "glued-split-phrase",
       "text": "ener... giasolar ?? baterias",
-      "latency_ms": 0.16759999925852753,
+      "latency_ms": 0.16150000010384247,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -8158,7 +8158,7 @@
     {
       "case": "glued-split-phrase",
       "text": "ener... giasolar ?? bate rias",
-      "latency_ms": 11.111099999652652,
+      "latency_ms": 10.65550000021176,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -8183,7 +8183,7 @@
     {
       "case": "glued-split-phrase",
       "text": "ener... giasolr ?? bate rias",
-      "latency_ms": 10.777499999676365,
+      "latency_ms": 10.26220000039757,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -8208,7 +8208,7 @@
     {
       "case": "glued-split-phrase",
       "text": "ener    giasolr    bate rias",
-      "latency_ms": 0.2986999998029205,
+      "latency_ms": 0.28250000013940735,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -8233,7 +8233,7 @@
     {
       "case": "long-noise",
       "text": "bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla blabla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla energia solar baterias armazenamento futuro",
-      "latency_ms": 2.2848999997222563,
+      "latency_ms": 2.144399999451707,
       "previous_failure_classes": [
         "noise_inclusion"
       ],
@@ -8256,7 +8256,7 @@
     {
       "case": "long-noise",
       "text": "bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla blabla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla energia solar baterias armazenamento futuro",
-      "latency_ms": 2.299200000379642,
+      "latency_ms": 2.213599999777216,
       "previous_failure_classes": [
         "noise_inclusion"
       ],
@@ -8279,7 +8279,7 @@
     {
       "case": "long-noise",
       "text": "bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla blabla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla energia solar bate rias armazenamento futuro",
-      "latency_ms": 2.3175000005721813,
+      "latency_ms": 2.1464000001287786,
       "previous_failure_classes": [
         "important_information_loss",
         "noise_inclusion"
@@ -8306,7 +8306,7 @@
     {
       "case": "long-noise",
       "text": "bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla blabla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla energia soolar bate rias armazenamento futuro",
-      "latency_ms": 2.4311999995916267,
+      "latency_ms": 2.2400000007110066,
       "previous_failure_classes": [
         "important_information_loss",
         "noise_inclusion"
@@ -8333,7 +8333,7 @@
     {
       "case": "pronoun-preservation",
       "text": "joao comprou carros otem. elepagu 20 mil cada",
-      "latency_ms": 8.768600000621518,
+      "latency_ms": 8.454599999822676,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -8357,7 +8357,7 @@
     {
       "case": "pronoun-preservation",
       "text": "joao comprou caros otem. elepagu 20 mil cada",
-      "latency_ms": 8.634199999505654,
+      "latency_ms": 8.259199999884004,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -8382,7 +8382,7 @@
     {
       "case": "mixed-language",
       "text": "{\"conteudo\": \"{\\\"conteudo\\\": \\\"joao bought 3 carros usads yesterday mas paguo 20 20 mil cada\\\", \\\"meta\\\":\\\"ruido\\\"}\", \"meta\":\"ruido\"}",
-      "latency_ms": 1.1298000008537201,
+      "latency_ms": 1.077199999599543,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -8405,7 +8405,7 @@
     {
       "case": "minimal-negation-positive",
       "text": "compro joao carro ontem",
-      "latency_ms": 0.15050000001792796,
+      "latency_ms": 0.1446999995096121,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -8429,7 +8429,7 @@
     {
       "case": "minimal-negation-positive",
       "text": "compro🙂joao🙂carro🙂ontem",
-      "latency_ms": 0.1640999998926418,
+      "latency_ms": 0.16030000006139744,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -8453,7 +8453,7 @@
     {
       "case": "minimal-negation-positive",
       "text": "compro🙂joao🙂carro🙂otem",
-      "latency_ms": 0.3328000002511544,
+      "latency_ms": 0.3210000004401081,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -8477,7 +8477,7 @@
     {
       "case": "minimal-negation-negative",
       "text": "xxxxx qqq joao nao comprou caarro ontem",
-      "latency_ms": 0.3059999999095453,
+      "latency_ms": 0.31060000037541613,
       "previous_failure_classes": [
         "important_information_loss"
       ],
@@ -8500,7 +8500,7 @@
     {
       "case": "minimal-negation-negative",
       "text": "xxxxx qqq joao nao comprou caaarro ontem",
-      "latency_ms": 25.800700000218058,
+      "latency_ms": 25.11560000039026,
       "previous_failure_classes": [
         "important_information_loss"
       ],

@@ -22,7 +22,8 @@
     ],
     "cache": "C:\\Users\\USER\\Downloads\\CODIGOS\\TESTE\\AI-Procedural\\gpu_cache\\bagaco_quality_xxh64_signed_v3.npz"
   },
-  "model_load_seconds_once": 2.983211599999777,
+  "model_load_seconds_once": 2.926936200000455,
+  "persistent_memory_isolated": true,
   "prompts": 6,
   "all_semantic_verified": true,
   "total_slot_errors": 0,
@@ -35,11 +36,11 @@
   "unexplained_length_failures": 0,
   "mean_seed_concept_coverage": 1.0,
   "mean_unique_sentence_ratio": 1.0,
-  "mean_later_reasoning_ms": 17.140000000000004,
-  "max_later_reasoning_ms": 22.700000000000003,
-  "mean_rule_learning_ms": 16.832666666666665,
-  "max_vm_ms": 0.030000000000000002,
-  "max_argument_planner_ms": 0.6083000007492956,
+  "mean_later_reasoning_ms": 16.98,
+  "max_later_reasoning_ms": 23.0,
+  "mean_rule_learning_ms": 16.964666666666666,
+  "max_vm_ms": 0.029,
+  "max_argument_planner_ms": 0.6307000003289431,
   "all_argument_phases_monotonic": true,
   "total_immediate_template_repeats": 0,
   "total_context_filtered_rules": 9,
@@ -47,7 +48,7 @@
     {
       "name": "espaco",
       "prompt": "Escreva 1000 caracteres sobre exploração espacial, tecnologia, descoberta e futuro.",
-      "wall_seconds": 0.41728390000025684,
+      "wall_seconds": 0.414385900000525,
       "display_chars": 957,
       "target_chars": 1000,
       "target_error_abs": 43,
@@ -58,12 +59,12 @@
       "slot_errors": 0,
       "trace_errors": 0,
       "raw_slot_ids_exposed": false,
-      "reasoning_seconds": 0.3983,
-      "render_seconds": 0.0184,
+      "reasoning_seconds": 0.3959,
+      "render_seconds": 0.0179,
       "rules": 14,
-      "rule_learning_seconds": 0.074354,
-      "vm_seconds": 3e-05,
-      "argument_planner_seconds": 0.0005186999997022212,
+      "rule_learning_seconds": 0.075376,
+      "vm_seconds": 2.9e-05,
+      "argument_planner_seconds": 0.00045109999973647064,
       "argument_phase_monotonic": true,
       "argument_phase_counts": {
         "opening": 3,
@@ -93,15 +94,19 @@
       "surface_marker_counts": {
         "se relaciona tematicamente com": 3,
         "surge no mesmo contexto que": 2,
+        "mantém proximidade temática com": 2,
         "se conecta contextualmente a": 2,
-        "se conecta a": 1
+        "se conecta a": 1,
+        "integra o mesmo recorte temático que": 1,
+        "surge no mesmo eixo temático que": 1,
+        "reúne associações com": 2
       },
       "text": "Como ponto de partida para o desenvolvimento, exploração espacial se conecta a tecnologia. De início, exploração espacial integra o mesmo recorte temático que descoberta e surge no mesmo eixo temático que futuro.\n\nTecnologia se relaciona tematicamente com ciência e tecnologia e surge no mesmo contexto que alta tecnologia. Além disso, tecnologia mantém proximidade temática com tecnologia led. Nesse contexto, tecnologia se conecta contextualmente a nova tecnologia e se relaciona tematicamente com tecnologia digital. Em complemento, futuro se relaciona tematicamente com futuro incerto. Além disso, futuro surge no mesmo contexto que futuro próximo, mantém proximidade temática com futuro mais sustentável e se conecta contextualmente a futuro promissor.\n\nEm síntese, tecnologia reúne associações com ciência e tecnologia, alta tecnologia e tecnologia led. Por fim, futuro reúne associações com futuro próximo, futuro mais sustentável e futuro promissor."
     },
     {
       "name": "energia",
       "prompt": "Escreva 1000 caracteres sobre energia solar, baterias, armazenamento e futuro.",
-      "wall_seconds": 0.08612949999951525,
+      "wall_seconds": 0.08514259999992646,
       "display_chars": 1019,
       "target_chars": 1000,
       "target_error_abs": 19,
@@ -113,11 +118,11 @@
       "trace_errors": 0,
       "raw_slot_ids_exposed": false,
       "reasoning_seconds": 0.0188,
-      "render_seconds": 0.0659,
+      "render_seconds": 0.0649,
       "rules": 12,
-      "rule_learning_seconds": 0.001023,
-      "vm_seconds": 1.8e-05,
-      "argument_planner_seconds": 0.0003163999999742373,
+      "rule_learning_seconds": 0.001069,
+      "vm_seconds": 1.9e-05,
+      "argument_planner_seconds": 0.0003206000001227949,
       "argument_phase_monotonic": true,
       "argument_phase_counts": {
         "opening": 3,
@@ -143,19 +148,26 @@
       "sentences": 12,
       "unique_sentence_ratio": 1.0,
       "max_exact_sentence_repeat": 1,
-      "max_surface_marker_repeat": 1,
+      "max_surface_marker_repeat": 2,
       "surface_marker_counts": {
         "se relaciona tematicamente com": 1,
         "surge no mesmo contexto que": 1,
+        "mantém proximidade temática com": 1,
         "se conecta contextualmente a": 1,
-        "se conecta a": 1
+        "aparece em expressões como": 1,
+        "surge em construções como": 1,
+        "é recorrente em expressões como": 1,
+        "se conecta a": 1,
+        "integra o mesmo recorte temático que": 1,
+        "surge no mesmo eixo temático que": 1,
+        "reúne associações com": 2
       },
       "text": "Como ponto de partida para o desenvolvimento, energia solar se conecta a baterias. Como ponto de partida, energia solar integra o mesmo recorte temático que armazenamento. Energia solar surge no mesmo eixo temático que futuro.\n\nEm complemento, energia solar aparece em expressões como movidos a energia solar. Além disso, energia solar surge em construções como produção de energia solar. Nesse contexto, energia solar é recorrente em expressões como portuguesa de energia solar. Em uma leitura complementar, futuro se relaciona tematicamente com futuro mais sustentável. Dentro desse recorte temático, futuro surge no mesmo contexto que futuro próximo. Além disso, futuro mantém proximidade temática com futuro promissor. Nesse contexto, futuro se conecta contextualmente a futuro incerto.\n\nEm síntese, energia solar reúne associações com movidos a energia solar, produção de energia solar e portuguesa de energia solar. Por fim, futuro reúne associações com futuro próximo, futuro mais sustentável e futuro promissor."
     },
     {
       "name": "agricultura",
       "prompt": "Escreva 1000 caracteres sobre agricultura sustentável, água, tecnologia e clima.",
-      "wall_seconds": 0.029465800000252784,
+      "wall_seconds": 0.028179399999316956,
       "display_chars": 949,
       "target_chars": 1000,
       "target_error_abs": 51,
@@ -166,12 +178,12 @@
       "slot_errors": 0,
       "trace_errors": 0,
       "raw_slot_ids_exposed": false,
-      "reasoning_seconds": 0.0112,
-      "render_seconds": 0.0175,
+      "reasoning_seconds": 0.0111,
+      "render_seconds": 0.0165,
       "rules": 14,
-      "rule_learning_seconds": 0.009755,
-      "vm_seconds": 2.6e-05,
-      "argument_planner_seconds": 0.0006059999996068655,
+      "rule_learning_seconds": 0.009733,
+      "vm_seconds": 2.7e-05,
+      "argument_planner_seconds": 0.0005742000003010617,
       "argument_phase_monotonic": true,
       "argument_phase_counts": {
         "opening": 3,
@@ -201,15 +213,19 @@
       "surface_marker_counts": {
         "se relaciona tematicamente com": 3,
         "surge no mesmo contexto que": 2,
+        "mantém proximidade temática com": 2,
         "se conecta contextualmente a": 2,
-        "se conecta a": 1
+        "se conecta a": 1,
+        "integra o mesmo recorte temático que": 1,
+        "surge no mesmo eixo temático que": 1,
+        "reúne associações com": 2
       },
       "text": "Como ponto de partida para o desenvolvimento, agricultura sustentável se conecta a água. Como ponto de partida, agricultura sustentável integra o mesmo recorte temático que tecnologia e surge no mesmo eixo temático que clima.\n\nÁgua se relaciona tematicamente com água potável. Além disso, tecnologia se relaciona tematicamente com ciência e tecnologia. Nesse contexto, tecnologia surge no mesmo contexto que alta tecnologia, mantém proximidade temática com tecnologia led e se conecta contextualmente a nova tecnologia. Em uma leitura complementar, clima se relaciona tematicamente com clima quente. Além disso, clima surge no mesmo contexto que clima ameno, mantém proximidade temática com clima mediterrânico e se conecta contextualmente a clima temperado.\n\nEm síntese, tecnologia reúne associações com ciência e tecnologia, alta tecnologia e tecnologia led. Por fim, clima reúne associações com clima ameno, clima mediterrânico e clima temperado."
     },
     {
       "name": "musica",
       "prompt": "Escreva 1000 caracteres sobre música clássica, composição, orquestra e história.",
-      "wall_seconds": 0.07338419999996404,
+      "wall_seconds": 0.07572429999981978,
       "display_chars": 953,
       "target_chars": 1000,
       "target_error_abs": 47,
@@ -220,12 +236,12 @@
       "slot_errors": 0,
       "trace_errors": 0,
       "raw_slot_ids_exposed": false,
-      "reasoning_seconds": 0.0227,
-      "render_seconds": 0.0495,
+      "reasoning_seconds": 0.023,
+      "render_seconds": 0.0516,
       "rules": 14,
-      "rule_learning_seconds": 0.001998,
-      "vm_seconds": 2.5e-05,
-      "argument_planner_seconds": 0.0006083000007492956,
+      "rule_learning_seconds": 0.001876,
+      "vm_seconds": 2.9e-05,
+      "argument_planner_seconds": 0.0006307000003289431,
       "argument_phase_monotonic": true,
       "argument_phase_counts": {
         "opening": 3,
@@ -255,15 +271,19 @@
       "surface_marker_counts": {
         "se relaciona tematicamente com": 4,
         "surge no mesmo contexto que": 2,
+        "mantém proximidade temática com": 2,
         "se conecta contextualmente a": 2,
-        "se conecta a": 1
+        "se conecta a": 1,
+        "integra o mesmo recorte temático que": 1,
+        "surge no mesmo eixo temático que": 1,
+        "reúne associações com": 1
       },
       "text": "Como ponto de partida para o desenvolvimento, música clássica se conecta a composição e integra o mesmo recorte temático que orquestra. Como ponto de partida, música clássica surge no mesmo eixo temático que história.\n\nComposição se relaciona tematicamente com composição musical. Além disso, orquestra se relaciona tematicamente com orquestra clássica. Nesse contexto, história se relaciona tematicamente com rica história, surge no mesmo contexto que história verídica e mantém proximidade temática com história contemporânea. Além disso, história se conecta contextualmente a história natural, se relaciona tematicamente com longa história e surge no mesmo contexto que história recente. Nesse contexto, história mantém proximidade temática com história contada. Em uma leitura complementar, história se conecta contextualmente a própria história.\n\nEm síntese, história reúne associações com história natural, história contemporânea e longa história."
     },
     {
       "name": "seguranca",
       "prompt": "Escreva 1000 caracteres sobre segurança digital, criptografia, senhas e privacidade.",
-      "wall_seconds": 0.06013569999959145,
+      "wall_seconds": 0.05767500000001746,
       "display_chars": 175,
       "target_chars": 1000,
       "target_error_abs": 825,
@@ -275,11 +295,11 @@
       "trace_errors": 0,
       "raw_slot_ids_exposed": false,
       "reasoning_seconds": 0.0172,
-      "render_seconds": 0.0422,
+      "render_seconds": 0.0398,
       "rules": 2,
-      "rule_learning_seconds": 0.012219,
-      "vm_seconds": 1.2e-05,
-      "argument_planner_seconds": 8.369999977730913e-05,
+      "rule_learning_seconds": 0.012253,
+      "vm_seconds": 1.1e-05,
+      "argument_planner_seconds": 7.670000013604295e-05,
       "argument_phase_monotonic": true,
       "argument_phase_counts": {
         "opening": 2
@@ -303,14 +323,15 @@
       "max_exact_sentence_repeat": 1,
       "max_surface_marker_repeat": 1,
       "surface_marker_counts": {
-        "se conecta a": 1
+        "se conecta a": 1,
+        "integra o mesmo recorte temático que": 1
       },
       "text": "Como ponto de partida para o desenvolvimento, segurança digital se conecta a senhas. Como ponto de partida, segurança digital integra o mesmo recorte temático que privacidade."
     },
     {
       "name": "saude_publica",
       "prompt": "Escreva 1000 caracteres sobre saúde pública, prevenção, hospitais e qualidade.",
-      "wall_seconds": 0.033025699999598146,
+      "wall_seconds": 0.03211559999999736,
       "display_chars": 1032,
       "target_chars": 1000,
       "target_error_abs": 32,
@@ -321,12 +342,12 @@
       "slot_errors": 0,
       "trace_errors": 0,
       "raw_slot_ids_exposed": false,
-      "reasoning_seconds": 0.0158,
-      "render_seconds": 0.0167,
+      "reasoning_seconds": 0.0148,
+      "render_seconds": 0.0168,
       "rules": 14,
-      "rule_learning_seconds": 0.001647,
+      "rule_learning_seconds": 0.001481,
       "vm_seconds": 2.5e-05,
-      "argument_planner_seconds": 0.0006056000001990469,
+      "argument_planner_seconds": 0.0006112000000939588,
       "argument_phase_monotonic": true,
       "argument_phase_counts": {
         "opening": 3,
@@ -356,7 +377,14 @@
       "surface_marker_counts": {
         "se relaciona tematicamente com": 3,
         "surge no mesmo contexto que": 2,
-        "se conecta a": 1
+        "mantém proximidade temática com": 1,
+        "aparece em expressões como": 1,
+        "surge em construções como": 1,
+        "é recorrente em expressões como": 1,
+        "se conecta a": 1,
+        "integra o mesmo recorte temático que": 1,
+        "surge no mesmo eixo temático que": 1,
+        "reúne associações com": 2
       },
       "text": "Como ponto de partida para o desenvolvimento, saúde pública se conecta a prevenção. Como ponto de partida, saúde pública integra o mesmo recorte temático que hospitais e surge no mesmo eixo temático que qualidade.\n\nSaúde pública aparece em expressões como unidade de saúde pública e surge em construções como saúde pública da universidade. Além disso, saúde pública é recorrente em expressões como emergência de saúde pública. Nesse contexto, prevenção se relaciona tematicamente com prevenção rodoviária. Prevenção surge no mesmo contexto que prevenção primária. Em uma leitura complementar, hospitais se relaciona tematicamente com hospitais públicos.\n\nQualidade se relaciona tematicamente com alta qualidade, surge no mesmo contexto que elevada qualidade e mantém proximidade temática com qualidade ambiental.\n\nEm síntese, saúde pública reúne associações com problema de saúde pública, saúde pública da universidade e instituto de saúde pública. Por fim, prevenção reúne associações com prevenção rodoviária e prevenção primária."
     }

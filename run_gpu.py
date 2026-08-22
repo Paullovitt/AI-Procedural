@@ -9,6 +9,7 @@ from procedural_runtime_v5 import ProtectedSlotVerifier
 from procedural_runtime_gpu import SemanticTraceVerifier
 from procedural_runtime_v14 import build_renderer_v14_gpu
 from prompt_runtime_v14 import PromptAdapterV14, default_lexicon, lexicalize_text, contains_raw_slots
+from persistent_memory_v14 import PersistentDimensionalMemoryV14, should_auto_store_user_memory
 
 ROOT = Path(__file__).resolve().parent
 
@@ -43,6 +44,37 @@ def load_runtime(cfg, lexicon=None, prompt_mode=False):
         max_bundle=(int(cfg.get('prompt_max_bundle', 4)) if prompt_mode else None),
     )
 
+
+
+def _open_persistent_memory(cfg):
+    if not bool(cfg.get('persistent_memory_enabled', True)):
+        return None
+    raw=Path(str(cfg.get('persistent_memory_path','memory_v14/episodic_v14.sqlite3')))
+    path=raw if raw.is_absolute() else ROOT/raw
+    return PersistentDimensionalMemoryV14(
+        path,
+        candidate_limit=int(cfg.get('persistent_memory_candidate_limit',512)),
+        associative_per_term=int(cfg.get('persistent_memory_associative_per_term',4)),
+        min_query_term_coverage=float(cfg.get('persistent_memory_min_query_term_coverage',0.30)),
+        max_associative_document_ratio=float(cfg.get('persistent_memory_max_associative_document_ratio',0.20)),
+    )
+
+
+def _persistent_memory_projection(adapter, scorer, text):
+    """Index/search shadow: raw evidence + robust canonical semantic keys."""
+    raw=str(text or '')
+    if not getattr(adapter,'robust_intake_enabled',False):
+        return raw, []
+    result=adapter._intake_for(scorer).extract(raw)
+    fallback_topic=adapter.topic_from_prompt(raw)
+    _topic,concepts=adapter.concepts_from_intake(raw,fallback_topic,result)
+    keys=[];seen=set()
+    for value in concepts:
+        value=str(value or '').strip()
+        key=value.casefold()
+        if value and key not in seen:
+            seen.add(key);keys.append(value)
+    return ' '.join([raw]+keys), keys
 
 def verify(plan, out):
     slots = ProtectedSlotVerifier()
@@ -133,7 +165,8 @@ def _refine_prompt_length(renderer, scorer, adapter, prompt_meta, args, cfg, cus
         seen_counts.add(next_count)
         t0 = time.perf_counter()
         pp = adapter.build_learned(prompt_meta['prompt'], scorer, target_chars=target,
-                                   seed=args.seed, fact_count=next_count)
+                                   seed=args.seed, fact_count=next_count,
+                                   memory_records=prompt_meta.get('memory_records'))
         reasoning_s += time.perf_counter() - t0
         previous_fact_count = len(plan)
         plan, lexicon, focus_hint = _apply_prompt_plan(renderer, pp, custom_lexicon)
@@ -175,6 +208,7 @@ def _reasoning_summary(stats):
         'context_index_seconds': round(float(bank.get('index_seconds', 0.0)), 6),
         'argument_planner': stats.get('argument_planner', {}),
         'semantic_intake': stats.get('semantic_intake', {}),
+        'persistent_memory': stats.get('persistent_memory', {}),
         'gpu': bank.get('gpu'),
     }
 
@@ -207,6 +241,8 @@ def main():
         argument_planner_enabled=bool(cfg.get('argument_planner_enabled', True)),
         robust_intake_enabled=bool(cfg.get('robust_semantic_intake_enabled', True)),
         robust_intake_warm_index=bool(cfg.get('robust_semantic_warm_index', True)),
+        persistent_memory_inject_chars=int(cfg.get('persistent_memory_inject_chars',480)),
+        persistent_memory_rule_cap=int(cfg.get('persistent_memory_rule_cap',4)),
     )
     if args.facts:
         plan = [tuple(x) for x in json.loads(args.facts.read_text(encoding='utf8'))]
@@ -224,16 +260,28 @@ def main():
 
     reasoning_stats = {}
     reasoning_s = 0.0
+    memory=_open_persistent_memory(cfg) if prompt_mode and not args.legacy_prompt else None
+    memory_records=[]
+    memory_store_result=None
+    memory_index_text=prompt
+    memory_semantic_keys=[]
+    if memory is not None:
+        memory_index_text,memory_semantic_keys=_persistent_memory_projection(adapter,scorer,prompt)
+        memory_query_text=' '.join(memory_semantic_keys) or prompt
+        memory_records=memory.search(memory_query_text,k=int(cfg.get('persistent_memory_top_k',4)),
+                                     associative=bool(cfg.get('persistent_memory_associative',True)))
     if prompt_mode:
         t0 = time.perf_counter()
         if args.legacy_prompt:
             pp = adapter.build(prompt, target_chars=args.target_chars, seed=args.seed)
         else:
-            pp = adapter.build_learned(prompt, scorer, target_chars=args.target_chars, seed=args.seed)
+            pp = adapter.build_learned(prompt, scorer, target_chars=args.target_chars, seed=args.seed,
+                                       memory_records=memory_records)
         reasoning_s = time.perf_counter() - t0
         plan, lexicon, focus_hint = _apply_prompt_plan(renderer, pp, custom_lexicon)
         reasoning_stats = pp.reasoning_stats
-        prompt_meta = {'prompt': pp.prompt, 'topic': pp.topic, 'target_chars': pp.target_chars}
+        prompt_meta = {'prompt': pp.prompt, 'topic': pp.topic, 'target_chars': pp.target_chars,
+                       'memory_records': memory_records}
 
     out, display_text, checks, verified, render_s = _render_checked(
         renderer, plan, lexicon, focus_hint, cfg)
@@ -247,6 +295,14 @@ def main():
             reasoning_stats)
         reasoning_s += extra_reason_s
 
+    memory_store_skipped_reason=None
+    if memory is not None and verified and bool(cfg.get('persistent_memory_auto_store_user',True)):
+        if should_auto_store_user_memory(prompt):
+            memory_store_result=memory.remember(prompt,source='user',
+                metadata={'runtime':'V14','topic':prompt_meta.get('topic') if prompt_meta else None,
+                          'semantic_keys':memory_semantic_keys[:32]},index_text=memory_index_text)
+        else:
+            memory_store_skipped_reason='interrogative'
     gpu = scorer.gpu_status()
     report = {
         'runtime': 'V14',
@@ -280,6 +336,14 @@ def main():
         report['evidence_limited'] = bool(target_error < -tolerance and selected_rules < expected_rule_budget)
         if reasoning_stats:
             report['reasoning'] = _reasoning_summary(reasoning_stats)
+        if memory is not None:
+            report['persistent_memory']={
+                'retrieved':len(memory_records),
+                'retrieved_ids':[x.get('id') for x in memory_records],
+                'stored':memory_store_result,
+                'store_skipped_reason':memory_store_skipped_reason,
+                'stats':memory.stats(),
+            }
     else:
         report['prompt_mode'] = False
 
@@ -293,6 +357,9 @@ def main():
         if reasoning_stats:
             print('\n--- RULEBANK/PROVAS RESUMIDAS ---\n')
             print(json.dumps(_reasoning_summary(reasoning_stats), ensure_ascii=False, indent=2))
+    if memory is not None:
+        memory.close()
+
     if args.output:
         args.output.parent.mkdir(parents=True, exist_ok=True)
         args.output.write_text(display_text, encoding='utf8')

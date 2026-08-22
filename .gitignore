@@ -10,3 +10,7 @@ rigorous_results_v2/large_50000_fact_text.txt
 rigorous_results_v2/evaluation_generated_raw.txt
 rigorous_results_v2/evaluation_generated_readable.txt
 rigorous_results_v12/*.txt
+
+memory_v14/
+*.sqlite3-wal
+*.sqlite3-shm

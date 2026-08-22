@@ -1,4 +1,4 @@
-AI-Procedural / Bagaço Renderer V14 + Learned RuleVM V6 + Evidence Argument Planner + Robust Semantic Intake V14
+AI-Procedural / Bagaço Renderer V14 + Learned RuleVM V6 + Evidence Argument Planner + Robust Semantic Intake + Persistent Dimensional Memory V14
 
 REGRA ARQUITETURAL PERMANENTE
 =============================
@@ -57,8 +57,9 @@ PROMPT + RULEVM V6 + ARGUMENT PLANNER V14
 =========================================
 O caminho promovido de prompt é:
 
-  prompt -> conceitos explícitos -> learner de associações em CUDA -> RuleBank V6
-         -> RuleVM indexado -> Evidence Argument Planner V14
+  prompt -> Robust Semantic Intake -> consulta Persistent Dimensional Memory V14
+         -> conceitos explícitos -> learner de associações em CUDA -> RuleBank V6
+         -> RuleVM indexado + evidência episódica -> Evidence Argument Planner V14
          -> abertura/desenvolvimento/síntese -> V14 CUDA -> verificadores -> texto
 
 Características:
@@ -106,15 +107,61 @@ Bateria extrema final (`python robust_semantic_battery_v14.py`):
 - 448 avaliações sistemáticas/adversariais;
 - recall médio de informação: 90,49%;
 - recall de números/datas/quantidades: 99,50%;
-- p50 de intake: ~0,476 ms; p95: ~13,339 ms; máximo adversarial: ~61,541 ms;
+- p50 de intake: ~0,474 ms; p95: ~13,333 ms; máximo adversarial: ~69,047 ms;
 - 121 avaliações adversariais encontraram alguma falha e foram classificadas;
 - 353 casos distintos permanecem no arquivo cumulativo de falhas e são reexecutados automaticamente;
 - gate final: OK.
-- 24/24 testes automáticos aprovados na suíte completa.
+- 34/34 testes automáticos aprovados na suíte completa após a integração da memória persistente.
 
 Os casos extremos ainda quebráveis não são escondidos: várias corrupções simultâneas, múltiplas palavras
 grudadas e truncamentos severos continuam registrados. O sistema prefere perder sinal a inventar uma
 interpretação de alta confiança sem evidência suficiente.
+
+
+PERSISTENT DIMENSIONAL MEMORY V14
+=================================
+A V14 agora possui uma segunda camada de memória, adicionada sem substituir as tabelas Bagaço.
+O desenho deriva do repositório AI-Memory: termos/dimensões, postings e relações direcionadas explícitas.
+Na integração promovida, o armazenamento é incremental em SQLite para que o índice possa ser reaberto
+diretamente entre processos, sem executar um fit completo a cada inicialização.
+
+Fluxo:
+  prompt bruto -> Robust Semantic Intake -> shadow canônico de busca
+  -> Persistent Dimensional Memory V14 -> episódios relevantes
+  -> regras genéricas memory_retrieval com provenance
+  -> RuleVM/Argument Planner -> Renderer V14
+
+Comportamento promovido:
+- a memória atual do corpus continua intacta; a nova camada é episódica/persistente e complementar;
+- por padrão, somente entradas não interrogativas do usuário são gravadas após uma geração semanticamente válida; perguntas explícitas (`?`/`¿`) são consultadas, mas não promovidas como memória factual;
+- respostas produzidas pelo próprio modelo não são gravadas automaticamente, evitando auto-reforço de erro;
+- o texto original do episódio permanece no banco; o Robust Semantic Intake adiciona somente chaves canônicas de índice;
+- cada episódio mantém origem, recorrência, timestamps, metadados e fingerprint explícito;
+- o índice persistente contém termos, document frequency, postings e arestas direcionadas com contagens; hubs associativos com document frequency acima de 20% dos episódios não expandem candidatos;
+- repetições exatas aumentam recurrence sem duplicar o episódio;
+- contradições não são fundidas: permanecem episódios separados e recuperáveis por evidência;
+- esquecimento remove postings/contagens/arestas incrementalmente, sem reconstruir todo o índice;
+- o banco de uso real fica em `memory_v14/episodic_v14.sqlite3` e é ignorado pelo Git;
+- `/memoria` no launcher persistente mostra estatísticas da memória atual.
+
+Bateria promovida (`python persistent_memory_battery_v14.py`), 22/08/2026:
+- 20.000 episódios sintéticos + casos adicionais de ruído, repetição e contradição;
+- 500 consultas principais;
+- top-1 exato: 100%; top-1 numérico: 100%;
+- falsos positivos em 50 consultas irrelevantes: 0;
+- persistência após fechar/reabrir: OK; reabertura ~2,35 ms;
+- recuperação por shadow semântico ruidoso: OK;
+- recurrence, contradição isolada e esquecimento incremental: OK;
+- busca: média ~3,96 ms, p50 ~4,58 ms, p95 ~4,93 ms, p99 ~5,10 ms, máximo ~5,25 ms;
+- 20.005 episódios no pico medido. 61.928 dimensões e 123.819 arestas dirigidas;
+- teste vivo V14: pergunta sobre o Civic é consultada mas não gravada; a segunda e a terceira pergunta recuperam exatamente 1 episódio, injetam 1 regra e mantêm `Civic 2015` na resposta, com semantic_verified=true, slot_errors=0 e trace_errors=0;
+- gate final: OK.
+
+Limites atuais: esta integração V14 foi medida até ~20 mil episódios, não até 1 milhão. O AI-Memory
+original possui benchmarks maiores, mas a adaptação SQLite/incremental usada aqui precisa de benchmark
+próprio antes de afirmar a mesma escala. A recuperação continua principalmente lexical/dimensional,
+auxiliada pelo shadow canônico do Robust Semantic Intake; ainda não há política automática de expiração,
+consolidação temporal ou resolução de conflito factual.
 
 SAÍDA LEGÍVEL
 =============
@@ -157,12 +204,13 @@ Gates da bateria:
 - prompts dentro da tolerância: 5/6;
 - falhas de tamanho não explicadas: 0;
 - regras removidas pelo filtro contextual na bateria: 9.
+- benchmark multi-tema executado com `persistent_memory_isolated=true`, para impedir contaminação pela memória episódica local.
 
 Performance medida na bateria final:
-- carga inicial do modelo/GPU: ~2,983 s na bateria de 6 temas, uma vez por sessão;
-- RuleVM máximo: ~0,030 ms;
-- Evidence Argument Planner máximo: ~0,608 ms;
-- raciocínio dos prompts posteriores: média ~17,14 ms, máximo ~22,7 ms;
+- carga inicial do modelo/GPU: ~2,927 s na bateria isolada de 6 temas, uma vez por sessão;
+- RuleVM máximo: ~0,029 ms;
+- Evidence Argument Planner máximo: ~0,631 ms;
+- raciocínio dos prompts posteriores: média ~16,98 ms, máximo ~23,0 ms;
 - sessão persistente evita recarregar ~3-4 s de modelo por prompt.
 
 Regressão RuleVM V5 de referência:
@@ -178,6 +226,7 @@ TESTES
 ======
   python -m unittest discover -v
   python robust_semantic_battery_v14.py
+  python persistent_memory_battery_v14.py
   python robust_semantic_failure_replay_v14.py
   python benchmark_prompt_rulevm_v6.py
   python autonomous_rule_vm_v5.py
@@ -192,13 +241,15 @@ ARQUIVOS CENTRAIS
 - procedural_runtime_v12.py: planejamento/discurso de base
 - procedural_runtime_v13.py: scorer lexicalizado
 - procedural_runtime_v14.py: renderer promovido V14
-- prompt_runtime_v14.py: interpretação, Robust Semantic Intake, RuleVM V6 e integração do Argument Planner
+- prompt_runtime_v14.py: interpretação, Robust Semantic Intake, memória episódica recuperada, RuleVM V6 e integração do Argument Planner
 - robust_semantic_intake_v14.py: projeção semântica robusta não neural sobre texto bruto
 - robust_semantic_battery_v14.py: fuzzing/corrupção/adversarial e arquivo cumulativo de falhas
 - robust_semantic_failure_replay_v14.py: reexecução permanente de todas as falhas adversariais arquivadas
 - train_robust_semantic_v14.py: aprendizagem explícita de aliases recorrentes em datasets brutos
 - argument_planner_v14.py: planejamento argumentativo baseado somente em evidência aprendida
-- prompt_session_v14.py: sessão persistente GPU/VRAM
+- prompt_session_v14.py: sessão persistente GPU/VRAM + recuperação/gravação da memória episódica
+- persistent_memory_v14.py: memória dimensional persistente incremental, postings/arestas/provenance em SQLite
+- persistent_memory_battery_v14.py: escala, persistência, precisão, ruído, contradição, esquecimento e integração viva V14
 - autonomous_rule_vm_v5.py: RuleVM MDL certificada para transições
 - autonomous_rule_vm_v6.py: RuleBank de associações para conteúdo de prompt
 - benchmark_prompt_rulevm_v6.py: generalidade/qualidade/performance multi-tema

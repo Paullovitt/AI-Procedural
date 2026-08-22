@@ -1,4 +1,4 @@
-AI-Procedural V14 + RuleVM V6 + Argument Planner + Robust Semantic Intake - GPU/VRAM
+AI-Procedural V14 + RuleVM V6 + Argument Planner + Robust Semantic Intake + Persistent Dimensional Memory - GPU/VRAM
 
 Pasta principal:
   C:\Users\USER\Downloads\CODIGOS\TESTE\AI-Procedural
@@ -47,11 +47,12 @@ Na CPU, por serem operações pequenas/irregulares:
   - verificadores semânticos/traces
   - cache de contexto de expressões compostas
   - Robust Semantic Intake: tokenização/arestas/fuzzy discreto e auditável
+  - Persistent Dimensional Memory V14: SQLite, postings, arestas, provenance e busca episódica
 
 O Argument Planner é propositalmente pequeno: ele não faz aprendizagem neural nem inferência de domínio.
 Ele reordena/filtra regras já aprendidas usando confiança, suporte, score, profundidade, cobertura e
 alinhamento com o contexto global do prompt. Na bateria final, o maior tempo observado do planner foi
-~0,608 ms; o RuleVM permaneceu abaixo de ~0,030 ms.
+~0,631 ms; o RuleVM permaneceu abaixo de ~0,029 ms.
 
 VRAM:
   gpu_config.json limita o processo a 4608 MB.
@@ -67,6 +68,14 @@ Configuração V14:
   argument_planner_enabled: true
   robust_semantic_intake_enabled: true
   robust_semantic_warm_index: true
+  persistent_memory_enabled: true
+  persistent_memory_path: memory_v14/episodic_v14.sqlite3
+  persistent_memory_top_k: 4
+  persistent_memory_candidate_limit: 512
+  persistent_memory_associative: true
+  persistent_memory_auto_store_user: true
+  persistent_memory_min_query_term_coverage: 0.30
+  persistent_memory_max_associative_document_ratio: 0.20
 
 Resultados finais da bateria multi-tema, alvo 1000 caracteres:
 - exploração espacial: 957, OK
@@ -85,12 +94,13 @@ Gates:
 - fases argumentativas monotônicas: 6/6
 - repetição imediata do mesmo template: 0
 - falhas de tamanho não explicadas: 0
+- persistent_memory_isolated=true no benchmark RuleVM/Planner
 
 Performance final da bateria:
-- carga única GPU/modelo na bateria multi-tema: ~2,983 s
-- RuleVM máximo: ~0,030 ms
-- Argument Planner máximo: ~0,608 ms
-- prompts posteriores: média ~17,14 ms de raciocínio, máximo ~22,7 ms
+- carga única GPU/modelo na bateria multi-tema isolada: ~2,927 s
+- RuleVM máximo: ~0,029 ms
+- Argument Planner máximo: ~0,631 ms
+- prompts posteriores: média ~16,98 ms de raciocínio, máximo ~23,0 ms
 - sessão persistente evita recarregar ~3-4 s por prompt
 
 Qualidade adicionada sem relaxar evidência:
@@ -106,9 +116,9 @@ Robust Semantic Intake V14:
 - caminho quente medido: texto limpo ~0,21 ms; quatro typos comuns ~0,25 ms; exemplo longo ruidoso ~0,75 ms
 - 225.058 assinaturas rápidas residentes; índice amplo severo somente sob demanda
 - bateria extrema final: 448 avaliações, 16/16 referências, recall 90,49%, recall numérico 99,50%
-- latência da bateria: p50 ~0,476 ms, p95 ~13,339 ms, máximo ~61,541 ms
+- latência da bateria: p50 ~0,474 ms, p95 ~13,333 ms, máximo ~69,047 ms
 - 121 falhas adversariais classificadas; 353 casos distintos preservados e reexecutados pelo failure replay
-- replay histórico: 353 casos, 32 resolvidos, 321 ainda falhando; p50 ~2,285 ms, p95 ~29,555 ms
+- replay histórico: 353 casos, 32 resolvidos, 321 ainda falhando; p50 ~2,146 ms, p95 ~25,741 ms
 - adversarial determinístico por gravidade semântica; latência é medida, não usada para escolher o pior caso
 - sem correção textual intermediária e sem reescrita do dataset
 
@@ -119,9 +129,10 @@ Regressão RuleVM V5 de referência:
 - generalidade 6/6 mundos: 1.0
 - drift: 3/3 mudanças detectadas, 0 falsas revisões
 
-Testes (24/24 automáticos aprovados):
+Testes (34/34 automáticos aprovados):
   python -m unittest discover -v
   python robust_semantic_battery_v14.py
+  python persistent_memory_battery_v14.py
   python robust_semantic_failure_replay_v14.py
   python benchmark_prompt_rulevm_v6.py
   python architecture_guard.py
