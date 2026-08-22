@@ -19,10 +19,14 @@ class PromptSessionV14:
         self.adapter = PromptAdapterV14(
             int(self.cfg.get('default_target_chars', 2000)),
             argument_planner_enabled=bool(self.cfg.get('argument_planner_enabled', True)),
+            robust_intake_enabled=bool(self.cfg.get('robust_semantic_intake_enabled', True)),
+            robust_intake_warm_index=bool(self.cfg.get('robust_semantic_warm_index', True)),
         )
         t0 = time.perf_counter()
         self.scorer, self.grammar, self.inducer, self.renderer = load_runtime(
             self.cfg, lexicon={}, prompt_mode=True)
+        if self.adapter.robust_intake_enabled:
+            self.adapter._intake_for(self.scorer)
         self.load_seconds = time.perf_counter() - t0
         self.prompt_count = 0
 

@@ -5,7 +5,7 @@
   "train_noise": 0.015,
   "val_examples": 60000,
   "test_examples": 100000,
-  "learn_seconds": 1.0915175000009185,
+  "learn_seconds": 0.8531166000002486,
   "test_transition_accuracy": 1.0,
   "selected_orders": [
     4,
@@ -120,11 +120,11 @@
   "mean_parallel_sweeps": 10.0,
   "gpu": {
     "device": "cuda:0",
-    "name": "NVIDIA GeForce GTX 1660 SUPER",
+    "name": "NVIDIA GeForce RTX 3050",
     "allocated_mb": 0.0,
     "reserved_mb": 200.0,
-    "free_mb": 4926.0,
-    "total_mb": 6143.6875,
+    "free_mb": 4948.0,
+    "total_mb": 6143.5,
     "neural": false,
     "gradients": false,
     "parallel_certified": true,

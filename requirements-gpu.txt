@@ -1,5 +1,5 @@
-# Runtime testado nesta maquina em 21/08/2026
+# Runtime testado nesta maquina em 22/08/2026
 numpy>=2.2,<3
 xxhash>=3.6,<4
-torch==2.10.0
+torch==2.11.0
 # CuPy nao e necessario para executar o V14/RuleVM V6. O backend promovido usa PyTorch CUDA apenas como runtime tensorial, sem rede neural ou gradientes.

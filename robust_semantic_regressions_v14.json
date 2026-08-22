@@ -1,0 +1,264 @@
+{
+  "format": "Robust-Semantic-Regressions-V14",
+  "cases": [
+    {
+      "id": "typo-energy",
+      "category": "orthography",
+      "raw": "enerjia solar bateras armazenamnto futoro",
+      "required": [
+        "energia",
+        "solar",
+        "baterias",
+        "armazenamento",
+        "futuro"
+      ],
+      "forbidden": [
+        "bater as"
+      ]
+    },
+    {
+      "id": "paguo-not-paulo",
+      "category": "orthography-context",
+      "raw": "joao comprou carro ontem e paguo 20 mil cada",
+      "required": [
+        "joao",
+        "comprou",
+        "carro",
+        "pagou",
+        "20",
+        "mil"
+      ],
+      "forbidden": [
+        "paulo"
+      ]
+    },
+    {
+      "id": "valid-caro-not-rewritten",
+      "category": "meaning-preservation",
+      "raw": "joao comprou 3 caro ontem e paguo 20 mil cada mas acho que ele tava falando de carros usados bla bla",
+      "required": [
+        "joao",
+        "comprou",
+        "3",
+        "caro",
+        "ontem",
+        "pagou",
+        "20",
+        "mil",
+        "carros",
+        "usados"
+      ],
+      "forbidden": [
+        "paulo",
+        "bla"
+      ],
+      "numbers": [
+        "3",
+        "20"
+      ],
+      "edge": {
+        "source": "caro",
+        "target": "carros",
+        "kind": "local_echo_variant"
+      }
+    },
+    {
+      "id": "single-negation-bridge",
+      "category": "negation",
+      "raw": "joao nao comprou carro ontem",
+      "required": [
+        "joao",
+        "comprou",
+        "carro"
+      ],
+      "bridge": {
+        "source": "joao",
+        "target": "comprou",
+        "contains": [
+          "nao"
+        ],
+        "count": 1
+      }
+    },
+    {
+      "id": "double-negation-bridge",
+      "category": "double-negation",
+      "raw": "joao nao nao comprou carro ontem",
+      "required": [
+        "joao",
+        "comprou",
+        "carro"
+      ],
+      "bridge": {
+        "source": "joao",
+        "target": "comprou",
+        "contains": [
+          "nao"
+        ],
+        "count": 2
+      }
+    },
+    {
+      "id": "typed-date-time-value",
+      "category": "numeric-date-time",
+      "raw": "Maria comprou 3 carros em 21/08/2026 às 14:30 por 20.000 reais",
+      "required": [
+        "maria",
+        "comprou",
+        "3",
+        "carros",
+        "21/08/2026",
+        "14:30",
+        "20.000",
+        "reais"
+      ],
+      "numbers": [
+        "3",
+        "21/08/2026",
+        "14:30",
+        "20.000"
+      ]
+    },
+    {
+      "id": "mojibake-health",
+      "category": "encoding",
+      "raw": "saÃºde pÃºblica prevencao hospitais",
+      "required": [
+        "saúde",
+        "pública",
+        "prevenção",
+        "hospitais"
+      ]
+    },
+    {
+      "id": "html-markup",
+      "category": "mixed-format",
+      "raw": "<div> energia solar </div> **baterias**",
+      "required": [
+        "energia",
+        "solar",
+        "baterias"
+      ],
+      "forbidden": [
+        "div"
+      ]
+    },
+    {
+      "id": "glued-split-phrase",
+      "category": "token-boundary",
+      "raw": "ener giasolar baterias",
+      "required": [
+        "energia",
+        "solar",
+        "baterias"
+      ]
+    },
+    {
+      "id": "emoji-punctuation",
+      "category": "unicode-punctuation",
+      "raw": "energia🔥solar!!! baterias?? armazenamento",
+      "required": [
+        "energia",
+        "solar",
+        "baterias",
+        "armazenamento"
+      ]
+    },
+    {
+      "id": "long-noise",
+      "category": "long-low-signal",
+      "raw": "bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla energia solar baterias armazenamento futuro",
+      "required": [
+        "energia",
+        "solar",
+        "baterias",
+        "armazenamento",
+        "futuro"
+      ],
+      "forbidden": [
+        "bla"
+      ]
+    },
+    {
+      "id": "contradiction-evidence",
+      "category": "contradiction",
+      "raw": "joao comprou 3 carros ontem mas depois disse que nao comprou carros",
+      "required": [
+        "joao",
+        "comprou",
+        "3",
+        "carros"
+      ],
+      "bridge": {
+        "source": "disse",
+        "target": "comprou",
+        "contains": [
+          "nao"
+        ],
+        "count": 1
+      }
+    },
+    {
+      "id": "pronoun-preservation",
+      "category": "indirect-reference",
+      "raw": "joao comprou carros ontem. ele pagou 20 mil cada",
+      "required": [
+        "joao",
+        "carros",
+        "ele",
+        "pagou",
+        "20",
+        "mil"
+      ],
+      "numbers": [
+        "20"
+      ]
+    },
+    {
+      "id": "mixed-language",
+      "category": "mixed-language",
+      "raw": "joao bought 3 carros usados yesterday mas paguo 20 mil cada",
+      "required": [
+        "joao",
+        "3",
+        "carros",
+        "usados",
+        "pagou",
+        "20",
+        "mil"
+      ],
+      "numbers": [
+        "3",
+        "20"
+      ]
+    },
+    {
+      "id": "minimal-negation-positive",
+      "category": "meaning-flip",
+      "raw": "joao comprou carro ontem",
+      "required": [
+        "joao",
+        "comprou",
+        "carro"
+      ]
+    },
+    {
+      "id": "minimal-negation-negative",
+      "category": "meaning-flip",
+      "raw": "joao nao comprou carro ontem",
+      "required": [
+        "joao",
+        "comprou",
+        "carro"
+      ],
+      "bridge": {
+        "source": "joao",
+        "target": "comprou",
+        "contains": [
+          "nao"
+        ],
+        "count": 1
+      }
+    }
+  ]
+}

@@ -1,4 +1,4 @@
-AI-Procedural / Bagaço Renderer V14 + Learned RuleVM V6 + Evidence Argument Planner
+AI-Procedural / Bagaço Renderer V14 + Learned RuleVM V6 + Evidence Argument Planner + Robust Semantic Intake V14
 
 REGRA ARQUITETURAL PERMANENTE
 =============================
@@ -77,6 +77,45 @@ Características:
 - Regras fracas não são admitidas somente para atingir um número de caracteres.
 - O RuleVM continua indexado por source e executa em dezenas de microssegundos.
 
+
+ROBUST SEMANTIC INTAKE V14
+==========================
+A entrada de texto bruto passa por uma projeção semântica robusta antes da seleção de conceitos.
+Ela não gera uma frase corrigida nem reescreve o dataset. O texto original permanece como evidência,
+enquanto hipóteses canônicas internas mantêm origem, confiança, posição, contexto e provenance.
+
+Fluxo:
+  texto bruto imperfeito -> Robust Semantic Intake V14 -> nós/arestas/âncoras explícitas
+  -> RuleBank/RuleVM V6 -> Argument Planner -> Renderer V14 GPU
+
+Mecanismos promovidos:
+- lookup O(1) para tokens exatos; fuzzy somente para tokens suspeitos;
+- índice residente de 225.058 assinaturas de uma deleção para erros comuns;
+- fallback amplo construído sob demanda apenas para corrupções severas;
+- distância Damerau limitada, acentos, transposição e inserção/remoção;
+- mojibake/Unicode, HTML e chaves JSON tratados sem reconstruir o texto;
+- palavras grudadas/separadas recuperadas somente quando p2 do corpus sustenta a segmentação;
+- números, datas e horários preservados como âncoras tipadas;
+- repetição local é rebaixada, mas repetição distante com contexto diferente não é apagada;
+- negação/dupla negação permanecem como evidência de bridge;
+- palavra válida não é silenciosamente corrigida para outra palavra válida;
+- RobustNoiseLearnerV14 promove aliases somente com suporte, dominância, confiança combinada e diversidade de contexto.
+
+Bateria extrema final (`python robust_semantic_battery_v14.py`):
+- 16/16 referências permanentes aprovadas;
+- 448 avaliações sistemáticas/adversariais;
+- recall médio de informação: 90,49%;
+- recall de números/datas/quantidades: 99,50%;
+- p50 de intake: ~0,476 ms; p95: ~13,339 ms; máximo adversarial: ~61,541 ms;
+- 121 avaliações adversariais encontraram alguma falha e foram classificadas;
+- 353 casos distintos permanecem no arquivo cumulativo de falhas e são reexecutados automaticamente;
+- gate final: OK.
+- 24/24 testes automáticos aprovados na suíte completa.
+
+Os casos extremos ainda quebráveis não são escondidos: várias corrupções simultâneas, múltiplas palavras
+grudadas e truncamentos severos continuam registrados. O sistema prefere perder sinal a inventar uma
+interpretação de alta confiança sem evidência suficiente.
+
 SAÍDA LEGÍVEL
 =============
 IDs e000/a000/v000/r000 continuam internos para prova e verificação.
@@ -96,14 +135,14 @@ O V14 mantém:
 
 PERFORMANCE / VALIDAÇÃO ATUAL
 =============================
-Hardware auditado: NVIDIA GeForce GTX 1660 SUPER 6 GB, PyTorch 2.10.0+cu128, CUDA 12.8.
+Hardware auditado em 22/08/2026: NVIDIA GeForce RTX 3050 6 GB, PyTorch 2.11.0+cu128, CUDA 12.8.
 
 Bateria Prompt-RuleVM-V6-ArgumentPlanner-V14, 6 temas, alvo 1000 caracteres:
 - exploração espacial: 957 caracteres, dentro da tolerância;
 - energia solar: 1019 caracteres, dentro da tolerância;
 - agricultura sustentável: 949 caracteres, dentro da tolerância;
 - música clássica: 953 caracteres, dentro da tolerância;
-- segurança digital: 223 caracteres, evidence_limited=true por falta de evidência forte suficiente;
+- segurança digital: 175 caracteres, evidence_limited=true por falta de evidência forte suficiente;
 - saúde pública: 1032 caracteres, dentro da tolerância.
 
 Gates da bateria:
@@ -120,10 +159,10 @@ Gates da bateria:
 - regras removidas pelo filtro contextual na bateria: 9.
 
 Performance medida na bateria final:
-- carga inicial do modelo/GPU: ~3,235 s, uma vez por sessão;
-- RuleVM máximo: ~0,036 ms;
-- Evidence Argument Planner máximo: ~0,861 ms;
-- raciocínio dos prompts posteriores: média ~17,4 ms, máximo ~23,3 ms;
+- carga inicial do modelo/GPU: ~2,983 s na bateria de 6 temas, uma vez por sessão;
+- RuleVM máximo: ~0,030 ms;
+- Evidence Argument Planner máximo: ~0,608 ms;
+- raciocínio dos prompts posteriores: média ~17,14 ms, máximo ~22,7 ms;
 - sessão persistente evita recarregar ~3-4 s de modelo por prompt.
 
 Regressão RuleVM V5 de referência:
@@ -137,7 +176,9 @@ Regressão RuleVM V5 de referência:
 
 TESTES
 ======
-  python -m unittest -v test_v14_prompt.py test_rulevm_v6_prompt.py test_argument_planner_v14.py
+  python -m unittest discover -v
+  python robust_semantic_battery_v14.py
+  python robust_semantic_failure_replay_v14.py
   python benchmark_prompt_rulevm_v6.py
   python autonomous_rule_vm_v5.py
   python generalize_rule_vm_v5.py
@@ -151,7 +192,11 @@ ARQUIVOS CENTRAIS
 - procedural_runtime_v12.py: planejamento/discurso de base
 - procedural_runtime_v13.py: scorer lexicalizado
 - procedural_runtime_v14.py: renderer promovido V14
-- prompt_runtime_v14.py: interpretação, RuleVM V6 e integração do Argument Planner
+- prompt_runtime_v14.py: interpretação, Robust Semantic Intake, RuleVM V6 e integração do Argument Planner
+- robust_semantic_intake_v14.py: projeção semântica robusta não neural sobre texto bruto
+- robust_semantic_battery_v14.py: fuzzing/corrupção/adversarial e arquivo cumulativo de falhas
+- robust_semantic_failure_replay_v14.py: reexecução permanente de todas as falhas adversariais arquivadas
+- train_robust_semantic_v14.py: aprendizagem explícita de aliases recorrentes em datasets brutos
 - argument_planner_v14.py: planejamento argumentativo baseado somente em evidência aprendida
 - prompt_session_v14.py: sessão persistente GPU/VRAM
 - autonomous_rule_vm_v5.py: RuleVM MDL certificada para transições

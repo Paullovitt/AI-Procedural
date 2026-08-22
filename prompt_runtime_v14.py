@@ -1,10 +1,12 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
+from pathlib import Path
 import re
 
 from autonomous_rule_vm_v6 import CorpusAssociationRuleLearnerGPU, IndexedAssociationRuleVM
 from argument_planner_v14 import EvidenceArgumentPlannerV14
+from robust_semantic_intake_v14 import RobustSemanticIntakeV14, LearnedAliasBankV14, semantic_shadow
 
 SLOT_RX = re.compile(r"\b(?:e\d+|a\d+|v\d+|r\d+)\b", re.I)
 WORD_RX = re.compile(r"[A-Za-zÀ-ÖØ-öø-ÿ0-9]+", re.UNICODE)
@@ -143,11 +145,28 @@ class PromptAdapterV14:
     TARGET_RX = re.compile(r'\b(\d{2,6})\s*(?:caracteres|caráter(?:es)?|carateres|chars)\b', re.I)
     TOPIC_RX = re.compile(r'\b(?:sobre|acerca\s+de|a\s+respeito\s+de|tema\s*[:=-])\s+(.+)', re.I)
 
-    def __init__(self, default_target_chars: int = 2000, argument_planner_enabled: bool = True):
+    def __init__(self, default_target_chars: int = 2000, argument_planner_enabled: bool = True,
+                 robust_intake_enabled: bool = True, robust_intake_warm_index: bool = False):
         self.default_target_chars = max(200, int(default_target_chars))
         self.argument_planner_enabled = bool(argument_planner_enabled)
+        self.robust_intake_enabled = bool(robust_intake_enabled)
+        self.robust_intake_warm_index = bool(robust_intake_warm_index)
         self.argument_planner = EvidenceArgumentPlannerV14()
         self._learner_cache = {}
+        self._intake_cache = {}
+
+    def _intake_for(self, scorer):
+        key=id(scorer)
+        intake=self._intake_cache.get(key)
+        if intake is None or getattr(intake,'s',None) is not scorer:
+            root=Path(getattr(scorer,'root',Path('.')))
+            alias_path=root/'ROBUST_SEMANTIC_ALIASES_V14.json'
+            alias_bank=LearnedAliasBankV14.load(alias_path) if alias_path.exists() else LearnedAliasBankV14()
+            intake=RobustSemanticIntakeV14(scorer,alias_bank=alias_bank)
+            if self.robust_intake_warm_index:
+                intake._ensure_fuzzy_index()
+            self._intake_cache={key:intake}
+        return intake
 
     def _learner_for(self, scorer):
         key = id(scorer)
@@ -200,12 +219,78 @@ class PromptAdapterV14:
                 concepts.append(key)
         return concepts[:12]
 
+    @staticmethod
+    def _content_label(label: str) -> bool:
+        words=WORD_RX.findall(str(label))
+        if not words or all(w.isdigit() for w in words):
+            return False
+        meaningful=[w for w in words if len(w)>=3 and w.lower() not in _STOPWORDS and not w.isdigit()]
+        return bool(meaningful)
+
+    def concepts_from_intake(self, prompt: str, fallback_topic: str, result) -> tuple[str,list[str]]:
+        """Select compact RuleVM seeds from the raw-text semantic projection.
+
+        This consumes graph nodes/phrases; it never constructs or emits a corrected
+        sentence. The longest supported phrase after an explicit topic marker wins as
+        root. Remaining high-signal nodes are kept in raw order.
+        """
+        marker_index=-1
+        for tok in result.tokens:
+            if semantic_shadow(tok.canonical) in {'sobre','tema'}:
+                marker_index=tok.index
+        phrases=[x for x in result.phrases if x.token_indices and x.token_indices[0]>marker_index and self._content_label(x.canonical)]
+        phrases.sort(key=lambda x:(x.token_indices[0],-len(x.token_indices),-x.support))
+        root=phrases[0].canonical if phrases else None
+        signal_tokens=[result.tokens[i] for i in result.signal_indices if result.tokens[i].kind=='word']
+        signal_tokens=[x for x in signal_tokens if x.index>marker_index and x.signal>=0.52 and self._content_label(x.canonical)]
+        if root is None and signal_tokens:
+            root=signal_tokens[0].canonical
+        if root is None:
+            return fallback_topic,self.concepts(prompt,fallback_topic)
+        root_words={semantic_shadow(x) for x in WORD_RX.findall(root)}
+        out=[root];seen={semantic_shadow(root)}
+        # Preserve other supported multiword evidence before single tokens.
+        for phrase in phrases[1:]:
+            key=semantic_shadow(phrase.canonical)
+            if key and key not in seen:
+                seen.add(key);out.append(phrase.canonical)
+        for tok in signal_tokens:
+            atoms=list(tok.atoms or (tok.canonical,))
+            for atom in atoms:
+                key=semantic_shadow(atom)
+                if not key or key in root_words or key in seen or not self._content_label(atom):
+                    continue
+                seen.add(key);out.append(atom)
+                if len(out)>=12: break
+            if len(out)>=12: break
+        return root,out[:12]
+
+    @staticmethod
+    def _compact_intake_stats(result):
+        local_echo=[{'source':e.source,'target':e.target,'strength':e.strength} for e in result.edges if e.kind=='local_echo_variant']
+        return {
+            **dict(result.stats),
+            'spine':result.spine[:32],
+            'phrases':[{'canonical':p.canonical,'support':p.support} for p in result.phrases[:12]],
+            'numeric_anchors':result.numeric_anchors[:12],
+            'local_echo_edges':local_echo[:12],
+        }
+
     def build_learned(self, prompt: str, scorer, target_chars: int | None = None,
                       seed: int = 101, fact_count: int | None = None) -> PromptPlan:
-        prompt = _clean_space(prompt)
+        raw_prompt = str(prompt or '')
+        prompt = _clean_space(raw_prompt)
         target = self.target_from_prompt(prompt, target_chars)
-        topic = self.topic_from_prompt(prompt)
-        concepts = self.concepts(prompt, topic)
+        fallback_topic = self.topic_from_prompt(prompt)
+        intake_result = None
+        intake_stats = {}
+        if self.robust_intake_enabled:
+            intake_result=self._intake_for(scorer).extract(raw_prompt)
+            topic,concepts=self.concepts_from_intake(prompt,fallback_topic,intake_result)
+            intake_stats=self._compact_intake_stats(intake_result)
+        else:
+            topic=fallback_topic
+            concepts=self.concepts(prompt,topic)
         rule_budget = int(fact_count) if fact_count is not None else round(target / 74)
         rule_budget = max(8, min(180, rule_budget))
 
@@ -258,8 +343,13 @@ class PromptAdapterV14:
         argument_stats['emit_budget']=emit_budget
 
         if not fired:
-            # Sparse/OOV fallback remains auditable and uses only prompt observations.
-            return self.build(prompt, target_chars=target, seed=seed, fact_count=rule_budget)
+            # Sparse/OOV fallback remains auditable. Preserve intake diagnostics even
+            # when the legacy surface fallback has to be used.
+            fallback=self.build(prompt, target_chars=target, seed=seed, fact_count=rule_budget)
+            fallback.prompt=raw_prompt
+            fallback.topic=topic
+            fallback.reasoning_stats={'engine':'Legacy-Fallback-V14','seed_concepts':concepts,'semantic_intake':intake_stats}
+            return fallback
 
         entity_ids: dict[str, str] = {}
         lex: dict[str, str] = {}
@@ -321,9 +411,10 @@ class PromptAdapterV14:
             'vm_seconds': execution.get('vm_seconds', 0.0),
             'indexed_lookups': execution.get('indexed_lookups', 0),
             'argument_planner': argument_stats,
+            'semantic_intake': intake_stats,
             'rules': rule_rows,
         }
-        return PromptPlan(prompt, topic, target, facts, lex, focus, predicate_relations, predicate_classes, argument_roles, stats)
+        return PromptPlan(raw_prompt, topic, target, facts, lex, focus, predicate_relations, predicate_classes, argument_roles, stats)
 
     def build(self, prompt: str, target_chars: int | None = None, seed: int = 101,
               fact_count: int | None = None) -> PromptPlan:

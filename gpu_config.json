@@ -18,5 +18,7 @@
   "readable_output": true,
   "prompt_mode": true,
   "default_target_chars": 2000,
-  "notes": "V14 padrão com RuleVM V6 aprendido + Evidence Argument Planner V14. GPU/VRAM via PyTorch apenas como runtime tensorial; sem rede neural, gradiente ou backprop. O planner só ordena/filtra regras explícitas já aprendidas e o RuleVM continua indexado. IDs semânticos ficam internos."
+  "notes": "V14 padrão com Robust Semantic Intake + RuleVM V6 aprendido + Evidence Argument Planner V14. GPU/VRAM via PyTorch apenas como runtime tensorial; sem rede neural, gradiente ou backprop. O intake preserva texto bruto/evidência e não executa pipeline de correção. O RuleVM continua indexado e IDs semânticos ficam internos.",
+  "robust_semantic_intake_enabled": true,
+  "robust_semantic_warm_index": true
 }

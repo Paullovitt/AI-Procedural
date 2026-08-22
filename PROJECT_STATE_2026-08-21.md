@@ -1,7 +1,8 @@
 # AI-Procedural — Estado técnico consolidado
 
-Data: 2026-08-21
-Projeto local: `C:\Users\programacao.cnc01\Downloads\TESTE\AI-Procedural-V9`
+Data-base: 2026-08-21
+Atualizado: 2026-08-22
+Projeto local atual: `C:\Users\USER\Downloads\CODIGOS\TESTE\AI-Procedural`
 
 ## 1. Princípios que não podem ser quebrados
 
@@ -453,7 +454,7 @@ Bateria final de 6 temas, alvo de 1000 caracteres:
 - energia solar: 1019, dentro da tolerância;
 - agricultura sustentável: 949, dentro da tolerância;
 - música clássica: 953, dentro da tolerância;
-- segurança digital: 223, `evidence_limited=true`;
+- segurança digital: 175, `evidence_limited=true`;
 - saúde pública: 1032, dentro da tolerância.
 
 Gates finais dessa bateria:
@@ -470,10 +471,10 @@ Gates finais dessa bateria:
 - 9 regras removidas pelo filtro contextual na bateria.
 
 Performance medida:
-- carga inicial única GPU/modelo: ~3,235 s;
-- RuleVM máximo: ~0,036 ms;
-- Argument Planner máximo: ~0,861 ms;
-- raciocínio dos prompts posteriores: média ~17,4 ms, máximo ~23,3 ms.
+- carga inicial única GPU/modelo: ~2,983 s;
+- RuleVM máximo: ~0,030 ms;
+- Argument Planner máximo: ~0,608 ms;
+- raciocínio dos prompts posteriores: média ~17,14 ms, máximo ~22,7 ms.
 
 Testes automáticos após a implementação: **14/14**.
 Novo arquivo de regressão: `test_argument_planner_v14.py`.
@@ -489,3 +490,75 @@ Executada novamente depois da implementação e documentação da V14:
 - benchmark principal: transition accuracy = 1.0, closure exact = 1.0, proof validity = 1.0, 12/12 relações certificadas; aprendizagem ~1,092 s;
 - generalidade: 6/6 mundos com transition/closure/proof = 1.0; tempo total de aprendizado ~5,645 s;
 - drift: relações [1,5,9] detectadas e revisadas exatamente, 0 falsas revisões, pós-revisão = 1.0.
+
+
+## 17. Robust Semantic Intake V14 — texto imperfeito sem pipeline de correção
+
+A linha promovida continua sendo **V14** e permanece não neural. A nova camada processa texto bruto
+imperfeito diretamente e produz uma projeção explícita para as camadas seguintes; não cria uma versão
+textual corrigida nem reescreve o dataset.
+
+Arquivos promovidos:
+- `robust_semantic_intake_v14.py`: tokens, nós, arestas, frases, âncoras numéricas, fuzzy e learner de aliases.
+- `train_robust_semantic_v14.py`: ingestão TXT/JSON/JSONL e promoção explícita de aliases recorrentes.
+- `test_robust_semantic_v14.py`: regressões unitárias/performance/integridade.
+- `robust_semantic_regressions_v14.json`: 16 referências permanentes.
+- `robust_semantic_battery_v14.py`: fuzzing textual, corrupções sintéticas, combinação de erros e busca adversarial.
+- `robust_semantic_failure_archive_v14.jsonl`: arquivo cumulativo de falhas encontradas.
+- `robust_semantic_failure_replay_v14.py`: reexecuta todas as falhas arquivadas como casos permanentes.
+- `rigorous_results_v12/robust_semantic_failure_replay_v14.json`: estado resolvido/não resolvido do archive.
+- `rigorous_results_v12/robust_semantic_v14.json`: relatório integral da última bateria.
+
+Mecanismos:
+- texto original preservado em `raw_text` e spans;
+- canonicalização apenas como hipótese interna auditável;
+- fast-path exato O(1);
+- 225.058 assinaturas de uma deleção para typo comum;
+- fallback amplo somente sob demanda;
+- Damerau limitado + probes O(length) para transposição/remoção e nomes raros;
+- recuperação de mojibake, acentos, HTML/JSON estrutural, Unicode/emoji;
+- segmentação de palavra grudada/partida apenas com evidência p2 do corpus;
+- âncoras explícitas para número/data/hora;
+- repetição local descartável, repetição distante preservada quando pode carregar contexto novo;
+- negação e dupla negação preservadas nas bridges;
+- palavras válidas nunca são reescritas silenciosamente como outra palavra válida;
+- learner de aliases exige suporte, dominância, confiança combinada e pelo menos dois contextos distintos.
+
+Performance do caminho quente observada durante desenvolvimento:
+- texto limpo: mediana ~0,21 ms;
+- quatro typos comuns: mediana ~0,25 ms;
+- exemplo longo ruidoso: mediana ~0,75 ms.
+
+Bateria extrema final de 22/08/2026:
+- 16/16 referências permanentes aprovadas;
+- 448 avaliações;
+- recall médio de informação: 0.904935;
+- recall numérico/data/quantidade: 0.994978;
+- p50: ~0,476 ms; p95: ~13,339 ms; máximo: ~61,541 ms;
+- 121 avaliações com falhas classificadas;
+- classes: 113 perdas de informação, 15 inclusões de ruído, 9 erros de relação/significado, 3 numéricos;
+- archive cumulativo: 353 casos distintos;
+- gate `ROBUST SEMANTIC V14 BATTERY GATE: OK`.
+
+Regressões após integração:
+- `python -m unittest discover -v`: 24/24;
+- Prompt RuleVM V6/Argument Planner: gate OK, 6/6 semantic verified, 5/6 dentro da tolerância e 1 `evidence_limited`;
+- V5 principal: transition/closure/proof = 1.0, 12/12 certificadas, aprendizagem ~0,853 s;
+- V5 generalidade: 6/6 mundos = 1.0, todos exigiram ordem 5, total ~6,501 s;
+- drift: [1,5,9] detectadas exatamente, falsas revisões 0, pós-revisão = 1.0;
+- `architecture_guard.py`: OK; `validate_model.py`: OK.
+
+Hardware desta validação final: NVIDIA GeForce RTX 3050 6 GB, CUDA 12.8, PyTorch 2.11.0+cu128.
+
+Limitações conhecidas permanecem explícitas: corrupções simultâneas muito fortes, várias palavras grudadas e
+truncamentos severos ainda conseguem causar perda de sinal. Esses casos permanecem no archive para o
+ciclo detectar -> minimizar -> regressão permanente -> corrigir -> rerodar.
+
+### Replay permanente das falhas adversariais
+
+O archive deixou de ser somente registro passivo. `robust_semantic_failure_replay_v14.py` reexecuta
+todos os casos já descobertos usando a referência original do caso-base e informa quais foram resolvidos
+por mudanças posteriores sem apagar o histórico. Na validação final: 353 casos arquivados, 32 já
+resolvidos e 321 ainda não resolvidos; p50 ~2,285 ms, p95 ~29,555 ms e máximo ~69,429 ms no conjunto
+adversarial histórico. Casos não resolvidos permanecem visíveis; eles não são tratados como regressões
+aprovadas nem usados para justificar redução dos gates atuais.

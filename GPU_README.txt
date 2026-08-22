@@ -1,7 +1,7 @@
-AI-Procedural V14 + Learned RuleVM V6 + Evidence Argument Planner - GPU/VRAM
+AI-Procedural V14 + RuleVM V6 + Argument Planner + Robust Semantic Intake - GPU/VRAM
 
 Pasta principal:
-  C:\Users\programacao.cnc01\Downloads\TESTE\AI-Procedural-V9
+  C:\Users\USER\Downloads\CODIGOS\TESTE\AI-Procedural
 
 Runtime padrão:
   Renderer V14 + sessão persistente + RuleVM V6 + Evidence Argument Planner V14
@@ -25,8 +25,8 @@ Backend:
   PyTorch CUDA usado como runtime tensorial, sem rede neural, sem gradientes e sem backprop.
 
 Hardware auditado:
-  NVIDIA GeForce GTX 1660 SUPER 6 GB
-  PyTorch 2.10.0+cu128
+  NVIDIA GeForce RTX 3050 6 GB
+  PyTorch 2.11.0+cu128
   CUDA runtime 12.8
 
 Na GPU/VRAM:
@@ -46,11 +46,12 @@ Na CPU, por serem operações pequenas/irregulares:
   - planejamento estrutural/parágrafos
   - verificadores semânticos/traces
   - cache de contexto de expressões compostas
+  - Robust Semantic Intake: tokenização/arestas/fuzzy discreto e auditável
 
 O Argument Planner é propositalmente pequeno: ele não faz aprendizagem neural nem inferência de domínio.
 Ele reordena/filtra regras já aprendidas usando confiança, suporte, score, profundidade, cobertura e
 alinhamento com o contexto global do prompt. Na bateria final, o maior tempo observado do planner foi
-~0,861 ms; o RuleVM permaneceu abaixo de ~0,036 ms.
+~0,608 ms; o RuleVM permaneceu abaixo de ~0,030 ms.
 
 VRAM:
   gpu_config.json limita o processo a 4608 MB.
@@ -64,13 +65,15 @@ Configuração V14:
   repetition_weight: 1.1
   prompt_max_bundle: 4
   argument_planner_enabled: true
+  robust_semantic_intake_enabled: true
+  robust_semantic_warm_index: true
 
 Resultados finais da bateria multi-tema, alvo 1000 caracteres:
 - exploração espacial: 957, OK
 - energia solar: 1019, OK
 - agricultura sustentável: 949, OK
 - música clássica: 953, OK
-- segurança digital: 223, evidence_limited=true
+- segurança digital: 175, evidence_limited=true
 - saúde pública: 1032, OK
 
 Gates:
@@ -84,10 +87,10 @@ Gates:
 - falhas de tamanho não explicadas: 0
 
 Performance final da bateria:
-- carga única GPU/modelo: ~3,235 s
-- RuleVM máximo: ~0,036 ms
-- Argument Planner máximo: ~0,861 ms
-- prompts posteriores: média ~17,4 ms de raciocínio, máximo ~23,3 ms
+- carga única GPU/modelo na bateria multi-tema: ~2,983 s
+- RuleVM máximo: ~0,030 ms
+- Argument Planner máximo: ~0,608 ms
+- prompts posteriores: média ~17,14 ms de raciocínio, máximo ~22,7 ms
 - sessão persistente evita recarregar ~3-4 s por prompt
 
 Qualidade adicionada sem relaxar evidência:
@@ -98,6 +101,17 @@ Qualidade adicionada sem relaxar evidência:
 - se faltarem fatos fortes, evidence_limited é preferido a preencher com ruído
 - o refinador pode buscar candidatos fortes adicionais sem baixar thresholds
 
+
+Robust Semantic Intake V14:
+- caminho quente medido: texto limpo ~0,21 ms; quatro typos comuns ~0,25 ms; exemplo longo ruidoso ~0,75 ms
+- 225.058 assinaturas rápidas residentes; índice amplo severo somente sob demanda
+- bateria extrema final: 448 avaliações, 16/16 referências, recall 90,49%, recall numérico 99,50%
+- latência da bateria: p50 ~0,476 ms, p95 ~13,339 ms, máximo ~61,541 ms
+- 121 falhas adversariais classificadas; 353 casos distintos preservados e reexecutados pelo failure replay
+- replay histórico: 353 casos, 32 resolvidos, 321 ainda falhando; p50 ~2,285 ms, p95 ~29,555 ms
+- adversarial determinístico por gravidade semântica; latência é medida, não usada para escolher o pior caso
+- sem correção textual intermediária e sem reescrita do dataset
+
 Regressão RuleVM V5 de referência:
 - transition accuracy 1.0
 - closure exact 1.0
@@ -105,8 +119,10 @@ Regressão RuleVM V5 de referência:
 - generalidade 6/6 mundos: 1.0
 - drift: 3/3 mudanças detectadas, 0 falsas revisões
 
-Testes:
-  python -m unittest -v test_v14_prompt.py test_rulevm_v6_prompt.py test_argument_planner_v14.py
+Testes (24/24 automáticos aprovados):
+  python -m unittest discover -v
+  python robust_semantic_battery_v14.py
+  python robust_semantic_failure_replay_v14.py
   python benchmark_prompt_rulevm_v6.py
   python architecture_guard.py
   python project_audit.py

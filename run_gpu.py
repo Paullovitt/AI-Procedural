@@ -174,6 +174,7 @@ def _reasoning_summary(stats):
         'rule_learning_seconds': round(float(bank.get('learn_seconds', 0.0)), 6),
         'context_index_seconds': round(float(bank.get('index_seconds', 0.0)), 6),
         'argument_planner': stats.get('argument_planner', {}),
+        'semantic_intake': stats.get('semantic_intake', {}),
         'gpu': bank.get('gpu'),
     }
 
@@ -204,6 +205,8 @@ def main():
     adapter = PromptAdapterV14(
         int(cfg.get('default_target_chars', 2000)),
         argument_planner_enabled=bool(cfg.get('argument_planner_enabled', True)),
+        robust_intake_enabled=bool(cfg.get('robust_semantic_intake_enabled', True)),
+        robust_intake_warm_index=bool(cfg.get('robust_semantic_warm_index', True)),
     )
     if args.facts:
         plan = [tuple(x) for x in json.loads(args.facts.read_text(encoding='utf8'))]
@@ -215,6 +218,8 @@ def main():
     t0 = time.perf_counter()
     scorer, grammar, inducer, renderer = load_runtime(cfg, lexicon=(lexicon if not prompt_mode else {}),
                                                        prompt_mode=prompt_mode)
+    if prompt_mode and not args.legacy_prompt and adapter.robust_intake_enabled:
+        adapter._intake_for(scorer)
     load_s = time.perf_counter() - t0
 
     reasoning_stats = {}
